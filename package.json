@@ -1,0 +1,23 @@
+{
+  "name": "clip_web",
+  "version": "1.0.0",
+  "description": "Clip Project Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nexters/clip_web.git"
+  },
+  "author": "godong9",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nexters/clip_web/issues"
+  },
+  "homepage": "https://github.com/Nexters/clip_web",
+  "dependencies": {
+    "crawler": "^0.4.3",
+    "express": "^4.12.4"
+  }
+}
