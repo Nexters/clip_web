@@ -1,46 +1,31 @@
 var Crawler = require('crawler');
 var url = require('url');
 
+var KEYWORD_ARRAY = ["창업"];
+
 var c = new Crawler({
     maxConnections : 10,
     // This will be called for each crawled page
     callback : function (error, result, $) {
-        $('h3.r a').each(function(index, result) {
-            console.log(result);
-            //var resultArray = result.children[0].children;
-            //resultArray
+
+        $('li.g').each(function(index, result) {
+            var title = $(result).find('h3.r a').text();
+            var link = $(result).find('h3.r a').attr('href');
+            var detail = $(result).find('span.st').text();
+
+            console.log(title);
+            console.log(link);
+            console.log(detail);
         });
 
-        $('span.st').each(function(index, result) {
-            console.log(result);
-            //var resultArray = result.children[0].children;
-            //resultArray
+        $('td a.fl').each(function(index, a) {
+            var toQueueUrl = "http://google.fr"+$(a).attr('href');
+            setTimeout(function(){
+                c.queue(toQueueUrl);
+            }, 5000);
         });
-        // $ is Cheerio by default
-        //a lean implementation of core jQuery designed specifically for the server
-        //$('a').each(function(index, a) {
-        //    var toQueueUrl = $(a).attr('href');
-        //    c.queue(toQueueUrl);
-        //});
     }
 });
-//
-//// Queue just one URL, with default callback
-//c.queue('http://joshfire.com');
-//
-//// Queue a list of URLs
-//c.queue(['http://jamendo.com/','http://tedxparis.com']);
-//
-//// Queue URLs with custom callbacks & parameters
-//c.queue([{
-//    uri: 'http://parishackers.org/',
-//    jQuery: false,
-//
-//    // The global callback won't be called
-//    callback: function (error, result) {
-//        console.log('Grabbed', result.body.length, 'bytes');
-//    }
-//}]);
 
 // Queue using a function
 var googleSearch = function(search) {
@@ -48,5 +33,5 @@ var googleSearch = function(search) {
 };
 
 c.queue({
-    uri: googleSearch('창업')
+    uri: googleSearch(KEYWORD_ARRAY[0])
 });
