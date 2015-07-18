@@ -6,12 +6,16 @@ var mongoose = require('mongoose'),
  * User Schema
  */
 var UserSchema = new Schema({
-    deviceId: { type: String, required: true }, // 디바이스 고유 ID
+    email: { type: String, required: true }, // 이메일 주소
+    pw: { type: String, required: true }, // 패스워드
+    authType: { type: String, required: true }, // 인증타입
+    authKey: { type: String, required: true }, // 인증키
     name: { type: String, required: true }, // 닉네임
     profileUrl: { type: String, default: '' }, // 프로필 이미지 주소
-    gender: { type: Number },	// 1:male, 2:female
     createTime: { type: Date, required: true } //생성 시간
-}, {collection: 'users'});
+}, {collection: 'user'});
+
+UserSchema.index({ name: 1 }, { unique: true });
 
 /**
  * Model Methods
