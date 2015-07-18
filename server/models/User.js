@@ -12,7 +12,9 @@ var UserSchema = new Schema({
     authKey: { type: String, required: true }, // 인증키
     name: { type: String, required: true }, // 닉네임
     profileUrl: { type: String, default: '' }, // 프로필 이미지 주소
-    createTime: { type: Date, required: true } //생성 시간
+    createTime: { type: Date, required: true }, //생성 시간
+    site: { type: Array, default: [] }, // 추가한 사이트 목록
+    keyword: { type: Array, default: [] } // 추가한 키우드 목록
 }, {collection: 'user'});
 
 UserSchema.index({ name: 1 }, { unique: true });
