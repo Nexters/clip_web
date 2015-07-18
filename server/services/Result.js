@@ -4,7 +4,7 @@ function ResultService() {
 
 ResultService.SUCCESS = function (data, msg) {
     var result = {
-        resultCode: 1,
+        resultCode: 0,
         resultMsg: msg ? msg : "SUCCESS",
         data: data ? data : "SUCCESS"
     };
@@ -13,7 +13,7 @@ ResultService.SUCCESS = function (data, msg) {
 
 ResultService.ERROR = function (errors, msg) {
     var result = {
-        resultCode: 0,
+        resultCode: 1,
         resultMsg: msg ? msg : "ERROR",
         errors: errors ? errors : [ "ERROR" ]
     };

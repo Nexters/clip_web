@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
  */
 var WebSchema = new Schema({
     title: { type: String, default: '' },
-    content: { type: String, required: true },
+    detail: { type: String, required: true },
     link: { type: String, default: '' },
     source: { type: String, default: '' },
     keyword: { type: Array, default: [] },	// 1:male, 2:female

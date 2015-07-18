@@ -7,7 +7,6 @@ var c = new Crawler({
     maxConnections : 10,
     // This will be called for each crawled page
     callback : function (error, result, $) {
-
         $('li.g').each(function(index, result) {
             var title = $(result).find('h3.r a').text();
             var link = $(result).find('h3.r a').attr('href');
@@ -22,7 +21,7 @@ var c = new Crawler({
             var toQueueUrl = "http://google.fr"+$(a).attr('href');
             setTimeout(function(){
                 c.queue(toQueueUrl);
-            }, 5000);
+            }, 3000);
         });
     }
 });
