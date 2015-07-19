@@ -7,6 +7,22 @@ var c = new Crawler({
     maxConnections : 10,
     // This will be called for each crawled page
     callback : function (error, result, $) {
+        $('a').each(function(index, a) {
+            var toQueueUrl = $(a).attr('href');
+            c.queue(toQueueUrl);
+        });
+
+        $('a').each(function(index, result) {
+            var child = $(result).find('img');
+            if (child.length > 0) {
+                var link = $(result).attr('href');
+                var img = $(child).attr('src');
+
+                console.log(link);
+                console.log(img);
+            }
+        });
+
         $('li.g').each(function(index, result) {
             var title = $(result).find('h3.r a').text();
             var link = $(result).find('h3.r a').attr('href');
@@ -33,4 +49,8 @@ var googleSearch = function(search) {
 
 c.queue({
     uri: googleSearch(KEYWORD_ARRAY[0])
+});
+
+c.queue({
+    uri: 'http://www.venturesquare.net/'
 });
