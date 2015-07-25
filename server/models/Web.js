@@ -23,4 +23,4 @@ WebSchema.index({ keyword: 1, createTime: -1 });
 
 
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Web', WebSchema);
