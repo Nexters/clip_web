@@ -1,6 +1,9 @@
 var FeedParser = require('feedparser')
     , request = require('request');
 
+var urlArray = ['http://www.venturesquare.net/rss'];
+var keywordArray = ['스타트업', '기획'];
+
 var req = request('http://www.venturesquare.net/rss')
     , feedparser = new FeedParser();
 
@@ -26,6 +29,6 @@ feedparser.on('readable', function() {
         , item;
 
     while (item = stream.read()) {
-        console.log(item);
+        console.log(item['description'].indexOf('창업'));
     }
 });
