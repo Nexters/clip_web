@@ -19,8 +19,7 @@ function fetch(feed, lastFeedDate) {
         //.setHeader('accept', 'text/html,application/xhtml+xml');
 
     var feedparser = new FeedParser();
-
-
+    
     // Define our handlers
     req.on('error', done);
     req.on('response', function(res) {
@@ -93,7 +92,6 @@ function done(err) {
         logger.error(err, err.stack);
         return process.exit(1);
     }
-    //server.close();
     process.exit();
 }
 
