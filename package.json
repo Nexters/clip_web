@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Nexters/clip_web",
   "dependencies": {
+    "async": "^1.4.0",
     "crawler": "^0.4.3",
     "express": "^4.12.4",
     "feedparser": "^1.1.3",

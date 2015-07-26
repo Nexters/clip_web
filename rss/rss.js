@@ -2,13 +2,25 @@ var request = require('request'),
     FeedParser = require('feedparser'),
     Iconv = require('iconv').Iconv,
     zlib = require('zlib'),
+    async = require('async'),
     moment = require('moment'),
     log4js = require('log4js');
 
 log4js.configure(__dirname+'/../config/log4js_config.json');
 log4js.setGlobalLogLevel('debug');
 
-var logger = log4js.getLogger("rssLogger");
+var db = null;
+var logger = log4js.getLogger("rss");
+
+function setDB(inDB) {
+    db = inDB;
+}
+exports.setDB = setDB;
+
+function getNeedCollections() {
+    return ["web","user"];
+}
+exports.getNeedCollections = getNeedCollections;
 
 function fetch(feed, lastFeedDate) {
     // Define our streams
@@ -19,7 +31,7 @@ function fetch(feed, lastFeedDate) {
         //.setHeader('accept', 'text/html,application/xhtml+xml');
 
     var feedparser = new FeedParser();
-    
+
     // Define our handlers
     req.on('error', done);
     req.on('response', function(res) {
@@ -38,7 +50,8 @@ function fetch(feed, lastFeedDate) {
         while (post = this.read()) {
             if (testPattern.test(post.description)) {
                 // TODO: post.pubDate와 lastFeedDate 비교해서 lastFeedDate 이후의 것만 db에 저장하는 로직 추가
-                var lastFeedDate = moment().subtract(3, 'days');    // TODO: 수정 필요
+                //var lastFeedDate = moment().subtract(3, 'days');    // TODO: 수정 필요
+                var lastFeedDate = moment(lastFeedDate);
                 var pubDate = moment(post.pubDate);
                 if (lastFeedDate.isBefore(pubDate)) {
                     logger.info(post);
@@ -47,6 +60,13 @@ function fetch(feed, lastFeedDate) {
         }
     });
 }
+exports.fetch = fetch;
+
+function run(resultCallback) {
+    console.log("RUN");
+    resultCallback();
+}
+exports.run = run;
 
 function maybeDecompress (res, encoding) {
     var decompress;
@@ -95,10 +115,11 @@ function done(err) {
     process.exit();
 }
 
+
 // TODO: node-scheduler 이용해서 주기적으로 유저별로 url, keyword 가져와서 fetch 해주기
 var urlArray = ['http://www.venturesquare.net/rss'];
 var keywordArray = ['스타트업', '기획'];
 var keywordString = keywordArray.join('|');
 var testPattern = new RegExp(keywordString, "g");
 
-fetch(urlArray[0]);
+//fetch(urlArray[0]);
