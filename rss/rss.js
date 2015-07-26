@@ -12,61 +12,30 @@ log4js.setGlobalLogLevel('debug');
 var db = null;
 var logger = log4js.getLogger("rss");
 
-function setDB(inDB) {
-    db = inDB;
+
+function getUsers(criteria, resultCallback) {
+    db.user.find(criteria, resultCallback);
 }
-exports.setDB = setDB;
 
-function getNeedCollections() {
-    return ["web","user"];
-}
-exports.getNeedCollections = getNeedCollections;
-
-function fetch(feed, lastFeedDate) {
-    // Define our streams
-    var req = request(feed, {timeout: 10000, pool: false});
-    req.setMaxListeners(50);
-    // Some feeds do not respond without user-agent and accept headers.
-    req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36');
-        //.setHeader('accept', 'text/html,application/xhtml+xml');
-
-    var feedparser = new FeedParser();
-
-    // Define our handlers
-    req.on('error', done);
-    req.on('response', function(res) {
-        if (res.statusCode != 200) return this.emit('error', new Error('Bad status code'));
-        var encoding = res.headers['content-encoding'] || 'identity'
-            , charset = getParams(res.headers['content-type'] || '').charset;
-        res = maybeDecompress(res, encoding);
-        res = maybeTranslate(res, charset);
-        res.pipe(feedparser);
-    });
-
-    feedparser.on('error', done);
-    feedparser.on('end', done);
-    feedparser.on('readable', function() {
-        var post;
-        while (post = this.read()) {
-            if (testPattern.test(post.description)) {
-                // TODO: post.pubDate와 lastFeedDate 비교해서 lastFeedDate 이후의 것만 db에 저장하는 로직 추가
-                //var lastFeedDate = moment().subtract(3, 'days');    // TODO: 수정 필요
-                var lastFeedDate = moment(lastFeedDate);
-                var pubDate = moment(post.pubDate);
-                if (lastFeedDate.isBefore(pubDate)) {
-                    logger.info(post);
-                }
-            }
-        }
+function getFeedDataFromUsers(users, resultCallback) {
+    async.eachSeries(users, function iterator(user, callback) {
+        if (user.keyword.length === 0) return callback();
+        var keywordString = user.keyword.join('|');
+        var keywordPattern = new RegExp(keywordString, "g");
+        fetchUserFeed(user.feed, keywordPattern, user.lastFeedDate, callback);
+    }, function done() {
+        if (resultCallback) resultCallback();
     });
 }
-exports.fetch = fetch;
 
-function run(resultCallback) {
-    console.log("RUN");
-    resultCallback();
+function fetchUserFeed(feedArray, keywordPattern, lastFeedDate, resultCallback) {
+    async.eachSeries(feedArray, function iterator(feed, callback) {
+        fetch(feed, keywordPattern, lastFeedDate);
+        callback();
+    }, function done() {
+        if (resultCallback) resultCallback();
+    });
 }
-exports.run = run;
 
 function maybeDecompress (res, encoding) {
     var decompress;
@@ -112,14 +81,78 @@ function done(err) {
         logger.error(err, err.stack);
         return process.exit(1);
     }
-    process.exit();
+    logger.info("rss end!");
+    //process.exit();   // 프로세스 죽이지 않고 계속 배치로 작업 진행
 }
 
 
-// TODO: node-scheduler 이용해서 주기적으로 유저별로 url, keyword 가져와서 fetch 해주기
-var urlArray = ['http://www.venturesquare.net/rss'];
-var keywordArray = ['스타트업', '기획'];
-var keywordString = keywordArray.join('|');
-var testPattern = new RegExp(keywordString, "g");
+function setDB(inDB) {
+    db = inDB;
+}
+exports.setDB = setDB;
 
-//fetch(urlArray[0]);
+function getNeedCollections() {
+    return ["web", "user"];
+}
+exports.getNeedCollections = getNeedCollections;
+
+function fetch(feed, keywordPattern, lastFeedDate) {
+    // Define our streams
+    var req = request(feed, {timeout: 10000, pool: false});
+    req.setMaxListeners(50);
+    // Some feeds do not respond without user-agent and accept headers.
+    req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36');
+    //.setHeader('accept', 'text/html,application/xhtml+xml');
+
+    var feedparser = new FeedParser();
+
+    // Define our handlers
+    req.on('error', done);
+    req.on('response', function(res) {
+        if (res.statusCode != 200) return this.emit('error', new Error('Bad status code'));
+        var encoding = res.headers['content-encoding'] || 'identity'
+            , charset = getParams(res.headers['content-type'] || '').charset;
+        res = maybeDecompress(res, encoding);
+        res = maybeTranslate(res, charset);
+        res.pipe(feedparser);
+    });
+
+    feedparser.on('error', done);
+    feedparser.on('end', done);
+    feedparser.on('readable', function() {
+        var post;
+        while (post = this.read()) {
+            if (keywordPattern.test(post.description)) {
+                // TODO: post.pubDate와 lastFeedDate 비교해서 lastFeedDate 이후의 것만 db에 저장하는 로직 추가
+                var lastDate = moment(lastFeedDate);
+                var pubDate = moment(post.pubDate);
+                if (lastDate.isBefore(pubDate)) {
+                    logger.info(post);  // TODO: post db에 저장하는 로직 추가 (Web Schema)
+                    // TODO: user의 lastFeedDate 업데이트 필요!
+                }
+            }
+        }
+    });
+}
+exports.fetch = fetch;
+
+function run(resultCallback) {
+    async.waterfall([
+        function(callback){
+            var criteria = {};
+            getUsers(criteria, function(err, users) {
+                callback(err, users);
+            });
+        },
+        function(users, callback){
+            logger.info("users: ", users);
+            getFeedDataFromUsers(users, function(err) {
+                callback(err);
+            });
+        }
+    ], function(err){
+        if(err) logger.error(err);
+        if(resultCallback) resultCallback(err);
+    });
+}
+exports.run = run;
