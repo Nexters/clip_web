@@ -2,6 +2,7 @@ var request = require('request'),
     FeedParser = require('feedparser'),
     Iconv = require('iconv').Iconv,
     zlib = require('zlib'),
+    moment = require('moment'),
     log4js = require('log4js');
 
 log4js.configure(__dirname+'/../config/log4js_config.json');
@@ -9,7 +10,7 @@ log4js.setGlobalLogLevel('debug');
 
 var logger = log4js.getLogger("rssLogger");
 
-function fetch(feed) {
+function fetch(feed, lastFeedDate) {
     // Define our streams
     var req = request(feed, {timeout: 10000, pool: false});
     req.setMaxListeners(50);
@@ -37,8 +38,12 @@ function fetch(feed) {
         var post;
         while (post = this.read()) {
             if (testPattern.test(post.description)) {
-                // TODO: db에 저장하는 로직 추가
-                logger.info(post.description);
+                // TODO: post.pubDate와 lastFeedDate 비교해서 lastFeedDate 이후의 것만 db에 저장하는 로직 추가
+                var lastFeedDate = moment().subtract(3, 'days');    // TODO: 수정 필요
+                var pubDate = moment(post.pubDate);
+                if (lastFeedDate.isBefore(pubDate)) {
+                    logger.info(post);
+                }
             }
         }
     });
