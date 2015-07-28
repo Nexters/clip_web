@@ -6,15 +6,17 @@ var mongoose = require('mongoose'),
  * Web Schema
  */
 var WebSchema = new Schema({
+    user: { type: String, required: true },
     title: { type: String, default: '' },
-    detail: { type: String, required: true },
+    description: { type: String, required: true },
     link: { type: String, default: '' },
-    source: { type: String, default: '' },
-    keyword: { type: Array, default: [] },	// 1:male, 2:female
-    createTime: { type: Date, required: true } //생성 시간
+    feed: { type: String, default: '' },
+    categories: { type: Array, default: [] },
+    keyword: { type: Array, default: [] },  // TODO: 현재 사용안함. 향후 ngram 등 다른 방안 도입해야함!
+    pubDate: { type: Date, required: true } // 등록된 시간
 }, {collection: 'web'});
 
-WebSchema.index({ keyword: 1, createTime: -1 });
+WebSchema.index({ keyword: 1, pubDate: -1 });
 
 /**
  * Model Methods

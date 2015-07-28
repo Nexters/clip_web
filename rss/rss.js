@@ -22,15 +22,17 @@ function getFeedDataFromUsers(users, resultCallback) {
         if (user.keyword.length === 0) return callback();
         var keywordString = user.keyword.join('|');
         var keywordPattern = new RegExp(keywordString, "g");
-        fetchUserFeed(user.feed, keywordPattern, user.lastFeedDate, callback);
+        var updatedLastFeedDate = new Date();
+        fetchUserFeed(user._id, user.feed, keywordPattern, user.lastFeedDate, callback);
+        updateUserLastFeedDate(user._id, updatedLastFeedDate)
     }, function done() {
         if (resultCallback) resultCallback();
     });
 }
 
-function fetchUserFeed(feedArray, keywordPattern, lastFeedDate, resultCallback) {
+function fetchUserFeed(userId, feedArray, keywordPattern, lastFeedDate, resultCallback) {
     async.eachSeries(feedArray, function iterator(feed, callback) {
-        fetch(feed, keywordPattern, lastFeedDate);
+        fetch(userId, feed, keywordPattern, lastFeedDate);
         callback();
     }, function done() {
         if (resultCallback) resultCallback();
@@ -85,6 +87,32 @@ function done(err) {
     //process.exit();   // 프로세스 죽이지 않고 계속 배치로 작업 진행
 }
 
+function makeWebData(userId, post, feed, pubDate) {
+    var webData = {
+        user: userId,
+        title: post.title,
+        description: post.description,
+        link: post.link,
+        feed: feed,
+        categories: post.categories,
+        pubDate: pubDate
+    };
+    return webData;
+}
+
+function saveWebData(postArray, callback) {
+    if (!postArray || postArray.length === 0) return callback();
+    db.web.insert(postArray, function(err) {
+       callback(err);
+    });
+}
+
+function updateUserLastFeedDate(userId, lastFeedDate, callback) {
+    logger.info("Update user lastFeedDate: ", lastFeedDate);
+    db.user.update({_id:userId}, {$set:{lastFeedDate: lastFeedDate}}, function(err) {
+        if (callback) callback(err);
+    });
+}
 
 function setDB(inDB) {
     db = inDB;
@@ -96,7 +124,7 @@ function getNeedCollections() {
 }
 exports.getNeedCollections = getNeedCollections;
 
-function fetch(feed, keywordPattern, lastFeedDate) {
+function fetch(userId, feed, keywordPattern, lastFeedDate) {
     // Define our streams
     var req = request(feed, {timeout: 10000, pool: false});
     req.setMaxListeners(50);
@@ -120,6 +148,7 @@ function fetch(feed, keywordPattern, lastFeedDate) {
     feedparser.on('error', done);
     feedparser.on('end', done);
     feedparser.on('readable', function() {
+        var postArray = [];
         var post;
         while (post = this.read()) {
             if (keywordPattern.test(post.description)) {
@@ -127,11 +156,14 @@ function fetch(feed, keywordPattern, lastFeedDate) {
                 var lastDate = moment(lastFeedDate);
                 var pubDate = moment(post.pubDate);
                 if (lastDate.isBefore(pubDate)) {
-                    logger.info(post);  // TODO: post db에 저장하는 로직 추가 (Web Schema)
-                    // TODO: user의 lastFeedDate 업데이트 필요!
+                    logger.info(post);
+                    postArray.push(makeWebData(userId, post, feed, pubDate));
                 }
             }
         }
+        saveWebData(postArray, function(err) {
+            if (err) logger.error("saveWebDate err: ",err);
+        });
     });
 }
 exports.fetch = fetch;
@@ -144,10 +176,10 @@ function run(resultCallback) {
                 callback(err, users);
             });
         },
-        function(users, callback){
+        function(users, callback) {
             logger.info("users: ", users);
             getFeedDataFromUsers(users, function(err) {
-                callback(err);
+                callback(users, err);
             });
         }
     ], function(err){
