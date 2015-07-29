@@ -7,11 +7,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/signin', function(req, res, next) {
-  res.render('index', { title: 'My World', name: 'Ji Yeon' });
+  res.render('signin', { title: 'My World', name: 'Ji Yeon' });
 });
 
 router.get('/signup', function(req, res, next) {
-  res.render('index2', { title: 'My World', name: 'Ji Yeon' });
+  res.render('signup', { title: 'My World', name: 'Ji Yeon' });
 });
 
 

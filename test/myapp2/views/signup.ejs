@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
 <head>
   <style type="text/css">
 
@@ -16,16 +16,17 @@
 </head>
 <body>
 <b class="top">
-  <a href="http://localhost:3000">
+  <a href="/home">
     <img src="/images/clip.png" ><br></a>
 
+  <form name="loginform" method="post" action="/index2">
 
-  <form name="loginform" method="post" action="http://localhost:3000/test">
-
+    <c class="mailinfo"> Name  </c><input type="text" name="name" ><br>
+    <c class="mailinfo"> Age  </c><input type="text" name="age" ><br>
     <c class="mailinfo"> Email  </c><input type="email" name="email" ><br>
     <c class="mailinfo"> Password  </c><input type="password" name="password"><br>
 
-    <button type="submit">login</button>
+    <button type="submit">signup</button>
 
   </form>
 </b>
