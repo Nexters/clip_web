@@ -20,19 +20,18 @@ function getUsers(criteria, resultCallback) {
 function getFeedDataFromUsers(users, resultCallback) {
     async.eachSeries(users, function iterator(user, callback) {
         if (user.keyword.length === 0) return callback();
-        var keywordString = user.keyword.join('|');
-        var keywordPattern = new RegExp(keywordString, "g");
         var updatedLastFeedDate = new Date();
-        fetchUserFeed(user._id, user.feed, keywordPattern, user.lastFeedDate, callback);
+        fetchUserFeed(user._id, user.feed, user.keyword, user.lastFeedDate, callback);
         updateUserLastFeedDate(user._id, updatedLastFeedDate)
     }, function done() {
         if (resultCallback) resultCallback();
     });
 }
 
-function fetchUserFeed(userId, feedArray, keywordPattern, lastFeedDate, resultCallback) {
+function fetchUserFeed(userId, feedArray, keywordArray, lastFeedDate, resultCallback) {
+
     async.eachSeries(feedArray, function iterator(feed, callback) {
-        fetch(userId, feed, keywordPattern, lastFeedDate);
+        fetch(userId, feed, keywordArray, lastFeedDate);
         callback();
     }, function done() {
         if (resultCallback) resultCallback();
@@ -87,14 +86,28 @@ function done(err) {
     //process.exit();   // 프로세스 죽이지 않고 계속 배치로 작업 진행
 }
 
-function makeWebData(userId, post, feed, pubDate) {
-    var webData = {
+function makeWebData(userId, keywordArray, post, feed, pubDate) {
+    var postKeywordArray = [];
+    var keywordPattern, webData;
+
+    // 매칭되는 키워드 있는지 검사해서 매칭되는 키워드 postKeywordArray에 넣음
+    // TODO: 향후 이 부분 수정해야함!
+    keywordArray.forEach(function(keyword) {
+        keywordPattern = new RegExp(keyword, "g");
+        if (keywordPattern.test(post.description)) {
+            postKeywordArray.push(keyword);
+        }
+    });
+
+    webData = {
         user: userId,
         title: post.title,
         description: post.description,
         link: post.link,
         feed: feed,
         categories: post.categories,
+        keyword: postKeywordArray,
+        hasKeyword: (postKeywordArray.length > 0) ? true : false,
         pubDate: pubDate
     };
     return webData;
@@ -124,7 +137,7 @@ function getNeedCollections() {
 }
 exports.getNeedCollections = getNeedCollections;
 
-function fetch(userId, feed, keywordPattern, lastFeedDate) {
+function fetch(userId, feed, keywordArray, lastFeedDate) {
     // Define our streams
     var req = request(feed, {timeout: 10000, pool: false});
     req.setMaxListeners(50);
@@ -151,14 +164,11 @@ function fetch(userId, feed, keywordPattern, lastFeedDate) {
         var postArray = [];
         var post;
         while (post = this.read()) {
-            if (keywordPattern.test(post.description)) {
-                // TODO: post.pubDate와 lastFeedDate 비교해서 lastFeedDate 이후의 것만 db에 저장하는 로직 추가
-                var lastDate = moment(lastFeedDate);
-                var pubDate = moment(post.pubDate);
-                if (lastDate.isBefore(pubDate)) {
-                    logger.info(post);
-                    postArray.push(makeWebData(userId, post, feed, pubDate));
-                }
+            var lastDate = moment(lastFeedDate);
+            var pubDate = moment(post.pubDate);
+            if (lastDate.isBefore(pubDate)) {
+                logger.debug(post);
+                postArray.push(makeWebData(userId, keywordArray, post, feed, pubDate));
             }
         }
         saveWebData(postArray, function(err) {
