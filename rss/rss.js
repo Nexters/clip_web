@@ -19,9 +19,9 @@ function getUsers(criteria, resultCallback) {
 
 function getFeedDataFromUsers(users, resultCallback) {
     async.eachSeries(users, function iterator(user, callback) {
-        if (user.keyword.length === 0) return callback();
+        if (user.keywords.length === 0) return callback();
         var updatedLastFeedDate = new Date();
-        fetchUserFeed(user._id, user.feed, user.keyword, user.lastFeedDate, callback);
+        fetchUserFeed(user._id, user.feeds, user.keywords, user.lastFeedDate, callback);
         updateUserLastFeedDate(user._id, updatedLastFeedDate)
     }, function done() {
         if (resultCallback) resultCallback();
@@ -29,7 +29,6 @@ function getFeedDataFromUsers(users, resultCallback) {
 }
 
 function fetchUserFeed(userId, feedArray, keywordArray, lastFeedDate, resultCallback) {
-
     async.eachSeries(feedArray, function iterator(feed, callback) {
         fetch(userId, feed, keywordArray, lastFeedDate);
         callback();
@@ -104,9 +103,9 @@ function makeFeedData(userId, keywordArray, post, feed, pubDate) {
         title: post.title,
         description: post.description,
         link: post.link,
-        feed: feed,
+        source: feed,
         categories: post.categories,
-        keyword: postKeywordArray,
+        keywords: postKeywordArray,
         hasKeyword: (postKeywordArray.length > 0) ? true : false,
         pubDate: pubDate
     };
