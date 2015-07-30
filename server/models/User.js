@@ -24,26 +24,46 @@ UserSchema.index({ name: 1 }, { unique: true });
  * Model Methods
  */
 
-UserSchema.statics.getUser = function (criteria, projection, options, callback) {
+UserSchema.statics.getUser = function(criteria, projection, options, callback) {
+    if (arguments.length === 2) callback = projection;
+    if (arguments.length === 3) callback = options;
+
     criteria = criteria || {};
-    projection = projection || {};
-    options = options || {};
-    this.find(criteria, projection, options, function(err, docs) {
-        callback(err, docs);
-    });
+    projection = (typeof projection === 'function') ? {} : projection;
+    options = (typeof options === 'function') ? {} : options;
+
+    this.findOne(criteria, projection, options, callback);
 };
 
-UserSchema.statics.saveUser = function (doc, callback) {
-    if (!doc) {
-        return;
-    }
-    doc.createTime = doc.createTime ? doc.createTime : new Date();
+UserSchema.statics.getUsers = function(criteria, projection, options, callback) {
+    if (arguments.length === 2) callback = projection;
+    if (arguments.length === 3) callback = options;
 
-    this.create(doc, function(err, result) {
-        callback(err, result);
-    });
+    criteria = criteria || {};
+    projection = (typeof projection === 'function') ? {} : projection;
+    options = (typeof options === 'function') ? {} : options;
+
+    this.find(criteria, projection, options, callback);
 };
 
+UserSchema.statics.saveUser = function(doc, callback) {
+    if (!doc) return;
+
+    doc.createDate = doc.createDate ? doc.createDate : new Date();
+    this.create(doc, callback);
+};
+
+UserSchema.statics.updateUser = function(conditions, doc, callback) {
+    if (!conditions || !doc) return;
+
+    this.update(conditions, doc, callback);
+};
+
+UserSchema.statics.deleteUser = function(criteria, callback) {
+    if (!criteria) return;
+
+    this.remove(criteria, callback);
+};
 
 
 module.exports = mongoose.model('User', UserSchema);

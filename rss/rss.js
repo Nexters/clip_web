@@ -86,9 +86,9 @@ function done(err) {
     //process.exit();   // 프로세스 죽이지 않고 계속 배치로 작업 진행
 }
 
-function makeWebData(userId, keywordArray, post, feed, pubDate) {
+function makeFeedData(userId, keywordArray, post, feed, pubDate) {
     var postKeywordArray = [];
-    var keywordPattern, webData;
+    var keywordPattern, feedData;
 
     // 매칭되는 키워드 있는지 검사해서 매칭되는 키워드 postKeywordArray에 넣음
     // TODO: 향후 이 부분 수정해야함!
@@ -99,7 +99,7 @@ function makeWebData(userId, keywordArray, post, feed, pubDate) {
         }
     });
 
-    webData = {
+    feedData = {
         user: userId,
         title: post.title,
         description: post.description,
@@ -110,12 +110,12 @@ function makeWebData(userId, keywordArray, post, feed, pubDate) {
         hasKeyword: (postKeywordArray.length > 0) ? true : false,
         pubDate: pubDate
     };
-    return webData;
+    return feedData;
 }
 
-function saveWebData(postArray, callback) {
+function saveFeedData(postArray, callback) {
     if (!postArray || postArray.length === 0) return callback();
-    db.web.insert(postArray, function(err) {
+    db.feed.insert(postArray, function(err) {
        callback(err);
     });
 }
@@ -133,7 +133,7 @@ function setDB(inDB) {
 exports.setDB = setDB;
 
 function getNeedCollections() {
-    return ["web", "user"];
+    return ["user", "feed"];
 }
 exports.getNeedCollections = getNeedCollections;
 
@@ -142,8 +142,8 @@ function fetch(userId, feed, keywordArray, lastFeedDate) {
     var req = request(feed, {timeout: 10000, pool: false});
     req.setMaxListeners(50);
     // Some feeds do not respond without user-agent and accept headers.
-    req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36');
-    //.setHeader('accept', 'text/html,application/xhtml+xml');
+    req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36')
+    req.setHeader('accept', 'text/html,application/xhtml+xml');
 
     var feedparser = new FeedParser();
 
@@ -168,11 +168,11 @@ function fetch(userId, feed, keywordArray, lastFeedDate) {
             var pubDate = moment(post.pubDate);
             if (lastDate.isBefore(pubDate)) {
                 logger.debug(post);
-                postArray.push(makeWebData(userId, keywordArray, post, feed, pubDate));
+                postArray.push(makeFeedData(userId, keywordArray, post, feed, pubDate));
             }
         }
-        saveWebData(postArray, function(err) {
-            if (err) logger.error("saveWebDate err: ",err);
+        saveFeedData(postArray, function(err) {
+            if (err) logger.error("saveFeedData err: ",err);
         });
     });
 }
