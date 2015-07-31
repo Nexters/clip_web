@@ -15,12 +15,26 @@ router.get('/signup', function(req, res, next) {
 });
 
 
-router.post('/test', function(req, res, netx) {
-  console.log(req.body);
+router.post('/signin',function(req,res,next){
+  console.log('req.body : '+req.body);
+  if(req.body.email=="test@naver.com"&&req.body.password=="testpw"){
+    res.send("가입을 축하 합니다 ");
+  }else{
+    res.send("다시 입력해 주세요 ");
+
+  }
 });
 
-router.post('/test2', function(req, res, netx) {
-  console.log(req.body);
+
+router.post('/signup',function(req,res,next){
+  console.log('req.body : '+req.body);
+  if(req.body.name!==''&&req.body.age!==''&&req.body.email!==''&&req.body.password!==''){
+    res.send('sucesss');
+  }else{
+    res.send('fail');
+  }
+
+
 });
 
 module.exports = router;
