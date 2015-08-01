@@ -1,17 +1,17 @@
 var request = require('request'),
     FeedParser = require('feedparser'),
+    config = require('../server/config/config'),
     Iconv = require('iconv').Iconv,
     zlib = require('zlib'),
     async = require('async'),
     moment = require('moment'),
     log4js = require('log4js');
 
-log4js.configure(__dirname+'/../config/log4js_config.json');
-log4js.setGlobalLogLevel('debug');
+log4js.configure(config.log4js);
+log4js.setGlobalLogLevel(config.logLevel);
 
 var db = null;
 var logger = log4js.getLogger("rss");
-
 
 function getUsers(criteria, resultCallback) {
     db.user.find(criteria, resultCallback);
@@ -99,7 +99,7 @@ function makeFeedData(userId, keywordArray, post, feed, pubDate) {
     });
 
     feedData = {
-        user: userId,
+        user: userId.valueOf().toString(),  // UserId to String
         title: post.title,
         description: post.description,
         link: post.link,

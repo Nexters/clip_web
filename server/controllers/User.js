@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var RService = require('../services/Result');
+var Result = require('../services/Result');
 var async = require('async');
 
 function UserCtrl() {
@@ -11,9 +11,20 @@ UserCtrl.getAllUsers = function(req, res) {
     var errors;
     req.checkQuery('test', 'Must be true').isIn(["true"]);
     errors = req.validationErrors();
-    if (errors) return res.status(400).send(RService.ERROR(errors));
+    if (errors) return res.status(400).send(Result.ERROR(errors));
     User.getUsers({}, function(err, docs) {
-       res.send(docs);
+       res.status(200).send(Result.SUCCESS(docs));
+    });
+};
+
+UserCtrl.getUser = function(req, res) {
+    var errors, criteria;
+    req.checkParams('id', 'Invalid id').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    criteria = { _id: req.params.id };
+    User.getUser(criteria, function(err, doc) {
+        res.status(200).send(Result.SUCCESS(doc));
     });
 };
 
@@ -24,14 +35,14 @@ UserCtrl.saveUser = function(req, res) {
     req.checkQuery('pw2', 'Invalid pw2').notEmpty();
     req.checkQuery('name', 'Invalid name').notEmpty();
     errors = req.validationErrors();
-    if (errors) return res.status(400).send(RService.ERROR(errors));
+    if (errors) return res.status(400).send(Result.ERROR(errors));
     userData = {
         email: req.query.email,
         pw: req.query.pw,
         name: req.query.name
     };
     User.saveUser(userData, function(err, doc) {
-        res.send(doc);
+        res.status(200).send(Result.SUCCESS(doc));
     });
 };
 

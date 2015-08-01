@@ -26,7 +26,7 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 // Route Files
 var routes = require('./routes/index');
 var users = require('./routes/users');
-//var choices = require('./routes/choices');
+var feeds = require('./routes/feeds');
 
 // Database Setup
 var dbUri = config.mongo.uri + config.mongo.db;
@@ -83,6 +83,7 @@ if (app.get('env') === 'production') {
 
 app.use('/', routes);
 app.use('/user', users);
+app.use('/feed', feeds);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
