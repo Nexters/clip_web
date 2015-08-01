@@ -26,7 +26,7 @@ FeedCtrl.getUserFeeds = function(req, res) {
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     criteria = makeCriteria(req);
-    logger.info("criteria: ", criteria);
+    logger.debug("criteria: ", criteria);
     Feed.getFeeds(criteria, function(err, docs) {
         res.status(200).send(Result.SUCCESS(docs));
     });
