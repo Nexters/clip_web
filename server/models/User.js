@@ -12,8 +12,8 @@ var UserSchema = new Schema({
     authKey: { type: String, required: true }, // 인증키
     name: { type: String, required: true }, // 닉네임
     profileUrl: { type: String, default: '' }, // 프로필 이미지 주소
-    feed: { type: Array, default: [] }, // 추가한 사이트 목록
-    keyword: { type: Array, default: [] }, // 추가한 키우드 목록
+    feeds: { type: Array, default: [] }, // 추가한 사이트 목록
+    keywords: { type: Array, default: [] }, // 추가한 키우드 목록
     createDate: { type: Date, required: true }, // 생성 시간
     lastFeedDate: { type: Date, default: new Date() } // 마지막으로 피드 가져온 시간
 }, { collection: 'user' });
@@ -24,26 +24,32 @@ UserSchema.index({ name: 1 }, { unique: true });
  * Model Methods
  */
 
-UserSchema.statics.getUser = function (criteria, projection, options, callback) {
-    criteria = criteria || {};
-    projection = projection || {};
-    options = options || {};
-    this.find(criteria, projection, options, function(err, docs) {
-        callback(err, docs);
-    });
+UserSchema.statics.getUser = function(criteria, projection, options, callback) {
+    this.findOne(criteria, projection, options, callback);
 };
 
-UserSchema.statics.saveUser = function (doc, callback) {
-    if (!doc) {
-        return;
-    }
-    doc.createTime = doc.createTime ? doc.createTime : new Date();
-
-    this.create(doc, function(err, result) {
-        callback(err, result);
-    });
+UserSchema.statics.getUsers = function(criteria, projection, options, callback) {
+    this.find(criteria, projection, options, callback);
 };
 
+UserSchema.statics.saveUser = function(doc, callback) {
+    if (!doc) return;
+
+    doc.createDate = doc.createDate ? doc.createDate : new Date();
+    this.create(doc, callback);
+};
+
+UserSchema.statics.updateUser = function(conditions, doc, callback) {
+    if (!conditions || !doc) return;
+
+    this.update(conditions, doc, callback);
+};
+
+UserSchema.statics.deleteUser = function(criteria, callback) {
+    if (!criteria) return;
+
+    this.remove(criteria, callback);
+};
 
 
 module.exports = mongoose.model('User', UserSchema);
