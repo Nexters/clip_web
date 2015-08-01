@@ -24,13 +24,6 @@ FeedSchema.index({ user: 1, keyword: 1, pubDate: -1 });
  */
 
 FeedSchema.statics.getFeeds = function(criteria, projection, options, callback) {
-    if (arguments.length === 2) callback = projection;
-    if (arguments.length === 3) callback = options;
-
-    criteria = criteria || {};
-    projection = (typeof projection === 'function') ? {} : projection;
-    options = (typeof options === 'function') ? {} : options;
-
     this.find(criteria, projection, options, callback);
 };
 

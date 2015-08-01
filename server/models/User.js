@@ -25,24 +25,10 @@ UserSchema.index({ name: 1 }, { unique: true });
  */
 
 UserSchema.statics.getUser = function(criteria, projection, options, callback) {
-    if (arguments.length === 2) callback = projection;
-    if (arguments.length === 3) callback = options;
-
-    criteria = criteria || {};
-    projection = (typeof projection === 'function') ? {} : projection;
-    options = (typeof options === 'function') ? {} : options;
-
     this.findOne(criteria, projection, options, callback);
 };
 
 UserSchema.statics.getUsers = function(criteria, projection, options, callback) {
-    if (arguments.length === 2) callback = projection;
-    if (arguments.length === 3) callback = options;
-
-    criteria = criteria || {};
-    projection = (typeof projection === 'function') ? {} : projection;
-    options = (typeof options === 'function') ? {} : options;
-
     this.find(criteria, projection, options, callback);
 };
 
