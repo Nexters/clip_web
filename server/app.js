@@ -37,6 +37,7 @@ var feeds = require('./routes/feeds');
 // Database Setup
 var dbUri = config.mongo.uri + config.mongo.db;
 var dbOptions = { username: config.mongo.username, password: config.mongo.password };
+logger.debug("dbUri: ", dbUri);
 mongoose.connect(dbUri, dbOptions);
 
 // view engine setup
