@@ -6,14 +6,14 @@ var mongoose = require('mongoose'),
  * Feed Schema
  */
 var FeedSchema = new Schema({
-    user: { type: String, required: true },
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    link: { type: String, default: '' },
-    source: { type: String, default: '' },
-    categories: { type: Array, default: [] },
-    keywords: { type: Array, default: [] },
-    hasKeyword: { type: Boolean, required: true },
+    user: { type: String, required: true }, // 유저 ID
+    title: { type: String, required: true }, // 피드 제목
+    description: { type: String, required: true }, // 피드 내용
+    link: { type: String, default: '' }, // 피드 링크
+    source: { type: String, default: '' }, // 피드 출처
+    categories: { type: Array, default: [] }, // 피드 카테고리
+    keywords: { type: Array, default: [] }, // 피드 키워드
+    hasKeyword: { type: Boolean, required: true }, // 피드가 키워드 포함하고 있는지 여부
     pubDate: { type: Date, required: true } // 등록된 시간
 }, {collection: 'feed'});
 
