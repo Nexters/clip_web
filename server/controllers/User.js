@@ -47,10 +47,18 @@ UserCtrl.saveUser = function(req, res) {
 };
 
 UserCtrl.loginUser = function(req, res) {
+    // POST
+    // email, pw
+    //
+    // email로 criteria 만들어서 해당 email을 가진 유저 존재하는지 확인하고
+    // 존재안하면 fail 리턴. 존재하면 pw가 넘겨받은 pw랑 같은지 확인해서 같으면 success, 다르면 fail
     // TODO: 과제1 로그인 여기에 구현해야 함
 };
 
 UserCtrl.updateUser = function(req, res) {
+    // PUT
+    // id <- params, 업데이트 되는 필드 데이터 <- req.body
+    // 업데이트 가능한 필드: feeds, keywords, name, profileUrl, pw
     // TODO: 과제2 유저 정보 업데이트하는 부분 여기에 구현해야 함
 };
 
