@@ -3,12 +3,16 @@ var router = express.Router();
 var indexCtrl = require('../controllers/Index');
 var userCtrl = require('../controllers/User');
 
-/* GET home page. */
+/* GET index page. */
 router.get('/', function(req, res) {
     var data = {};
     res.render('main.ejs', data);
 });
 
-router.get('/:id', userCtrl.getUserPage);
+/* GET user home page */
+router.get('/home/:id', userCtrl.getHomePage);
+
+/* GET user my page */
+router.get('/user/:id', userCtrl.getUserPage);
 
 module.exports = router;

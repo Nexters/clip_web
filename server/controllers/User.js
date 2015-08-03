@@ -7,12 +7,26 @@ function UserCtrl() {
 
 }
 
-UserCtrl.getUserPage = function(req, res) {
-    var errors;
-    req.checkQuery('test', 'Must be true').isIn(["true"]);
+UserCtrl.getHomePage = function(req, res) {
+    var errors, criteria;
+    req.checkParams('id', 'Invalid id').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
-    User.getUsers({}, function(err, docs) {
+    criteria = { _id: req.params.id };
+    // TODO: 유저 정보 + 유저 피드들 정보 만들어서 html 형태로 내려줘야함!
+    User.getUser(criteria, function(err, docs) {
+        res.status(200).send(Result.SUCCESS(docs));
+    });
+};
+
+UserCtrl.getUserPage = function(req, res) {
+    var errors, criteria;
+    req.checkParams('id', 'Invalid id').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    criteria = { _id: req.params.id };
+    // TODO: 유저 정보 + 클립 보드 정보 만들어서 html 형태로 내려줘야함!
+    User.getUser(criteria, function(err, docs) {
         res.status(200).send(Result.SUCCESS(docs));
     });
 };
