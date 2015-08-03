@@ -10,6 +10,8 @@ function UserCtrl() {
 UserCtrl.getAllUsers = function(req, res) {
     var errors;
     req.checkQuery('test', 'Must be true').isIn(["true"]);
+    req.checkQuery('a', 'Must be aa').isIn(["aa"]);
+    console.log(req.query.a);
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     User.getUsers({}, function(err, docs) {
@@ -19,7 +21,11 @@ UserCtrl.getAllUsers = function(req, res) {
 
 UserCtrl.getUser = function(req, res) {
     var errors, criteria;
-    req.checkParams('id', 'Invalid id').notEmpty();
+    //req.checkParams('id', 'Invalid id')//.notEmpty();
+
+    req.checkParams('b', 'Invalid id').notEmpty();
+
+    console.log(req.params);
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     criteria = { _id: req.params.id };
