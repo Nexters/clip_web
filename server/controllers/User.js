@@ -20,7 +20,7 @@ UserCtrl.getUserPage = function(req, res) {
 UserCtrl.getAllUsers = function(req, res) {
     var errors;
     req.checkQuery('test', 'Must be true').isIn(["true"]);
-    req.checkQuery('a', 'Msssssss').isIn(["true"]);
+   
     console.log(req.query.a);
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
@@ -34,8 +34,7 @@ UserCtrl.getUser = function(req, res) {
     req.checkParams('id', 'Invalid id').notEmpty();
 
 
-    req.checkParams('b','inb').notEmpty();
-    req.checkParams('c','inc').notEmpty();
+
     console.log(req.params);
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
