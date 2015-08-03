@@ -7,6 +7,16 @@ function UserCtrl() {
 
 }
 
+UserCtrl.getUserPage = function(req, res) {
+    var errors;
+    req.checkQuery('test', 'Must be true').isIn(["true"]);
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    User.getUsers({}, function(err, docs) {
+        res.status(200).send(Result.SUCCESS(docs));
+    });
+};
+
 UserCtrl.getAllUsers = function(req, res) {
     var errors;
     req.checkQuery('test', 'Must be true').isIn(["true"]);
@@ -30,16 +40,16 @@ UserCtrl.getUser = function(req, res) {
 
 UserCtrl.saveUser = function(req, res) {
     var errors, userData;
-    req.checkQuery('email', 'Invalid email').isEmail();
-    req.checkQuery('pw', 'Invalid pw').notEmpty();
-    req.checkQuery('pw2', 'Invalid pw2').notEmpty();
-    req.checkQuery('name', 'Invalid name').notEmpty();
+    req.checkBody('email', 'Invalid email').isEmail();
+    req.checkBody('pw', 'Invalid pw').notEmpty();
+    req.checkBody('pw2', 'Invalid pw2').notEmpty();
+    req.checkBody('name', 'Invalid name').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     userData = {
-        email: req.query.email,
-        pw: req.query.pw,
-        name: req.query.name
+        email: req.body.email,
+        pw: req.body.pw,
+        name: req.body.name
     };
     User.saveUser(userData, function(err, doc) {
         res.status(200).send(Result.SUCCESS(doc));
