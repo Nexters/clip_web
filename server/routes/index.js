@@ -9,6 +9,13 @@ router.get('/', function(req, res) {
     res.render('main.ejs', data);
 });
 
+router.get('/data/test', function(req, res) {
+    var data = {};
+    console.log(req.query);
+    res.send(req.query);
+
+});
+
 router.get('/signin', function(req, res, next) {
     res.render('signin', { title: 'My World', name: 'Ji Yeon' });
 });
