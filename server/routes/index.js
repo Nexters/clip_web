@@ -7,4 +7,6 @@ router.get('/', function(req, res) {
     res.render('main.ejs', data);
 });
 
+
+
 module.exports = router;
