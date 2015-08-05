@@ -7,6 +7,16 @@ function UserCtrl() {
 
 }
 
+UserCtrl.getUserPage = function(req, res) {
+    var errors;
+    req.checkQuery('test', 'Must be true').isIn(["true"]);
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    User.getUsers({}, function(err, docs) {
+        res.status(200).send(Result.SUCCESS(docs));
+    });
+};
+
 UserCtrl.getAllUsers = function(req, res) {
     var errors;
     req.checkQuery('test', 'Must be true').isIn(["true"]);
