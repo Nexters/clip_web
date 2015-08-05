@@ -59,19 +59,13 @@
       font-family:"NotoSansCJKkr_Regular";
       color:white;
     }
+
     #form{
-      position: relative;
-      top:62px;
+      margin-top:62px;
       height:480px;
       width:391px;
       background-color: white;
       border-radius: 5px;
-    }
-
-    #close{
-      position: relative;
-      top: 22px;
-      left:173px;
     }
 
     #signup{
@@ -80,10 +74,11 @@
       font-family:"Montserrat_SemiBold";
       font-size: 37.09px;
       color:rgb(80,100,250);
+      margin-bottom: 38px;
+
     }
-
-
     .text {
+      margin-top: 38px;
       width:262px;
       font-family:"Roboto_Light";
       font-size:14px;
@@ -100,6 +95,17 @@
     }
 
 
+    .image{
+      margin-top:44px;
+      margin-bottom: 16px;
+    }
+
+    .centered{
+      display: block;
+      margin-left: auto;
+      margin-right: auto
+    }
+
   </style>
 
   <meta charset="UTF-8">
@@ -110,21 +116,23 @@
 <body>
 
 <b id="top">Clip</b>
-<center id="top2"> 관심 키워드로 콘텐츠를 받아보고 클립하세요</center>
+<div align="center" id="top2"> 관심 키워드로 콘텐츠를 받아보고 클립하세요</div>
 
-<center>
-
+<div align="center" class="centered">
   <form id="form"  name="signupform" method="post" action="http://localhost:3000/test2">
-    <center> <input type="image" name="close" id="close" src="/images/signup_close_icon.png"></center>
-    <signup id="signup"> Sign up </signup><br><br><br>
-    <br><br>  <input type="text" name="name" class="text" value="Name" placeholder="Name" /><br><br><br>
-    <input type="email" name="email"class="text" value="Email" placeholder="Email"><br><br><br>
-    <input type="password" name="password" class="text"  placeholder="password"><br><br><br>
-    <input type="password" name="confirm password" class="text" placeholder="Confirm Password" ><br><br><br>
-    <center><input type="image" name="signup" src="/images/signup_button2.png"></center>
+    <div  align="center" id="signup">
+    Sign up
+    </div>
+
+    <input type="text" name="name" class="text"  placeholder="Name" />
+    <input type="email" name="email"class="text" placeholder="Email">
+    <input type="password" name="password" class="text"  placeholder="password">
+    <input type="password" name="confirm password" class="text" placeholder="Confirm Password" >
+    <input type="image" class="image" name="signup" src="/images/signup_button2.png">
 
 
   </form>
-</center>
+</div>
+
 </body>
 </html>
