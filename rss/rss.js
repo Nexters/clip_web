@@ -1,17 +1,17 @@
 var request = require('request'),
     FeedParser = require('feedparser'),
+    config = require('../server/config/config'),
     Iconv = require('iconv').Iconv,
     zlib = require('zlib'),
     async = require('async'),
     moment = require('moment'),
     log4js = require('log4js');
 
-log4js.configure(__dirname+'/../config/log4js_config.json');
-log4js.setGlobalLogLevel('debug');
+log4js.configure(config.log4js);
+log4js.setGlobalLogLevel(config.logLevel);
 
 var db = null;
 var logger = log4js.getLogger("rss");
-
 
 function getUsers(criteria, resultCallback) {
     db.user.find(criteria, resultCallback);
@@ -19,9 +19,9 @@ function getUsers(criteria, resultCallback) {
 
 function getFeedDataFromUsers(users, resultCallback) {
     async.eachSeries(users, function iterator(user, callback) {
-        if (user.keyword.length === 0) return callback();
+        if (user.keywords.length === 0) return callback();
         var updatedLastFeedDate = new Date();
-        fetchUserFeed(user._id, user.feed, user.keyword, user.lastFeedDate, callback);
+        fetchUserFeed(user._id, user.feeds, user.keywords, user.lastFeedDate, callback);
         updateUserLastFeedDate(user._id, updatedLastFeedDate)
     }, function done() {
         if (resultCallback) resultCallback();
@@ -29,7 +29,6 @@ function getFeedDataFromUsers(users, resultCallback) {
 }
 
 function fetchUserFeed(userId, feedArray, keywordArray, lastFeedDate, resultCallback) {
-
     async.eachSeries(feedArray, function iterator(feed, callback) {
         fetch(userId, feed, keywordArray, lastFeedDate);
         callback();
@@ -86,9 +85,9 @@ function done(err) {
     //process.exit();   // 프로세스 죽이지 않고 계속 배치로 작업 진행
 }
 
-function makeWebData(userId, keywordArray, post, feed, pubDate) {
+function makeFeedData(userId, keywordArray, post, feed, pubDate) {
     var postKeywordArray = [];
-    var keywordPattern, webData;
+    var keywordPattern, feedData;
 
     // 매칭되는 키워드 있는지 검사해서 매칭되는 키워드 postKeywordArray에 넣음
     // TODO: 향후 이 부분 수정해야함!
@@ -99,23 +98,23 @@ function makeWebData(userId, keywordArray, post, feed, pubDate) {
         }
     });
 
-    webData = {
-        user: userId,
+    feedData = {
+        user: userId.valueOf().toString(),  // UserId to String
         title: post.title,
         description: post.description,
         link: post.link,
-        feed: feed,
+        source: feed,
         categories: post.categories,
-        keyword: postKeywordArray,
+        keywords: postKeywordArray,
         hasKeyword: (postKeywordArray.length > 0) ? true : false,
         pubDate: pubDate
     };
-    return webData;
+    return feedData;
 }
 
-function saveWebData(postArray, callback) {
+function saveFeedData(postArray, callback) {
     if (!postArray || postArray.length === 0) return callback();
-    db.web.insert(postArray, function(err) {
+    db.feed.insert(postArray, function(err) {
        callback(err);
     });
 }
@@ -133,7 +132,7 @@ function setDB(inDB) {
 exports.setDB = setDB;
 
 function getNeedCollections() {
-    return ["web", "user"];
+    return ["user", "feed"];
 }
 exports.getNeedCollections = getNeedCollections;
 
@@ -142,8 +141,8 @@ function fetch(userId, feed, keywordArray, lastFeedDate) {
     var req = request(feed, {timeout: 10000, pool: false});
     req.setMaxListeners(50);
     // Some feeds do not respond without user-agent and accept headers.
-    req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36');
-    //.setHeader('accept', 'text/html,application/xhtml+xml');
+    req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36')
+    req.setHeader('accept', 'text/html,application/xhtml+xml');
 
     var feedparser = new FeedParser();
 
@@ -168,11 +167,11 @@ function fetch(userId, feed, keywordArray, lastFeedDate) {
             var pubDate = moment(post.pubDate);
             if (lastDate.isBefore(pubDate)) {
                 logger.debug(post);
-                postArray.push(makeWebData(userId, keywordArray, post, feed, pubDate));
+                postArray.push(makeFeedData(userId, keywordArray, post, feed, pubDate));
             }
         }
-        saveWebData(postArray, function(err) {
-            if (err) logger.error("saveWebDate err: ",err);
+        saveFeedData(postArray, function(err) {
+            if (err) logger.error("saveFeedData err: ",err);
         });
     });
 }

@@ -7,13 +7,18 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var expressValidator = require('express-validator');
 var fs = require('fs');
-var mongoose = require('mongoose');
 var config = require('./config/config');
+var mongoose = require('mongoose');
+var log4js = require('log4js');
 var MongoStore = null;
 
 var app = express();
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+// log4js setting
+log4js.configure(config.log4js);
+log4js.setGlobalLogLevel(config.logLevel);
 
 // Model Files
 var modelsPath = path.join(__dirname, './models');
@@ -26,7 +31,7 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 // Route Files
 var routes = require('./routes/index');
 var users = require('./routes/users');
-//var choices = require('./routes/choices');
+var feeds = require('./routes/feeds');
 
 // Database Setup
 var dbUri = config.mongo.uri + config.mongo.db;
@@ -39,7 +44,6 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -82,7 +86,8 @@ if (app.get('env') === 'production') {
 }
 
 app.use('/', routes);
-app.use('/ajax/user', users);
+app.use('/user', users);
+app.use('/feed', feeds);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

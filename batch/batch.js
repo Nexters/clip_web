@@ -2,6 +2,7 @@ var schedule = require('node-schedule'),
     log4js = require('log4js'),
     async = require('async'),
     mongojs = require('mongojs'),
+    config = require('../server/config/config'),
     rss = require('../rss/rss');
 
 var MODE = null;
@@ -17,8 +18,8 @@ if (!MODE) {
     process.exit(1);
 }
 
-log4js.configure(__dirname+'/../config/log4js_config.json');
-log4js.setGlobalLogLevel('debug');
+log4js.configure(config.log4js);
+log4js.setGlobalLogLevel(config.logLevel);
 
 var logger = log4js.getLogger("batch");
 
