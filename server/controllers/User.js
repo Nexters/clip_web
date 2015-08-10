@@ -15,7 +15,7 @@ UserCtrl.getHomePage = function(req, res) {
     criteria = { _id: req.params.id };
     // TODO: 유저 정보 + 유저 피드들 정보 만들어서 html 형태로 내려줘야함!
     User.getUser(criteria, function(err, docs) {
-        res.status(200).send(Result.SUCCESS(docs));
+        res.render('home');
     });
 };
 
@@ -30,6 +30,8 @@ UserCtrl.getUserPage = function(req, res) {
         res.status(200).send(Result.SUCCESS(docs));
     });
 };
+
+
 
 UserCtrl.getAllUsers = function(req, res) {
     var errors;
