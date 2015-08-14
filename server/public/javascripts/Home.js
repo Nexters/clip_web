@@ -88,13 +88,10 @@
         $(document).bind('scroll', onScroll);
         // Load first data from the API.
         loadData();
-
     }
-
 
 
     $(document).ready(function() {
         init();
-        initWookmark();
     });
 }());
