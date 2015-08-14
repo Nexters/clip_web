@@ -1,18 +1,29 @@
 (function login() {
     function init() {
         $('#signin_btn').click(function() {
-            console.log($('#input_email').val());
+            var email = $('#input_email').val();
+            var passwd = $('#pw').val();
+            console.log(email);
 
-            if($('#input_email').val()==""){
+            if(email==""){
                 alert("이메일 주소를 입력하세요.");
-                $('.id').focus();
+                $('#input_email').focus();
                 return false;
-            }else if($('.pw').val()==""){
+            }else if(passwd==""){
                 alert("비밀번호를 입력하세요.");
-                $('.pw').focus();
+                $('#pw').focus();
                 return false;
             }else{
-                alert("로그인 했습니다.");
+                var params = {'email': email, 'pw': passwd}
+                HttpUtil.postData('/user/login', params, function(err, data) {
+                    if(err != null){
+                        alert("로그인이 실패했습니다.");
+                        return false;
+                    }
+                    location.href="/home/" + data;
+                    return false;
+                });
+                return false;
             }
         });
     }

@@ -115,7 +115,7 @@ UserCtrl.loginUser = function(req, res) {
         }
         if(criteria.email === doc.email && req.body.pw === doc.pw){
             console.log('success');
-            return res.status(200).send(Result.SUCCESS('success'));
+            return res.status(200).send(Result.SUCCESS(doc._id));
         } else {
             console.log('fail');
             return res.status(400).send(Result.ERROR('fail'));
