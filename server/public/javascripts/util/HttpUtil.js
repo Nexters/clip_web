@@ -26,13 +26,13 @@ HttpUtil.postData = function(url, params, callback) {
         type: 'POST',
         data: params,
         error: function errorHandler(jqXHR, textStatus, errorThrown) {
-            callback("Error");
+            callback("Error", null);
         },
         success: function successHandler(data, status, xhr) {
             if (data.resultCode === 0) {
                 callback(null, data.data)
             } else {
-                callback("Error");
+                callback("Error", null);
             }
         }
     });
