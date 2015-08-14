@@ -1,12 +1,34 @@
 (function () {
 
+    var ITEM_PER_PAGE = 10;
+    var page = 0;
+    var isCompleteLoading = false;
+
     function init() {
         initWookmark();
     }
 
+    function getFeedBoxImageSrc(description) {
+        var defaultImageSrc = '/images/card_no_image.png';
+        if (!description) return defaultImageSrc;
+        return $(description).find('img').first().attr('src') || defaultImageSrc;
+    }
+
+    function getFeedBoxHtml(feed) {
+        var html =
+            '<li>'+
+                '<div class="img-box">'+
+                    '<img src="'+feed.image+'" align="middle">'+
+                '</div>'+
+                '<div class="content-box">'+
+                    '<p>'+feed.title+'</p>'+
+                '</div>'+
+            '</li>';
+        return html;
+    }
+
     function initWookmark() {
         var handler = null,
-            page = 1,
             isLoading = false,
             apiURL = 'http://www.wookmark.com/api/json/popular',
             container = '#feed_list_panel',
@@ -49,35 +71,42 @@
          * Loads data from the API.
          */
         function loadData() {
+            if (isCompleteLoading) return;
+            var params = {
+                pageNum: page,
+                perPage: ITEM_PER_PAGE
+            };
             isLoading = true;
             $loaderCircle.show();
-            $.ajax({
-                url: apiURL,
-                dataType: 'jsonp',
-                data: {page: page}, // Page parameter to make sure we load new data
-                success: onLoadData
+
+            HttpUtil.getData('/feed/user/id/55b4a8955c91698d7c449146', params, function(err, data) {
+                onLoadData(data);
             });
         }
 
         /**
          * Receives data from the API, creates HTML for images and updates the layout
          */
-        function onLoadData(data) {
+        function onLoadData(feedData) {
             isLoading = false;
             // Increment page index for future calls.
             page++;
-            // Create HTML for the images.
+            var length = feedData.length;
             var html = '';
-            var i=0, length=data.length, image;
-            for(; i<length; i++) {
-                image = data[i];
-                html += '<li>';
-                // Image tag (preview in Wookmark are 200px wide, so we calculate the height based on that).
-                html += '<img src="'+image.preview+'" width="200" height="'+Math.round(image.height/image.width*200)+'">';
-                // Image title.
-                html += '<p>'+image.title+'</p>';
-                html += '</li>';
+            var i;
+
+            if (length === 0) {
+                isCompleteLoading = true;
+                $loaderCircle.hide();
+                return;
             }
+
+            // Create HTML for the images.
+            for(i=0; i<length; i++) {
+                feedData[i].image = getFeedBoxImageSrc(feedData[i].description);
+                html += getFeedBoxHtml(feedData[i]);
+            }
+
             // Add image HTML to the page.
             $(container).append(html);
             // Apply layout.

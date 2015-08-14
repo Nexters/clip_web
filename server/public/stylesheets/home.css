@@ -171,11 +171,6 @@ ul#feed_list_panel > li {
 }
 
 
-.row-offcanvas {
-    padding-top: 90px !important;
-}
-
-
 
 /*키워드 영역 관련*/
 .fixed-keyword-bar .keyword-bar-keywords .keyword-bar-title-box {
@@ -345,3 +340,36 @@ ul#feed_list_panel > li {
     height: 80px;
 }
 
+
+/*피드 리스트 관련*/
+.row-offcanvas {
+    padding-right: 260px;
+    padding-top: 90px !important;
+}
+
+#feed_list_panel {
+    list-style:none;
+}
+
+#feed_list_panel > li {
+    width: 231px;
+    height: 276px;
+    padding: 0px;
+    border: none;
+}
+
+#feed_list_panel > li > div {
+    height: 100px;
+}
+
+
+#feed_list_panel > li > div.img-box {
+    width: 231px;
+    height: 176px;
+    overflow: hidden;
+}
+
+#feed_list_panel > li > div.img-box > img {
+    width: 231px;
+    min-height: 176px;
+}
