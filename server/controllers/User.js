@@ -70,9 +70,7 @@ UserCtrl.saveUser = function(req, res) {
         name: req.body.name
     };
 
-    console.log(userData.email);
-    console.log(userData.pw);
-    console.log(userData.name);
+
 
     User.saveUser(userData, function(err, doc) {
         doc.email=userData.email;

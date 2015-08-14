@@ -11,36 +11,29 @@
 </head>
 
 <body>
+
 <b id="top">Clip</b>
 <div align="center" id="top2"> 관심 키워드로 콘텐츠를 받아보고 클립하세요</div>
 
 <div align="center" class="centered">
 
-
-
-
-  < id="form"  name="signupform">
+  <div id="form"  name="signupform">
     <a href="http://localhost:3000/signin">
-    <input id="login_btn" type="image" name="signup" src="/images/clip_signup_login.png"></a>
-
+      <input id="login_btn" type="image" name="signup" src="/images/clip_signup_login.png"></a>
 
     <div  align="center" id="signup">
-    Sign up
+      Sign up
     </div>
+<form method="post" action="./user/save">
+    <input id="input_name" type="text" name="name" maxlength="10"  placeholder="Name" />
+    <input id="input_email1" type="email" name="email" placeholder="Email">
+    <input id="input_password1" type="password" name="password"  placeholder="password">
+    <input id="input_conpass" type="password" name="confirm password" placeholder="Confirm Password" >
+    <input id="signup_btn" type="image" name="signup" src="/images/signup_button2.png">
+</form>
 
-
-    <input type="text" name="name" class="text"  placeholder="Name" />
-    <input type="email" name="email"class="text" placeholder="Email">
-    <input type="password" name="pw" class="text"  placeholder="password">
-    <input type="password" name="pw2" class="text" placeholder="Confirm Password" >
-    <input type="image" class="image" name="signup" src="/images/signup_button2.png">
-
-
-
-
+  </div>
 </div>
-
-
 <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/javascripts/util/HttpUtil.js"></script>
