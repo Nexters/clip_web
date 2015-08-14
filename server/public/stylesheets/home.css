@@ -59,13 +59,31 @@ footer {
     }
 }
 
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
 
 ul#feed_list_panel > li {
     max-height: 276px;
 }
 
+
+.container {
+    margin-left: 35px !important;
+    margin-right: 35px !important;
+}
+
 .card-container {
     overflow-y: auto;
+}
+
+.navbar {
+    z-index: 100;
+    background-color: RGB(255,255,255);
 }
 
 .navbar-header {
@@ -89,7 +107,7 @@ ul#feed_list_panel > li {
     height: 50px;
     position: absolute;
     top: 0px;
-    right: 20px;
+    right: 0px;
     line-height: 35px;
 }
 
@@ -99,8 +117,8 @@ ul#feed_list_panel > li {
     height: 50px;
     padding: 7px 10px;
     text-align: center;
-    border-left: 1px solid #000000;
-    border-right: 1px solid #000000;
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
 }
 
 .navbar-profile .home-profile-box {
@@ -131,45 +149,29 @@ ul#feed_list_panel > li {
     text-overflow: ellipsis;
 }
 
-.navbar {
-    z-index: 10000;
-    background-color: RGB(255,255,255);
-
-}
 
 .fixed-keyword-bar {
-    z-index: 10000;
-
+    z-index: 100;
     width: 100%;
     height: 70px;
     position: fixed;
     padding-right: 280px;
     background-color: RGB(248,248,248);
-    border-top: 0.08em solid #5F5F5F;
-    border-bottom: 0.08em solid #5F5F5F;
+    border-top: 0.08em solid #ebebeb;
+    border-bottom: 0.08em solid #ebebeb;
     box-shadow: 0 0 1px rgba(0,0,0,.3);
-    -moz-box-shadow: 0px 0px 1px #000;
-    -webkit-box-shadow: 0px 0px 1px #000;
+    -moz-box-shadow: 0px 0px 1px #e6e6e6;
+    -webkit-box-shadow: 0px 0px 1px #e6e6e6;
 }
 
-.right-sidebar {
-    width: 260px;
-    height: 100%;
-    margin-top: 50px;
-    position: fixed;
-    top: 0px;
-    right: 20px;
-}
 
 .row-offcanvas {
     padding-top: 70px !important;
 }
 
-.container {
-    margin-left: 35px !important;
-    margin-right: 35px !important;
-}
 
+
+/*키워드 영역 관련*/
 .fixed-keyword-bar .keyword-bar-keywords .keyword-bar-title-box {
     float: left;
     display: inline;
@@ -204,14 +206,6 @@ ul#feed_list_panel > li {
     max-width: 600px;
 }
 
-.float-left {
-    float: left;
-}
-
-.float-right {
-    float: right;
-}
-
 
 .keyword-txt-btn {
     -webkit-border-radius: 30;
@@ -221,7 +215,7 @@ ul#feed_list_panel > li {
     color: #000000;
     font-size: 14px;
     background: #ffffff;
-    padding: 10px 20px 10px 20px;
+    padding: 5px 20px 5px 20px;
     border: solid #5064FA 1px;
     text-decoration: none;
     margin: 0px 20px;
@@ -230,4 +224,53 @@ ul#feed_list_panel > li {
 .keyword-txt-btn.active {
     background: #5064FA;
     text-decoration: none;
+}
+
+/*사이드바 영역 관련*/
+
+.right-sidebar {
+    z-index: 101;
+    width: 260px;
+    height: 100%;
+    margin-top: 50px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background-color: RGB(234,234,234);
+}
+
+.sidebar-title-box {
+    height: 175px;
+    padding: 34px 12px 14px 12px;
+    background-color: #5064FA;
+}
+
+.sidebar-title-txt {
+    font-family:"NotoSansCJKkr_Regular";
+    color:#ffffff;
+    font-size:17px;
+    margin-bottom: 2px;
+}
+
+.board-item-box {
+    width: 236px;
+    height: 38px;
+    margin-top: 12px;
+    background: #ffffff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.board-item-box input {
+    width: 190px;
+    line-height: 30px;
+    margin-left: 9px;
+    margin-top: 4px;
+    font-family:"NotoSansCJKkr_Regular";
+    color:RGB(183,183,183);
+    font-size:15px;
+    border: none;
+    outline:0px none black;
 }
