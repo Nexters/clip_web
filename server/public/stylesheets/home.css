@@ -8,6 +8,7 @@ body {
 }
 body {
     padding-top: 50px;
+    background-color: RGB(248, 248, 248) !important;
 }
 footer {
     padding: 30px 0;
@@ -61,4 +62,72 @@ footer {
 
 ul#feed_list_panel > li {
     max-height: 276px;
+}
+
+
+.navbar {
+
+}
+
+.navbar-header {
+    float: inherit !important;
+    margin: 0px auto !important;
+    width: 100px !important;
+}
+
+.navbar-brand {
+    margin: 0px !important;
+    padding: 5px 15px !important;
+    font-size : 30px;
+    color: RGB(80,100,250);
+    line-height: 40px;
+    font-family:"Montserrat_Bold";
+    width: 100px;
+}
+
+.navbar-profile {
+    width: 260px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    line-height: 35px;
+}
+
+.navbar-profile .home-icon-box {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 7px 10px;
+    text-align: center;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+}
+
+.navbar-profile .home-profile-box {
+    display: inline-block;
+    width: 200px;
+    heigth: 50px;
+    padding: 7px 10px !important;
+}
+
+.navbar-profile .home-profile-box .user-profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+}
+
+.navbar-profile .home-profile-box .user-profile-txt {
+    width: 120px;
+    height: 35px;
+    display: inline-block;
+    margin: 0px 0px 0px 12px;
+    padding: 0px;
+    font-family:"Montserrat_Light";
+    font-size: 15px;
+    color: RGB(140,140,140);
+    /*overflow:hidden;*/
+    /*white-space:nowrap;*/
+    text-overflow: ellipsis;
 }
