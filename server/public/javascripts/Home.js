@@ -20,8 +20,14 @@
                 '<div class="img-box">'+
                     '<img src="'+feed.image+'" align="middle">'+
                 '</div>'+
-                '<div class="content-box">'+
+                '<div class="title-box">'+
                     '<p>'+feed.title+'</p>'+
+                '</div>'+
+                '<div class="keyword-box">'+
+                    '<div class="keyword">'+
+                    '</div>'+
+                    '<div class="clip">'+
+                    '</div>'+
                 '</div>'+
             '</li>';
         return html;
@@ -36,7 +42,7 @@
             wookmark = undefined,
             options = {
                 offset: 12, // Optional, the distance between grid items
-                itemWidth: 231 // Optional, the width of a grid item
+                itemWidth: 251 // Optional, the width of a grid item
             };
         /**
          * When scrolled all the way to the bottom, add more tiles.

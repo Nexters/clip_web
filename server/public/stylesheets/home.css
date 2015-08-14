@@ -352,7 +352,7 @@ ul#feed_list_panel > li {
 }
 
 #feed_list_panel > li {
-    width: 231px;
+    width: 251px;
     height: 276px;
     padding: 0px;
     border: none;
@@ -364,12 +364,44 @@ ul#feed_list_panel > li {
 
 
 #feed_list_panel > li > div.img-box {
-    width: 231px;
+    width: 251px;
     height: 176px;
     overflow: hidden;
 }
 
 #feed_list_panel > li > div.img-box > img {
-    width: 231px;
+    width: 251px;
     min-height: 176px;
+}
+
+#feed_list_panel > li > div.title-box {
+    height: 63px;
+    padding: 10px;
+    text-align: left !important;
+}
+
+#feed_list_panel > li > div.title-box > p {
+    height: 63px;
+    overflow: hidden;
+}
+
+#feed_list_panel > li > div.keyword-box {
+    height: 37px;
+}
+
+#feed_list_panel > li > div.keyword-box > div.keyword {
+    display: inline-block;
+    float: left;
+    width: 220px;
+    height: 37px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+
+#feed_list_panel > li > div.keyword-box > div.clip {
+    display: inline-block;
+    float: right;
+    width: 31px;
+    height: 37px;
 }
