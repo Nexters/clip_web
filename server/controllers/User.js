@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Result = require('../services/Result');
 var async = require('async');
+var _ = require('underscore');
 
 function UserCtrl() {
 
@@ -82,10 +83,33 @@ UserCtrl.loginUser = function(req, res) {
 };
 
 UserCtrl.updateUser = function(req, res) {
-    // PUT
-    // id <- params, 업데이트 되는 필드 데이터 <- req.body
-    // 업데이트 가능한 필드: feeds, keywords, name, profileUrl, pw
-    // TODO: 과제2 유저 정보 업데이트하는 부분 여기에 구현해야 함
+    var errors, conditions, userData;
+    req.checkParams('id', 'Invalid id').notEmpty();
+    errors = req.validationErrors();
+    console.log(req.params.id);
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    conditions = {
+        _id: req.params.id
+    };
+    userData = {};
+    if (!_.isUndefined(req.body.pw)) {
+        userData.pw = req.body.pw;
+    }
+    if (!_.isUndefined(req.body.name)) {
+        userData.name = req.body.name;
+    }
+    if (!_.isUndefined(req.body.profileUrl)) {
+        userData.profileUrl = req.body.profileUrl;
+    }
+    if (!_.isUndefined(req.body.feeds)) {
+        userData.feeds = req.body.feeds;
+    }
+    if (!_.isUndefined(req.body.keywords)) {
+        userData.keywords = req.body.keywords;
+    }
+    User.updateUser(conditions, userData, function(err, doc) {
+        res.status(200).send(Result.SUCCESS(doc));
+    });
 };
 
 module.exports = UserCtrl;
