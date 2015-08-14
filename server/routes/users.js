@@ -14,4 +14,7 @@ router.post('/save', userCtrl.saveUser);
 /* POST login user */
 router.post('/login', userCtrl.loginUser);
 
+/* PUT update user */
+router.put('/id/:id', userCtrl.updateUser);
+
 module.exports = router;

@@ -8,8 +8,8 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
     email: { type: String, required: true }, // 이메일 주소
     pw: { type: String, required: true }, // 패스워드
-    authType: { type: String, required: true }, // 인증타입
-    authKey: { type: String, required: true }, // 인증키
+    //authType: { type: String, required: true }, // 인증타입
+    //authKey: { type: String, required: true }, // 인증키
     name: { type: String, required: true }, // 닉네임
     profileUrl: { type: String, default: '' }, // 프로필 이미지 주소
     feeds: { type: Array, default: [] }, // 추가한 사이트 목록
@@ -33,6 +33,8 @@ UserSchema.statics.getUsers = function(criteria, projection, options, callback) 
 };
 
 UserSchema.statics.saveUser = function(doc, callback) {
+    console.log("aaa");
+    console.log(doc);
     if (!doc) return;
 
     doc.createDate = doc.createDate ? doc.createDate : new Date();
