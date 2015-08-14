@@ -19,6 +19,7 @@ function getUsers(criteria, resultCallback) {
 
 function getFeedDataFromUsers(users, resultCallback) {
     async.eachSeries(users, function iterator(user, callback) {
+        if (!user || !user.keywords) return callback();
         if (user.keywords.length === 0) return callback();
         var updatedLastFeedDate = new Date();
         fetchUserFeed(user._id, user.feeds, user.keywords, user.lastFeedDate, callback);

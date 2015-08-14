@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Clip - Home</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/javascripts/bower_components/normalize.css/normalize.css">
+    <link rel="stylesheet" href="/javascripts/bower_components/wookmark/css/main.css">
+    <link rel="stylesheet" href="/stylesheets/common.css"/>
+    <link rel="stylesheet" href="/stylesheets/home.css"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<nav class="navbar navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header" align="center">
+            <a class="navbar-brand" href="#">Clip</a>
+        </div><!-- /.navbar-header -->
+        <div class="navbar-profile">
+            <div class="home-icon-box">
+                <img src="/images/home_icon.png">
+            </div>
+            <div class="home-profile-box">
+                <img class="user-profile-img" src="/images/empty_user_icon.png">
+                <p class="user-profile-txt">테스트트트트트트</p>
+            </div>
+        </div><!-- /.navbar-profile -->
+    </div><!-- /.container -->
+</nav><!-- /.navbar -->
+<div class="fixed-keyword-bar">
+    <div class="keyword-bar-keywords col-xs-12 col-sm-12">
+        <span class="keyword-bar-title-box">My Keyword</span>
+        <span class="keyword-move-btn float-left"><img src="/images/keyword_prev_icon.png"></span>
+        <div class="keyword-txt-box">
+            <span class="keyword-txt-btn"></span>
+        </div>
+        <span class="keyword-move-btn float-right"><img src="/images/keyword_next_icon.png"></span>
+    </div>
+</div>
+<div class="container card-container">
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+            <div role="main" id="feed_container">
+                <ul id="feed_list_panel" class="tiles-wrap animated">
+
+                </ul>
+                <div id="loader">
+                    <div align="center" id="loaderCircle">
+                        <img src="/images/loader.gif">
+                    </div>
+                </div>
+            </div>
+        </div><!--/.col-xs-12.col-sm-9-->
+    </div><!--/row-->
+
+    <div class="right-sidebar">
+        <div class="sidebar-title-box">
+            <div class="sidebar-title-txt">내 클립보드에 담기</div>
+            <div class="board-item-box">
+                <input type="text">
+            </div>
+            <div class="board-item-box">bb</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Clip 2015</p>
+    </footer>
+
+</div><!--/.container-->
+
+<script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/javascripts/bower_components/wookmark/wookmark.min.js"></script>
+<script src="/javascripts/util/HttpUtil.js"></script>
+<script src="/javascripts/Home.js"></script>
+</body>
+</html>

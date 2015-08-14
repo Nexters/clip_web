@@ -33,7 +33,7 @@ UserSchema.statics.getUsers = function(criteria, projection, options, callback) 
 };
 
 UserSchema.statics.saveUser = function(doc, callback) {
-    console.log("aaa");
+
     console.log(doc);
     if (!doc) return;
 

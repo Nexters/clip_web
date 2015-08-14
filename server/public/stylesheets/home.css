@@ -1,0 +1,276 @@
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+body {
+    padding-top: 50px;
+    background-color: RGB(255,255,255) !important;
+}
+footer {
+    padding: 30px 0;
+}
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 767px) {
+    .row-offcanvas {
+        position: relative;
+        -webkit-transition: all .25s ease-out;
+        -o-transition: all .25s ease-out;
+        transition: all .25s ease-out;
+    }
+
+    .row-offcanvas-right {
+        right: 0;
+    }
+
+    .row-offcanvas-left {
+        left: 0;
+    }
+
+    .row-offcanvas-right
+    .sidebar-offcanvas {
+        right: -50%; /* 6 columns */
+    }
+
+    .row-offcanvas-left
+    .sidebar-offcanvas {
+        left: -50%; /* 6 columns */
+    }
+
+    .row-offcanvas-right.active {
+        right: 50%; /* 6 columns */
+    }
+
+    .row-offcanvas-left.active {
+        left: 50%; /* 6 columns */
+    }
+
+    .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 50%; /* 6 columns */
+    }
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+ul#feed_list_panel > li {
+    max-height: 276px;
+}
+
+
+.container {
+    margin-left: 35px !important;
+    margin-right: 35px !important;
+}
+
+.card-container {
+    overflow-y: auto;
+}
+
+.navbar {
+    z-index: 100;
+    background-color: RGB(255,255,255);
+}
+
+.navbar-header {
+    float: inherit !important;
+    margin: 0px auto !important;
+    width: 100px !important;
+}
+
+.navbar-brand {
+    margin: 0px !important;
+    padding: 5px 15px !important;
+    font-size : 30px;
+    color: RGB(80,100,250);
+    line-height: 40px;
+    font-family:"Montserrat_Bold";
+    width: 100px;
+}
+
+.navbar-profile {
+    width: 260px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    line-height: 35px;
+}
+
+.navbar-profile .home-icon-box {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 7px 10px;
+    text-align: center;
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+}
+
+.navbar-profile .home-profile-box {
+    display: inline-block;
+    width: 200px;
+    heigth: 50px;
+    padding: 7px 10px !important;
+}
+
+.navbar-profile .home-profile-box .user-profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+}
+
+.navbar-profile .home-profile-box .user-profile-txt {
+    width: 120px;
+    height: 35px;
+    display: inline-block;
+    margin: 0px 0px 0px 12px;
+    padding: 0px;
+    font-family:"Montserrat_Light";
+    font-size: 15px;
+    color: RGB(140,140,140);
+    /*overflow:hidden;*/
+    /*white-space:nowrap;*/
+    text-overflow: ellipsis;
+}
+
+
+.fixed-keyword-bar {
+    z-index: 100;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    padding-right: 280px;
+    background-color: RGB(248,248,248);
+    border-top: 0.08em solid #ebebeb;
+    border-bottom: 0.08em solid #ebebeb;
+    box-shadow: 0 0 1px rgba(0,0,0,.3);
+    -moz-box-shadow: 0px 0px 1px #e6e6e6;
+    -webkit-box-shadow: 0px 0px 1px #e6e6e6;
+}
+
+
+.row-offcanvas {
+    padding-top: 70px !important;
+}
+
+
+
+/*키워드 영역 관련*/
+.fixed-keyword-bar .keyword-bar-keywords .keyword-bar-title-box {
+    float: left;
+    display: inline;
+    font-family:"Montserrat_Regular";
+    color: RGB(133,133,133);
+    font-size: 17px;
+    width: 110px;
+    height: 70px;
+    line-height: 70px;
+    margin: 0px 40px 0px 34px;
+}
+
+.fixed-keyword-bar .keyword-bar-keywords {
+    display: inline;
+    height: 70px;
+    line-height: 70px;
+}
+
+.keyword-move-btn {
+    position: relative;
+    height: 16px;
+    line-height: 70px;
+}
+
+.keyword-move-btn img {
+    height: 16px;
+}
+
+.keyword-txt-box {
+    display: inline;
+    min-width: 400px;
+    max-width: 600px;
+}
+
+
+.keyword-txt-btn {
+    -webkit-border-radius: 30;
+    -moz-border-radius: 30;
+    border-radius: 30px;
+    font-family: Arial;
+    color: #000000;
+    font-size: 14px;
+    background: #ffffff;
+    padding: 5px 20px 5px 20px;
+    border: solid #5064FA 1px;
+    text-decoration: none;
+    margin: 0px 20px;
+}
+
+.keyword-txt-btn.active {
+    background: #5064FA;
+    text-decoration: none;
+}
+
+/*사이드바 영역 관련*/
+
+.right-sidebar {
+    z-index: 101;
+    width: 260px;
+    height: 100%;
+    margin-top: 50px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background-color: RGB(234,234,234);
+}
+
+.sidebar-title-box {
+    height: 175px;
+    padding: 34px 12px 14px 12px;
+    background-color: #5064FA;
+}
+
+.sidebar-title-txt {
+    font-family:"NotoSansCJKkr_Regular";
+    color:#ffffff;
+    font-size:17px;
+    margin-bottom: 2px;
+}
+
+.board-item-box {
+    width: 236px;
+    height: 38px;
+    margin-top: 12px;
+    background: #ffffff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.board-item-box input {
+    width: 190px;
+    line-height: 30px;
+    margin-left: 9px;
+    margin-top: 4px;
+    font-family:"NotoSansCJKkr_Regular";
+    color:RGB(183,183,183);
+    font-size:15px;
+    border: none;
+    outline:0px none black;
+}

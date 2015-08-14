@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
+var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -15,11 +16,9 @@ var app = express();
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-// Logger setting
+// log4js setting
 log4js.configure(config.log4js);
 log4js.setGlobalLogLevel(config.logLevel);
-
-var logger = log4js.getLogger("app");
 
 // Model Files
 var modelsPath = path.join(__dirname, './models');
@@ -37,7 +36,6 @@ var feeds = require('./routes/feeds');
 // Database Setup
 var dbUri = config.mongo.uri + config.mongo.db;
 var dbOptions = { username: config.mongo.username, password: config.mongo.password };
-logger.debug("dbUri: ", dbUri);
 mongoose.connect(dbUri, dbOptions);
 
 // view engine setup
@@ -46,6 +44,7 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
