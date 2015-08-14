@@ -44,7 +44,8 @@
         <span class="keyword-bar-title-box">My Keyword</span>
         <span class="keyword-move-btn float-left"><img src="/images/keyword_prev_icon.png"></span>
         <div class="keyword-txt-box">
-            <span class="keyword-txt-btn"></span>
+            <span class="keyword-txt-btn">키워드1</span>
+            <span class="keyword-txt-btn">키워드2</span>
         </div>
         <span class="keyword-move-btn float-right"><img src="/images/keyword_next_icon.png"></span>
     </div>
@@ -68,17 +69,25 @@
     <div class="right-sidebar">
         <div class="sidebar-title-box">
             <div class="sidebar-title-txt">내 클립보드에 담기</div>
-            <div class="board-item-box">
-                <input type="text">
+            <div class="board-title-box">
+                <input id="board_title_input" type="text">
+                <img src="/images/cardboard_add_button.png"
             </div>
-            <div class="board-item-box">bb</div>
+            <div class="board-title-box">
+                <select id="board_title_select" class="board-select-box">
+                    <option>테스트1</option>
+                    <option>테스트2</option>
+                    <option>테스트3</option>
+                </select>
+            </div>
         </div>
     </div>
+    <div class="sidebar-content-box">
 
-    <footer>
-        <p>&copy; Clip 2015</p>
-    </footer>
-
+    </div>
+    <div class="board_clip_btn">
+        클립하기
+    </div>
 </div><!--/.container-->
 
 <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
