@@ -1,27 +1,53 @@
 <!DOCTYPE html>
 <head>
+
     <link rel="stylesheet" href="/stylesheets/common.css"/>
     <link rel="stylesheet" href="/stylesheets/signin.css"/>
     <meta charset="UTF-8">
+    <style type="text/css">
+        .top {display:block; font-size: 108px; font-family:"Montserrat_Bold"; color:white;  text-align:center;}
+        .middle{display:block; font-size: 12px; font-family:'NotoSansCJKKR-hinted/NotoSansCJKkr-Regular'; color:white;   text-align:center;}
+        .mailinfo {font-family:"Montserrat_Bold";font-size :15pt; color:black; text-align:center;}
+    </style>
     <title>Sign In</title>
 </head>
 
 <body>
 
-<b id="top">Clip</b>
-<div align="center"  id="top2"> 관심 키워드로 콘텐츠를 받아보고 클립하세요</div>
+<!-- 처음 Clip -->
+<b class="top">
+    <div style="text-align:center; margin-top: 160px">
+        Clip
+    </div>
+    <div id="wrapper">
+        <c class="middle">
+            <div style="text-align:center; margin-top: 26px">
+                <h3>관심 키워드로 콘텐츠를 받아보고 클립하세요</h3>
+            </div>
+        </c>
+        <!-- 로그인 박스 -->
+        <e class="mailinfo">
 
-<div align="center" >
-    <form id="form"  name="loginform">
-        <div id="login"> Log in</div>
-        <input id="input_email" type="email" name="email"class="text"  placeholder="Email">
-        <input type="password" name="password" class="text" placeholder="Password">
-        <div align="center" ><input class="image" type="image" name="signup" src="/images/login_button.png"></div>
-        <input id="signin_btn" type="image" name="signup" src="/images/password.png">
-        <button id="signupbtn">이메일로 가입하기</button>
+            <div id="login" class="form">
+                <form name="loginform" >
+                    <!-- 로그인 글씨 -->
+                    <h1>Log in</h1>
+                    <!-- 폼 -->
+                    <input id="input_email" type="email" name="email" class="text"  placeholder="Email"><br>
+                    <input class="pw" type="password" name="password" placeholder="Password"><br>
+                    <!-- 로그인 버튼 -->
+                    <input id="signin_btn" type="image" name="Log in" src="/images/login_button.png">
+                    <h2><input class="test" type="image" name="sign up" src="/images/password.png"></h2>
+                    <button id="join" formaction="http://localhost:3000/signup">이메일로 가입하기</button>
 
-    </form>
-</div>
+                </form>
+            </div>
+        </e>
+    </div>
+</b>
+
+
+
 
 <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

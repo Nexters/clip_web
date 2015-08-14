@@ -33,22 +33,24 @@
                 <img src="/images/home_icon.png">
             </div>
             <div class="home-profile-box">
-                <img class="user-profile-img" src="/images/card_no_image.png">
+                <img class="user-profile-img" src="/images/empty_user_icon.png">
                 <p class="user-profile-txt">테스트트트트트트</p>
             </div>
         </div><!-- /.navbar-profile -->
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 <div class="fixed-keyword-bar">
-    <div class="keyword-bar-title-box">
-        My Keyword
-    </div>
-    <div class="keyword-bar-keywords">
-        <span></span>
-        <span></span>
+    <div class="keyword-bar-keywords col-xs-12 col-sm-12">
+        <span class="keyword-bar-title-box">My Keyword</span>
+        <span class="keyword-move-btn float-left"><img data-status="prev" src="/images/keyword_prev_icon.png"></span>
+        <div class="keyword-txt-box">
+            <span class="keyword-txt-btn">키워드1</span>
+            <span class="keyword-txt-btn">키워드2</span>
+        </div>
+        <span class="keyword-move-btn float-right"><img data-status="next" src="/images/keyword_next_icon.png"></span>
     </div>
 </div>
-<div class="container">
+<div class="container card-container">
     <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
             <div role="main" id="feed_container">
@@ -65,12 +67,31 @@
     </div><!--/row-->
 
     <div class="right-sidebar">
+        <div class="sidebar-title-box">
+            <div class="sidebar-title-txt">내 클립보드에 담기</div>
+            <div class="board-title-box">
+                <input id="board_title_input" type="text">
+                <img src="/images/cardboard_add_button.png"
+            </div>
+            <div class="board-title-box">
+                <select id="board_title_select" class="board-select-box">
+                    <option>테스트1</option>
+                    <option>테스트2</option>
+                    <option>테스트3</option>
+                </select>
+            </div>
+        </div>
     </div>
-
-    <footer>
-        <p>&copy; Clip 2015</p>
-    </footer>
-
+    <div class="sidebar-content-box">
+        <ul class="sidebar-content-line-box">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="board_clip_btn">
+        클립하기
+    </div>
 </div><!--/.container-->
 
 <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
