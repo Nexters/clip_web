@@ -24,6 +24,10 @@ router.get('/signup', function(req, res, next) {
     res.render('signup', { title: 'My World', name: 'Ji Yeon' });
 });
 
+router.get('/main1', function(req, res, next) {
+    res.render('main1', { title: 'My World', name: 'Ji Yeon' });
+});
+
 
 router.post('/test', function(req, res, netx) {
     console.log(req.body);
