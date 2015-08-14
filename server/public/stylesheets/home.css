@@ -8,7 +8,7 @@ body {
 }
 body {
     padding-top: 50px;
-    background-color: RGB(248, 248, 248) !important;
+    background-color: RGB(255,255,255) !important;
 }
 footer {
     padding: 30px 0;
@@ -64,9 +64,8 @@ ul#feed_list_panel > li {
     max-height: 276px;
 }
 
-
-.navbar {
-
+.card-container {
+    overflow-y: auto;
 }
 
 .navbar-header {
@@ -132,19 +131,32 @@ ul#feed_list_panel > li {
     text-overflow: ellipsis;
 }
 
+.navbar {
+    z-index: 10000;
+    background-color: RGB(255,255,255);
+
+}
+
 .fixed-keyword-bar {
+    z-index: 10000;
+
     width: 100%;
     height: 70px;
     position: fixed;
-    /*top: 50px;*/
     padding-right: 280px;
+    background-color: RGB(248,248,248);
+    border-top: 0.08em solid #5F5F5F;
+    border-bottom: 0.08em solid #5F5F5F;
+    box-shadow: 0 0 1px rgba(0,0,0,.3);
+    -moz-box-shadow: 0px 0px 1px #000;
+    -webkit-box-shadow: 0px 0px 1px #000;
 }
 
 .right-sidebar {
     width: 260px;
     height: 100%;
     margin-top: 50px;
-    position: absolute;
+    position: fixed;
     top: 0px;
     right: 20px;
 }
@@ -158,12 +170,13 @@ ul#feed_list_panel > li {
     margin-right: 35px !important;
 }
 
-.fixed-keyword-bar .keyword-bar-title-box {
+.fixed-keyword-bar .keyword-bar-keywords .keyword-bar-title-box {
+    float: left;
     display: inline;
     font-family:"Montserrat_Regular";
     color: RGB(133,133,133);
     font-size: 17px;
-    width: 173px;
+    width: 110px;
     height: 70px;
     line-height: 70px;
     margin: 0px 40px 0px 34px;
@@ -171,6 +184,50 @@ ul#feed_list_panel > li {
 
 .fixed-keyword-bar .keyword-bar-keywords {
     display: inline;
-
     height: 70px;
+    line-height: 70px;
+}
+
+.keyword-move-btn {
+    position: relative;
+    height: 16px;
+    line-height: 70px;
+}
+
+.keyword-move-btn img {
+    height: 16px;
+}
+
+.keyword-txt-box {
+    display: inline;
+    min-width: 400px;
+    max-width: 600px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+
+.keyword-txt-btn {
+    -webkit-border-radius: 30;
+    -moz-border-radius: 30;
+    border-radius: 30px;
+    font-family: Arial;
+    color: #000000;
+    font-size: 14px;
+    background: #ffffff;
+    padding: 10px 20px 10px 20px;
+    border: solid #5064FA 1px;
+    text-decoration: none;
+    margin: 0px 20px;
+}
+
+.keyword-txt-btn.active {
+    background: #5064FA;
+    text-decoration: none;
 }
