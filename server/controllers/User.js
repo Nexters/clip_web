@@ -6,6 +6,7 @@ var async = require('async');
 function UserCtrl() {
 
 }
+
 UserCtrl.getHomePage = function(req, res) {
     var errors, criteria;
     req.checkParams('id', 'Invalid id').notEmpty();
