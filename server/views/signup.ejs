@@ -11,15 +11,23 @@
 </head>
 
 <body>
-
 <b id="top">Clip</b>
 <div align="center" id="top2"> 관심 키워드로 콘텐츠를 받아보고 클립하세요</div>
 
 <div align="center" class="centered">
-  <form id="form"  name="signupform" method="post" action="../user/save">
+
+
+
+
+  < id="form"  name="signupform">
+    <a href="http://localhost:3000/signin">
+    <input id="login_btn" type="image" name="signup" src="/images/clip_signup_login.png"></a>
+
+
     <div  align="center" id="signup">
     Sign up
     </div>
+
 
     <input type="text" name="name" class="text"  placeholder="Name" />
     <input type="email" name="email"class="text" placeholder="Email">
@@ -28,8 +36,14 @@
     <input type="image" class="image" name="signup" src="/images/signup_button2.png">
 
 
-  </form>
+
+
 </div>
 
+
+<script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/util/HttpUtil.js"></script>
+<script src="/javascripts/Signup.js"></script>
 </body>
 </html>

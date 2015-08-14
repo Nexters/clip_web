@@ -21,8 +21,9 @@ body {
 }
 
 #form{
+
     margin-top:62px;
-    height:480px;
+    height:500px;
     width:391px;
     background-color: white;
     border-radius: 5px;
@@ -30,14 +31,35 @@ body {
 
 #signup{
     position: relative;
-    top:44px;
+    margin-top:41px;
     font-family:"Montserrat_SemiBold";
     font-size: 37.09px;
     color:rgb(80,100,250);
-    margin-bottom: 38px;
+
 
 }
-.text {
+#login_btn{
+    margin-top: 22px;
+    margin-left: 173.5px;
+}
+#input_name{
+    margin-top: 30px;
+    width:262px;
+    font-family:"Roboto_Light";
+    font-size:14px;
+    color:rgb(138,138,138);
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+#input_name:focus {
+    outline: none;
+    border-color:rgb(80,100,250);
+}
+
+#input_email1{
     margin-top: 38px;
     width:262px;
     font-family:"Roboto_Light";
@@ -49,13 +71,45 @@ body {
     border-bottom-style: solid;
     border-bottom-width: 1px;
 }
-.text:focus {
+#input_email1:focus {
+    outline: none;
+    border-color:rgb(80,100,250);
+}
+#input_password1{
+    margin-top: 38px;
+    width:262px;
+    font-family:"Roboto_Light";
+    font-size:14px;
+    color:rgb(138,138,138);
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+#input_password1:focus {
+    outline: none;
+    border-color:rgb(80,100,250);
+}
+#input_conpass{
+    margin-top: 38px;
+    width:262px;
+    font-family:"Roboto_Light";
+    font-size:14px;
+    color:rgb(138,138,138);
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+#input_conpass:focus {
     outline: none;
     border-color:rgb(80,100,250);
 }
 
 
-.image{
+#signup_btn{
     margin-top:44px;
     margin-bottom: 16px;
 }

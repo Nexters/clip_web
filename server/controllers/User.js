@@ -20,32 +20,30 @@ UserCtrl.getHomePage = function(req, res) {
 };
 
 UserCtrl.getUserPage = function(req, res) {
-    var errors, criteria;
-    req.checkParams('id', 'Invalid id').notEmpty();
-    errors = req.validationErrors();
-    if (errors) return res.status(400).send(Result.ERROR(errors));
-    criteria = { _id: req.params.id };
-    // TODO: 유저 정보 + 클립 보드 정보 만들어서 html 형태로 내려줘야함!
-    User.getUser(criteria, function(err, docs) {
-        res.status(200).send(Result.SUCCESS(docs));
-    });
-};
-
-
-
-UserCtrl.getAllUsers = function(req, res) {
     var errors;
     req.checkQuery('test', 'Must be true').isIn(["true"]);
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     User.getUsers({}, function(err, docs) {
-       res.status(200).send(Result.SUCCESS(docs));
+        res.status(200).send(Result.SUCCESS(docs));
+    });
+};
+
+UserCtrl.getAllUsers = function(req, res) {
+    var errors;
+    req.checkQuery('test', 'Must be true').isIn(["true"]);
+    console.log(req.query.a);
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    User.getUsers({}, function(err, docs) {
+        res.status(200).send(Result.SUCCESS(docs));
     });
 };
 
 UserCtrl.getUser = function(req, res) {
     var errors, criteria;
     req.checkParams('id', 'Invalid id').notEmpty();
+    console.log(req.params);
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     criteria = { _id: req.params.id };
@@ -56,7 +54,10 @@ UserCtrl.getUser = function(req, res) {
 
 UserCtrl.saveUser = function(req, res) {
     var errors, userData;
+
     var email,pw,pw2,name;
+
+
     req.checkBody('email', 'Invalid email').isEmail();
     req.checkBody('pw', 'Invalid pw').notEmpty();
     req.checkBody('pw2', 'Invalid pw2').notEmpty();
@@ -95,7 +96,11 @@ UserCtrl.loginUser = function(req, res) {
     req.checkBody('email', 'Invalid email').notEmpty();
     req.checkBody('pw', 'Invalid pass word').notEmpty();
 
+
     console.log(req.body);
+
+
+
 
     errors = req.validationErrors();
     if(errors) return res.status(400).send(Result.ERROR(errors));
@@ -155,3 +160,5 @@ UserCtrl.updateUser = function(req, res) {
 };
 
 module.exports = UserCtrl;
+
+

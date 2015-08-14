@@ -163,28 +163,44 @@ ul#feed_list_panel > li {
     position: fixed;
     padding-right: 280px;
     background-color: RGB(248,248,248);
-    border-top: 0.08em solid #ebebeb;
-    border-bottom: 0.08em solid #ebebeb;
+    border-top: 0.08em solid #ffffff;
+    border-bottom: 0.08em solid #ffffff;
     box-shadow: 0 0 1px rgba(0,0,0,.3);
     -moz-box-shadow: 0px 0px 1px #e6e6e6;
     -webkit-box-shadow: 0px 0px 1px #e6e6e6;
 }
 
 
+.row-offcanvas {
+    padding-top: 90px !important;
+}
+
+
 
 /*키워드 영역 관련*/
-.fixed-keyword-bar .keyword-bar-keywords .keyword-bar-title-box {
+.fixed-keyword-bar .keyword-bar-keywords .myclip-bar-title-box {
     float: left;
     display: inline;
     font-family:"Montserrat_Regular";
-    color: RGB(133,133,133);
+    color: #646464;
     font-size: 17px;
-    width: 110px;
+    width: 130px;
     height: 70px;
     line-height: 70px;
     margin: 0px 40px 0px 34px;
 }
+.board-setting{
+    font-family: "NotoSansCJKkr-Regular";
+    font-size: 15px;
+    color:#999898;
+    width: 102px;
+    height: 35px;
+    border-style: solid;
+    border-color:#999898;
+    border-radius:13px;
+    border-width: 1.5px;
 
+}
 .fixed-keyword-bar .keyword-bar-keywords {
     display: inline;
     height: 70px;
@@ -213,17 +229,17 @@ ul#feed_list_panel > li {
 
 .keyword-txt-btn {
     cursor: pointer;
-    -webkit-border-radius: 30;
-    -moz-border-radius: 30;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
     border-radius: 30px;
     font-family:"Montserrat_Light";
-    color: RGB(80,100,250);
+    color:#999898;
     font-size: 14px;
-    background: #ffffff;
     padding: 5px 20px 5px 20px;
-    border: solid #5064FA 1px;
+    border: solid #999898 1px;
     text-decoration: none;
-    margin: 0px 8px;
+    margin: 0px 20px ;
+    margin-left: 700px;
 }
 
 .keyword-txt-btn.active {
@@ -233,28 +249,56 @@ ul#feed_list_panel > li {
 
 /*사이드바 영역 관련*/
 
+.myclip_title{
+    font-family: "Montserrat_Light";
+    font-size: 14px;
+    margin-left: 16px;
+    margin-top: 29px;
+    color:rgb(172,172,172);
+
+}
+
 .right-sidebar {
     z-index: 101;
     width: 261px;
     height: 100%;
-    border-left: 0.08em solid #ebebeb;
+    border-left: 0.08em solid #ffffff;
     margin-top: 50px;
     position: fixed;
     top: 0px;
     right: 0px;
-    background-color: RGB(234,234,234);
+    background-color: #ffffff;
 }
+.sidebar-image-box{
+    margin-top: 12px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    width: 57px;
+    height: 57px;
+}
+.sidebar-setting-icon{
+    margin-top:-32px;
+    margin-left:220px;
 
+}
 .sidebar-title-box {
-    height: 175px;
-    padding: 34px 12px 14px 12px;
+    height: 195px;
+    width: 261px;
+    padding: 34px  12px;
     background-color: #5064FA;
 }
 
-.sidebar-title-txt {
+.sidebar-name-txt {
     font-family:"NotoSansCJKkr_Regular";
     color:#ffffff;
     font-size:17px;
+    margin-bottom: -3px;
+}
+.sidebar-email-txt {
+    font-family:"NotoSansCJKkr_Regular";
+    color:#ffffff;
+    font-size:12px;
     margin-bottom: -3px;
 }
 
@@ -332,44 +376,15 @@ ul#feed_list_panel > li {
 
 }
 
-.sidebar-content-line-box > li {
+.sidebar-content-line-txt > li {
     display: inline-block;
-    background-color: #000000;
+    background-color: #b5b5b5;
     margin: 0px 0px;
     width: 79px;
     height: 80px;
 }
-
-
-/*피드 리스트 관련*/
-.row-offcanvas {
-    padding-right: 260px;
-    padding-top: 90px !important;
-}
-
-#feed_list_panel {
-    list-style:none;
-}
-
-#feed_list_panel > li {
-    width: 231px;
-    height: 276px;
-    padding: 0px;
-    border: none;
-}
-
-#feed_list_panel > li > div {
-    height: 100px;
-}
-
-
-#feed_list_panel > li > div.img-box {
-    width: 231px;
-    height: 176px;
-    overflow: hidden;
-}
-
-#feed_list_panel > li > div.img-box > img {
-    width: 231px;
-    min-height: 176px;
+.centered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
 }

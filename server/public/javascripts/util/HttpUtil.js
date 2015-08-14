@@ -11,7 +11,7 @@ HttpUtil.getData = function(url, params, callback) {
             callback("Error");
         },
         success: function successHandler(data, status, xhr) {
-            if (data.code === 0) {
+            if (data.resultCode === 0) {
                 callback(null, data.data)
             } else {
                 callback("Error");
@@ -29,7 +29,7 @@ HttpUtil.postData = function(url, params, callback) {
             callback("Error");
         },
         success: function successHandler(data, status, xhr) {
-            if (data.code === 0) {
+            if (data.resultCode === 0) {
                 callback(null, data.data)
             } else {
                 callback("Error");

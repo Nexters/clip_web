@@ -4,71 +4,132 @@ body {
     background-size:cover;
 }
 
-#top {
-    margin-top:160px;
-    display:block;
-    font-size :108px;
-    font-family:"Montserrat_Bold";
-    color:white;
-    text-align:center;
-}
-#top2 {
-    position: relative;
-    top:26px;
-    font-size : 32px;
-    font-family:"NotoSansCJKkr_Regular";
-    color:white;
-}
-#form{
-    position: relative;
-    top:62px;
-    height:391px;
-    width:391px;
-    background-color: white;
+#subscribe,
+#login{
+    marin-top:62px;
+    position: center;
+    top: 391px;
+    width: 391px;
+    height: 391px;
+    margin: auto;
+    background: rgb(255, 255, 255);
     border-radius: 5px;
 }
 
-#login{
-    position: relative;
-    top:44px;
-    font-family:"Montserrat_SemiBold";
-    font-size: 37.09px;
-    color:rgb(80,100,250);
-    margin-bottom: 38px;
-}
+#signin_btn{}
 
-
-.text {
-    margin-top: 38px;
+#input_email{
+    font-family: 'Roboto_Light';
+    font-size: 14px;
     width:262px;
-    font-family:"Roboto_Light";
-    font-size:14px;
-    color:rgb(138,138,138);
+    margin-top: 39px;
     border-top-style: none;
     border-right-style: none;
     border-left-style: none;
     border-bottom-style: solid;
     border-bottom-width: 1px;
+    color: rgb(138, 138, 138);
+    margin-bottom:38px;
 }
-.text:focus {
+#input_email:focus{
     outline: none;
     border-color:rgb(80,100,250);
 }
 
-#signupbtn{
-    font-family:"NotoSansCJKkr_Regular";
+
+.pw{
+    font-family: 'Roboto_Light';
+    font-size: 14px;
+    width:262px;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    color: rgb(138, 138, 138);
+    margin-bottom:38px;
+}
+.pw:focus {
+    outline: none;
+    border-color:rgb(80,100,250);
+}
+.test{
+    margin-top: 16px ;
+}
+#join{
     font-size: 16px;
     color:rgb(124,124,124);
     background-color:rgb(245,245,245);
+    font-family: 'NotoSansCJKkr-Regular';
     width:391px;
     height: 48px;
     border-left-color: white;
     border-right-color: white;
     -webkit-border-bottom-left-radius: 5px;
     -webkit-border-bottom-right-radius: 5px;
-    margin-top:30px;
+    margin-bottom: 10px;
 }
-.image{
-    margin-top:44px;
-    margin-bottom: 16px;
+/* Log in */
+#wrapper h1{
+    position:relative;
+    top:44px;
+    font-size: 37.09px;
+    color: rgb(80, 100, 250);
+    margin-bottom: 39px;
+    font-family: 'Montserrat_Bold';
+    font-weight: bold;
+    text-align: center;
+
+}
+/*password*/
+#wrapper h2{
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+#wrapper h3{
+    margin-top:16px;
+    margin-bottom: 30px;
+    font-family: 'NotoSansCJKkr-Regular';
+    font-size: 32px;
+    color: rgb(255, 255, 255);
+    font-weight: normal;
+    text-align: center;
+}
+
+
+/**/
+@font-face {
+    font-family:"Montserrat_Bold";
+    src: url('/font/Montserrat_Bold.otf')format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family:"Montserrat-SemiBold";
+    src: url('/font/Montserrat_SemiBold.otf')format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family:"Montserrat-Regular";
+    src: url('/font/Montserrat_Regular.otf')format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+
+@font-face {
+    font-family:"NotoSansCJKkr-Regular";
+    src: url('/font/NotoSansCJKkr_Regular.otf')format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family:"Roboto_Light";
+    src: url('/font/Roboto_Light.ttf')format("truetype");
+    font-style: normal;
+    font-weight: normal;
 }
