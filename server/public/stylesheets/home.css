@@ -94,12 +94,16 @@ ul#feed_list_panel > li {
 
 .navbar-brand {
     margin: 0px !important;
-    padding: 5px 15px !important;
+    padding: 3px 15px !important;
     font-size : 30px;
     color: RGB(80,100,250);
     line-height: 40px;
     font-family:"Montserrat_Bold";
     width: 100px;
+}
+
+.navbar-brand:hover {
+    color: RGB(80,100,250) !important;
 }
 
 .navbar-profile {
@@ -112,6 +116,7 @@ ul#feed_list_panel > li {
 }
 
 .navbar-profile .home-icon-box {
+    cursor: pointer;
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -122,6 +127,7 @@ ul#feed_list_panel > li {
 }
 
 .navbar-profile .home-profile-box {
+    cursor: pointer;
     display: inline-block;
     width: 200px;
     heigth: 50px;
@@ -188,6 +194,7 @@ ul#feed_list_panel > li {
     display: inline;
     height: 70px;
     line-height: 70px;
+    margin-top: -2px;
 }
 
 .keyword-move-btn {
@@ -197,6 +204,7 @@ ul#feed_list_panel > li {
 }
 
 .keyword-move-btn img {
+    cursor: pointer;
     height: 16px;
 }
 
@@ -209,6 +217,7 @@ ul#feed_list_panel > li {
 
 
 .keyword-txt-btn {
+    cursor: pointer;
     -webkit-border-radius: 30;
     -moz-border-radius: 30;
     border-radius: 30px;
@@ -231,7 +240,7 @@ ul#feed_list_panel > li {
 
 .right-sidebar {
     z-index: 101;
-    width: 260px;
+    width: 261px;
     height: 100%;
     border-left: 0.08em solid #ebebeb;
     margin-top: 50px;
@@ -299,8 +308,8 @@ ul#feed_list_panel > li {
     background-color: #ffffff;
 }
 
-
 .board_clip_btn {
+    cursor: pointer;
     width: 236px;
     height: 38px;
     margin-top: 12px;
@@ -320,3 +329,19 @@ ul#feed_list_panel > li {
 .board_clip_btn.active {
     background: #3B47BE;
 }
+
+.sidebar-content-line-box {
+    margin: 0px auto;
+    padding: 7px 7px 0px 7px;
+    list-style:none;
+
+}
+
+.sidebar-content-line-box > li {
+    display: inline-block;
+    background-color: #000000;
+    margin: 0px 0px;
+    width: 79px;
+    height: 80px;
+}
+
