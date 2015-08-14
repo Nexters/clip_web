@@ -1,0 +1,35 @@
+
+@font-face {
+    font-family:"Montserrat_Bold";
+    src: url('/font/Montserrat_Bold.otf')format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family:"Montserrat_SemiBold";
+    src: url('/font/Montserrat_SemiBold.otf')format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family:"Montserrat_Regular";
+    src: url('/font/Montserrat_Regular.otf')format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+
+@font-face {
+    font-family:"NotoSansCJKkr_Regular";
+    src: url('/font/NotoSansCJKkr_Regular.otf')format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family:"Roboto_Light";
+    src: url('/font/Roboto_Light.ttf')format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
