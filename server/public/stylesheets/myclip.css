@@ -225,9 +225,12 @@ ul#feed_list_panel > li {
     min-width: 400px;
     max-width: 600px;
 }
-
-
-.keyword-txt-btn {
+.keyword-title{
+    margin-top:12px;
+    margin-left:12px;
+    margin-bottom: 30px;
+}
+.keyword-txt{
     cursor: pointer;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
@@ -238,9 +241,26 @@ ul#feed_list_panel > li {
     padding: 5px 20px 5px 20px;
     border: solid #999898 1px;
     text-decoration: none;
-    margin: 0px 20px ;
-    margin-left: 700px;
+    margin-top: 10px;
+    margin-left:12px ;
+    margin-right: 8px;
+    margin-bottom: 8px ;
 }
+
+.keyword-txt-btn {
+
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    font-family:"Montserrat_Light";
+    color:#999898;
+    font-size: 14px;
+    padding: 5px 20px 5px 20px;
+    border: solid #999898 1px;
+    text-decoration: none;
+
+}
+
 
 .keyword-txt-btn.active {
     background: #5064FA;
@@ -282,7 +302,7 @@ ul#feed_list_panel > li {
     margin-left:220px;
 
 }
-.sidebar-title-box {
+.sidebar-first-box {
     height: 195px;
     width: 261px;
     padding: 34px  12px;
@@ -300,6 +320,17 @@ ul#feed_list_panel > li {
     color:#ffffff;
     font-size:12px;
     margin-bottom: -3px;
+}
+
+.sidebar-second-box {
+    height: 195px;
+    width: 261px;
+    background-color: #ffffff;
+}
+.sidebar-third-box {
+    height: 195px;
+    width: 261px;
+    background-color: #ffffff;
 }
 
 .board-title-box {
