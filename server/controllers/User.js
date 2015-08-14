@@ -83,33 +83,37 @@ UserCtrl.loginUser = function(req, res) {
 };
 
 UserCtrl.updateUser = function(req, res) {
-    var errors, conditions, userData;
+    // PUT
+    // id <- params, 업데이트 되는 필드 데이터 <- req.body
+    // 업데이트 가능한 필드: feeds, keywords, name, profileUrl, pw
+    // TODO: 과제2 유저 정보 업데이트하는 부분 여기에 구현해야 함
+
+    var errors, conditions, update = {};
     req.checkParams('id', 'Invalid id').notEmpty();
+    console.log(req.params);
     errors = req.validationErrors();
-    console.log(req.params.id);
     if (errors) return res.status(400).send(Result.ERROR(errors));
-    conditions = {
-        _id: req.params.id
-    };
-    userData = {};
-    if (!_.isUndefined(req.body.pw)) {
-        userData.pw = req.body.pw;
+    conditions = {_id: req.params.id};
+    if(req.body.feeds !== undefined){
+        update.feeds = req.body.feeds;
     }
-    if (!_.isUndefined(req.body.name)) {
-        userData.name = req.body.name;
+    if(req.body.keywords !== undefined){
+        update.keywords = req.body.keywords;
     }
-    if (!_.isUndefined(req.body.profileUrl)) {
-        userData.profileUrl = req.body.profileUrl;
+    if(req.body.name !== undefined){
+        update.name = req.body.name;
     }
-    if (!_.isUndefined(req.body.feeds)) {
-        userData.feeds = req.body.feeds;
+    if(req.body.profileUrl !== undefined){
+        update.profileUrl = req.body.profileUrl;
     }
-    if (!_.isUndefined(req.body.keywords)) {
-        userData.keywords = req.body.keywords;
+    if(req.body.pw !== undefined){
+        update.pw = req.body.pw;
     }
-    User.updateUser(conditions, userData, function(err, doc) {
-        res.status(200).send(Result.SUCCESS(doc));
-    });
+    User.updateUser(conditions, update, function(err, doc) {
+        console.log('update:',update);
+        console.log('doc:',doc);
+        return res.status(200).send(Result.SUCCESS('success'));
+    })
 };
 
 module.exports = UserCtrl;
