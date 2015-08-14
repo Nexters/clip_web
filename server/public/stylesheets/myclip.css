@@ -1,0 +1,390 @@
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+body {
+    padding-top: 50px;
+    background-color: RGB(255,255,255) !important;
+}
+footer {
+    padding: 30px 0;
+}
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 767px) {
+    .row-offcanvas {
+        position: relative;
+        -webkit-transition: all .25s ease-out;
+        -o-transition: all .25s ease-out;
+        transition: all .25s ease-out;
+    }
+
+    .row-offcanvas-right {
+        right: 0;
+    }
+
+    .row-offcanvas-left {
+        left: 0;
+    }
+
+    .row-offcanvas-right
+    .sidebar-offcanvas {
+        right: -50%; /* 6 columns */
+    }
+
+    .row-offcanvas-left
+    .sidebar-offcanvas {
+        left: -50%; /* 6 columns */
+    }
+
+    .row-offcanvas-right.active {
+        right: 50%; /* 6 columns */
+    }
+
+    .row-offcanvas-left.active {
+        left: 50%; /* 6 columns */
+    }
+
+    .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 50%; /* 6 columns */
+    }
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+ul#feed_list_panel > li {
+    max-height: 276px;
+}
+
+
+.container {
+    margin-left: 35px !important;
+    margin-right: 35px !important;
+}
+
+.card-container {
+    overflow-y: auto;
+}
+
+.navbar {
+    z-index: 100;
+    background-color: RGB(255,255,255);
+}
+
+.navbar-header {
+    float: inherit !important;
+    margin: 0px auto !important;
+    width: 100px !important;
+}
+
+.navbar-brand {
+    margin: 0px !important;
+    padding: 3px 15px !important;
+    font-size : 30px;
+    color: RGB(80,100,250);
+    line-height: 40px;
+    font-family:"Montserrat_Bold";
+    width: 100px;
+}
+
+.navbar-brand:hover {
+    color: RGB(80,100,250) !important;
+}
+
+.navbar-profile {
+    width: 260px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    line-height: 35px;
+}
+
+.navbar-profile .home-icon-box {
+    cursor: pointer;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 7px 10px;
+    text-align: center;
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+}
+
+.navbar-profile .home-profile-box {
+    cursor: pointer;
+    display: inline-block;
+    width: 200px;
+    heigth: 50px;
+    padding: 7px 10px !important;
+}
+
+.navbar-profile .home-profile-box .user-profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+}
+
+.navbar-profile .home-profile-box .user-profile-txt {
+    width: 120px;
+    height: 35px;
+    display: inline-block;
+    margin: 0px 0px 0px 12px;
+    padding: 0px;
+    font-family:"Montserrat_Light";
+    font-size: 15px;
+    color: RGB(140,140,140);
+    /*overflow:hidden;*/
+    /*white-space:nowrap;*/
+    text-overflow: ellipsis;
+}
+
+
+.fixed-keyword-bar {
+    z-index: 100;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    padding-right: 280px;
+    background-color: RGB(248,248,248);
+    border-top: 0.08em solid #ffffff;
+    border-bottom: 0.08em solid #ffffff;
+    box-shadow: 0 0 1px rgba(0,0,0,.3);
+    -moz-box-shadow: 0px 0px 1px #e6e6e6;
+    -webkit-box-shadow: 0px 0px 1px #e6e6e6;
+}
+
+
+.row-offcanvas {
+    padding-top: 90px !important;
+}
+
+
+
+/*키워드 영역 관련*/
+.fixed-keyword-bar .keyword-bar-keywords .myclip-bar-title-box {
+    float: left;
+    display: inline;
+    font-family:"Montserrat_Regular";
+    color: #646464;
+    font-size: 17px;
+    width: 130px;
+    height: 70px;
+    line-height: 70px;
+    margin: 0px 40px 0px 34px;
+}
+.board-setting{
+    font-family: "NotoSansCJKkr-Regular";
+    font-size: 15px;
+    color:#999898;
+    width: 102px;
+    height: 35px;
+    border-style: solid;
+    border-color:#999898;
+    border-radius:13px;
+    border-width: 1.5px;
+
+}
+.fixed-keyword-bar .keyword-bar-keywords {
+    display: inline;
+    height: 70px;
+    line-height: 70px;
+    margin-top: -2px;
+}
+
+.keyword-move-btn {
+    position: relative;
+    height: 16px;
+    line-height: 70px;
+}
+
+.keyword-move-btn img {
+    cursor: pointer;
+    height: 16px;
+}
+
+.keyword-txt-box {
+    display: inline;
+    padding-left: 10px;
+    min-width: 400px;
+    max-width: 600px;
+}
+
+
+.keyword-txt-btn {
+    cursor: pointer;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    font-family:"Montserrat_Light";
+    color:#999898;
+    font-size: 14px;
+    padding: 5px 20px 5px 20px;
+    border: solid #999898 1px;
+    text-decoration: none;
+    margin: 0px 20px ;
+    margin-left: 700px;
+}
+
+.keyword-txt-btn.active {
+    background: #5064FA;
+    text-decoration: none;
+}
+
+/*사이드바 영역 관련*/
+
+.myclip_title{
+    font-family: "Montserrat_Light";
+    font-size: 14px;
+    margin-left: 16px;
+    margin-top: 29px;
+    color:rgb(172,172,172);
+
+}
+
+.right-sidebar {
+    z-index: 101;
+    width: 261px;
+    height: 100%;
+    border-left: 0.08em solid #ffffff;
+    margin-top: 50px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background-color: #ffffff;
+}
+.sidebar-image-box{
+    margin-top: 12px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    width: 57px;
+    height: 57px;
+}
+.sidebar-setting-icon{
+    margin-top:-32px;
+    margin-left:220px;
+
+}
+.sidebar-title-box {
+    height: 195px;
+    width: 261px;
+    padding: 34px  12px;
+    background-color: #5064FA;
+}
+
+.sidebar-name-txt {
+    font-family:"NotoSansCJKkr_Regular";
+    color:#ffffff;
+    font-size:17px;
+    margin-bottom: -3px;
+}
+.sidebar-email-txt {
+    font-family:"NotoSansCJKkr_Regular";
+    color:#ffffff;
+    font-size:12px;
+    margin-bottom: -3px;
+}
+
+.board-title-box {
+    width: 236px;
+    height: 38px;
+    margin-top: 15px;
+    background: #ffffff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.board-title-box input {
+    width: 190px;
+    line-height: 30px;
+    margin-left: 9px;
+    margin-top: 4px;
+    font-family:"NotoSansCJKkr_Regular";
+    color:RGB(183,183,183);
+    font-size:15px;
+    border: none;
+    outline:0px none black;
+}
+
+.board-title-box img {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.board-select-box {
+    position: relative;
+    width: 236px;
+    height: 38px;
+    margin-left: 9px;
+    background: url('/images/myboard_list_icon.png') 200px center no-repeat;
+    -webkit-appearance: none;
+    border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
+    border: none;
+    outline:0px none black;
+}
+
+.sidebar-content-box {
+    height: 268px;
+    background-color: #ffffff;
+}
+
+.board_clip_btn {
+    cursor: pointer;
+    width: 236px;
+    height: 38px;
+    margin-top: 12px;
+    margin-left: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-family:"NotoSansCJKkr_Regular";
+    color: #ffffff;
+    font-size: 15px;
+    background: #5064fa;
+    text-decoration: none;
+    text-align: center;
+    line-height: 38px;
+}
+
+.board_clip_btn.active {
+    background: #3B47BE;
+}
+
+.sidebar-content-line-box {
+    margin: 0px auto;
+    padding: 7px 7px 0px 7px;
+    list-style:none;
+
+}
+
+.sidebar-content-line-txt > li {
+    display: inline-block;
+    background-color: #b5b5b5;
+    margin: 0px 0px;
+    width: 79px;
+    height: 80px;
+}
+.centered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}

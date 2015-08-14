@@ -12,7 +12,9 @@ router.get('/user/:id', userCtrl.getUserPage);
 router.get('/signin', function(req, res, next) {
     res.render('signin', { title: 'My World', name: 'Ji Yeon' });
 });
-
+router.get('/myclip', function(req, res, next) {
+    res.render('myclip', { title: 'My World', name: 'Ji Yeon' });
+});
 router.get('/signup', function(req, res, next) {
     res.render('signup', { title: 'My World', name: 'Ji Yeon' });
 });
