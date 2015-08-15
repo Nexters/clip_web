@@ -49,10 +49,10 @@ ClipCtrl.saveUserClips = function(req, res) {
         feeds:req.body.feeds,
         keywords:req.body.keywords
     };
-    Clip.getClip({title: clipData.title}, function(err, user) {
+    Clip.getClip({title: clipData.title}, function(err, clip) {
         if (err) res.status(400).send(Result.ERROR(err));
-        console.log(user);
-        if (user) res.status(400).send(Result.ERROR("이미 존재하는 clip정보"));
+        console.log(clip);
+        if (clip && clip._id) res.status(400).send(Result.ERROR("이미 존재하는 clip정보"));
         Clip.saveClip(clipData, function(err, doc) {
             return res.status(200).send(Result.SUCCESS(doc));
         });
