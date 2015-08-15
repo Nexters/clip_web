@@ -5,6 +5,7 @@ var log4js = require('log4js');
 var logger = log4js.getLogger('controllers/Clip');
 var ObjectId = mongoose.Types.ObjectId;
 var async = require('async');
+var Session = require('../services/Session');
 
 function ClipCtrl() {
 
@@ -27,12 +28,16 @@ ClipCtrl.saveUserClips = function(req, res) {
     var errors, clipData;
     var title,feeds,keywords,user;
 
+    console.log("1");
+    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+
     req.checkBody('title', 'Invalid title').notEmpty();
     req.checkBody('feeds', 'Invalid feeds').notEmpty();
     req.checkBody('keywords', 'Invalid keywords').notEmpty();
     errors = req.validationErrors();
+    console.log(errors);
     if (errors) return res.status(400).send(Result.ERROR(errors));
-    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+
     console.log(user);
     console.log(title);
     console.log(feeds);
