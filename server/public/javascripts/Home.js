@@ -17,8 +17,8 @@
     function getFeedBoxHtml(feed) {
         var html =
             '<li>'+
-                '<span class="clip-icon-circle on">'+
-                    '<img src="/images/tag_clip_icon.png">'+
+                '<span class="clip-icon-circle">'+
+                    '<img src="/images/clip_btn.png" align="center">'+
                 '</span>'+
                 '<div class="img-box">'+
                     '<img src="'+feed.image+'" align="middle">'+
@@ -28,9 +28,15 @@
                 '</div>'+
                 '<div class="keyword-box">'+
                     '<div class="keyword">'+
+                        '<img src="/images/card_keyword_icon.png">'+
+                        '<span>'+feed.keywordString+
+                        '</span>'+
                     '</div>'+
-                    '<div class="clip">'+
-                    '</div>'+
+                    '<div class="clip">';
+                if (feed.isCliped) {
+                html += '<img src="/images/card_clip_icon.png" align="middle">';
+                }
+            html += '</div>'+
                 '</div>'+
             '</li>';
         return html;
