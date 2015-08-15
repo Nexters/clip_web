@@ -33,8 +33,8 @@
                 <img src="/images/home_icon.png">
             </div>
             <div class="home-profile-box">
-                <img class="user-profile-img" src="/images/empty_user_icon.png">
-                <p class="user-profile-txt">JiYeon</p>
+                <img class="user-profile-img" src="<%= user.profileUrl %>">
+                <p class="user-profile-txt"><%= user.name %></p>
             </div>
         </div><!-- /.navbar-profile -->
     </div><!-- /.container -->
@@ -45,14 +45,9 @@
         <span class="keyword-move-btn prev-btn"><img data-status="prev" src="/images/keyword_prev_icon.png"></span>
         <div class="keyword-txt-box-wrapper">
             <div class="keyword-txt-box">
-                <span class="keyword-txt-btn">키워드1</span>
-                <span class="keyword-txt-btn">키워드2이다</span>
-                <span class="keyword-txt-btn">키워드3</span>
-                <span class="keyword-txt-btn">키워4</span>
-                <span class="keyword-txt-btn">키워드5</span>
-                <span class="keyword-txt-btn">키워드6</span>
-                <span class="keyword-txt-btn">키워드7</span>
-                <span class="keyword-txt-btn">키워드8</span>
+                <% for (var i=0; i<user.keywords.length; i++) { %>
+                <span class="keyword-txt-btn"><%= user.keywords[i] %></span>
+                <% } %>
             </div>
         </div>
         <span class="keyword-move-btn next-btn"><img data-status="next" src="/images/keyword_next_icon.png"></span>
@@ -81,9 +76,10 @@
             </div>
             <div class="board-title-box">
                 <select id="board_title_select" class="board-select-box">
-                    <option>테스트1</option>
-                    <option>테스트2</option>
-                    <option>테스트3</option>
+                    <% for (var i=0; i<user.clips.length; i++) { %>
+                    <% var clip = user.clips[i]; %>
+                    <option><%= clip.title %></option>
+                    <% } %>
                 </select>
             </div>
         </div>

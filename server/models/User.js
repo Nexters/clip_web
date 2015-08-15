@@ -15,17 +15,39 @@ var UserSchema = new Schema({
     feeds: { type: Array, default: [] }, // 추가한 사이트 목록
     keywords: { type: Array, default: [] }, // 추가한 키우드 목록
     createDate: { type: Date, required: true }, // 생성 시간
-    lastFeedDate: { type: Date, default: new Date() } // 마지막으로 피드 가져온 시간
+    lastFeedDate: { type: Date, default: new Date() }, // 마지막으로 피드 가져온 시간
+    // 클라이언트로 내려주는 데이터를 위한 필드들
+    clips: { type: Array }
 }, { collection: 'user' });
 
 UserSchema.index({ name: 1 }, { unique: true });
+
 
 /**
  * Model Methods
  */
 
-UserSchema.statics.getUser = function(criteria, projection, options, callback) {
-    this.findOne(criteria, projection, options, callback);
+UserSchema.statics.getUser = function(criteria, callback) {
+    var self = this;
+
+    async.waterfall([
+        function(callback) {
+            self.findOne(criteria, function(err, user) {
+                callback(err, user);
+            });
+        },
+        function(user, callback) {
+            self.model('Clip').find({user: criteria._id}, function(err, clips) {
+                if (err) return callback(err);
+                console.log(clips);
+                user.clips = clips || [];
+                callback(null, user);
+            });
+        }
+    ], function (err, user) {
+        user.profileUrl = user.profileUrl || "/images/empty_user_icon.png";
+        callback(err, user);
+    });
 };
 
 UserSchema.statics.getUsers = function(criteria, projection, options, callback) {

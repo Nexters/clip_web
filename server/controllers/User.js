@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Result = require('../services/Result');
 var async = require('async');
-var SessionService = require('../services/Session');
+var Session = require('../services/Session');
 
 
 function UserCtrl() {
@@ -10,14 +10,15 @@ function UserCtrl() {
 }
 
 UserCtrl.getHomePage = function(req, res) {
-    var errors, criteria;
-    req.checkParams('id', 'Invalid id').notEmpty();
-    errors = req.validationErrors();
-    if (errors) return res.status(400).send(Result.ERROR(errors));
-    criteria = { _id: req.params.id };
-    // TODO: 유저 정보 + 유저 피드들 정보 만들어서 html 형태로 내려줘야함!
-    User.getUser(criteria, function(err, docs) {
-        res.render('home');
+    // TODO: 세션으로 달아야함. 주석풀기
+    //if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    //var criteria = { _id: Session.getSessionId(req) };
+
+    var criteria = { _id: '55b4a8955c91698d7c449146' };
+    var data = {};
+    User.getUser(criteria, function(err, doc) {
+        data.user = doc;
+        res.render('home', data);
     });
 };
 
@@ -101,7 +102,7 @@ UserCtrl.loginUser = function(req, res) {
         if(criteria.email === doc.email && req.body.pw === doc.pw){
             console.log('success');
             
-            SessionService.registerSession(function(req, doc) {
+            Session.registerSession(function(req, doc) {
                 req.session._id = doc._id;
                 req.session.name = doc.name;
                 req.session.profileUrl = doc.profileUrl;

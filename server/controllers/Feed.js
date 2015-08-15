@@ -30,7 +30,8 @@ FeedCtrl.getUserFeeds = function(req, res) {
     criteria = makeCriteria(req);
     options = {
         skip: parseInt(req.query.pageNum) * parseInt(req.query.perPage),
-        limit: parseInt(req.query.perPage)
+        limit: parseInt(req.query.perPage),
+        sort: {pubDate: -1}
     };
     logger.debug("criteria: ", criteria);
     logger.debug("options: ", options);

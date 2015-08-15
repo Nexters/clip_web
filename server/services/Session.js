@@ -15,6 +15,10 @@ SessionService.getSession = function (req) {
     return data;
 };
 
+SessionService.getSessionId = function (req) {
+    return req.session._id;
+};
+
 SessionService.registerSession = function (req, user) {
     req.session._id = user._id;
     req.session.name = user.name;

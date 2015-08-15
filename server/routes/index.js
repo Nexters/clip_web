@@ -3,10 +3,10 @@ var router = express.Router();
 var userCtrl = require('../controllers/User');
 
 /* GET user home page */
-router.get('/home/:id', userCtrl.getHomePage);
+router.get('/home', userCtrl.getHomePage);
 
 /* GET user my page */
-router.get('/user/:id', userCtrl.getUserPage);
+router.get('/user', userCtrl.getUserPage);
 
 
 router.get('/signin', function(req, res, next) {
