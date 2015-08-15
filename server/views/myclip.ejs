@@ -27,7 +27,8 @@
     <div class="container">
         <div class="navbar-header" align="center">
             <a class="navbar-brand" href="#">Clip</a>
-        </div><!-- /.navbar-header -->
+        </div>
+        <!-- /.navbar-header -->
 
         <div class="navbar-profile">
             <div class="home-icon-box">
@@ -35,71 +36,76 @@
             </div>
             <div class="home-profile-box">
                 <img class="user-profile-img" src="/images/empty_user_icon.png">
+
                 <p class="user-profile-txt">JiYeon</p>
             </div>
-        </div><!-- /.navbar-profile -->
-    </div><!-- /.container -->
-</nav><!-- /.navbar -->
+        </div>
+        <!-- /.navbar-profile -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- /.navbar -->
 <div class="fixed-keyword-bar">
     <div class="keyword-bar-keywords col-xs-12 col-sm-12">
         <div class="myclip-bar-title-box">My Clipboard</div>
         <img src="/images/myboard_arrow_icon.png">
         <span class="myclip_title">IOT 관련기사 모음</span>
         <qoqo class="float-right">
-        <span class="keyword-txt-btn">보드관리</span></qoqo>
+            <span class="keyword-txt-btn">보드관리</span></qoqo>
     </div>
 
 </div>
 
-<div class="card">
-    <div class="card_image"></div>
-    <a href="#"><div class="site"></div></a>
-    <div class="info">
-        <span><b>팀명:</b></span><span>혁오</span><br><span><b>일정:</b></span><span>혁오</span><br><span><b>일정:</b></span><span>혁오</span>
+<!--<div class="container card-container">-->
+<!--<div class="row row-offcanvas row-offcanvas-right">-->
+<!--<div class="col-xs-12 col-sm-9">-->
+<!--<div role="main" id="feed_container">-->
+<!--<ul id="feed_list_panel" class="tiles-wrap animated">-->
+
+<!--</ul>-->
+<!--<div id="loader">-->
+<!--<div align="center" id="loaderCircle">-->
+<!--<img src="/images/loader.gif">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>&lt;!&ndash;/.col-xs-12.col-sm-9&ndash;&gt;-->
+<!--</div>&lt;!&ndash;/row&ndash;&gt;-->
+<div class="cards">
+    <div class="card">
+        <div class="card_image"></div>
+        <div class="comment">test</div>
+        <!--<a href="#">-->
+            <!--<div class="site"></div>-->
+        <!--</a>-->
     </div>
-    <div class="comment">첫번째 공엽니니다 보러오세요요요요용ㅇㄹㄴㅁㄻㄴㅇ</div>
-    <div class="icons">
-        <div class="will">
-            <div class="will_icon"></div>
-            <div class="will_text">갈게요</div>
-        </div>
-        <div class="reply">
-            <div class="reply_icon"></div>
-            <div class="reply_text">댓글</div>
-        </div>
-    </div>
-    <div class="icon_info"><?echo "";?>명이 좋아합니다.</div>
 </div>
 
+<div class="right-sidebar">
 
+    <div class="sidebar-first-box">
+        <img class="sidebar-setting-icon" src="/images/profile_setting_icon.png">
 
-    <div class="right-sidebar">
-
-        <div class="sidebar-first-box">
-            <img class="sidebar-setting-icon" src="/images/profile_setting_icon.png">
-
-            <div  align="center">
-               <div> <img class="sidebar-image-box" src ="/images/empty_user_icon.png"></div>
-                     <div class="sidebar-name-txt">jeony</div>
-                     <div class="sidebar-email-txt">jeony@naver.com</div>
-            </div>
-        </div>
-        <div class="sidebar-second-box">
-            <div class="keyword-title">키워드목록</div>
-            <div>
-                <span class="keyword-txt">IOT </span>
-                <span class="keyword-txt">IOT </span>
-                <span class="keyword-txt">IOT </span>
-            </div>
-        </div>
-        <div class="sidebar-third-box">
-            <div class="keyword-title">웹 사이트 목록</div>
+        <div align="center">
+            <div><img class="sidebar-image-box" src="/images/empty_user_icon.png"></div>
+            <div class="sidebar-name-txt">jeony</div>
+            <div class="sidebar-email-txt">jeony@naver.com</div>
         </div>
     </div>
+    <div class="sidebar-second-box">
+        <div class="keyword-title">키워드목록</div>
+        <div>
+            <span class="keyword-txt">IOT </span>
+            <span class="keyword-txt">IOT </span>
+            <span class="keyword-txt">IOT </span>
+        </div>
+    </div>
+    <div class="sidebar-third-box">
+        <div class="keyword-title">웹 사이트 목록</div>
+    </div>
+</div>
 
 </div><!--/.container-->
-
-
 
 
 <!-- 설정 모달 -->
@@ -107,7 +113,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                 <!--<h4 id="login_modal_title" class="modal_title">키워드 등록</h4>-->
                 <h4 id="login_modal_title" class="modal_title">키워드 등록</h4>
                 <h5 id="modal_sub_title" class="modal_subtitle">클립하고 싶은 키워드 또는 사이트를 등록해주세요.</h5>
@@ -132,7 +139,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 
 
 <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
