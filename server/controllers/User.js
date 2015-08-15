@@ -65,14 +65,14 @@ UserCtrl.saveUser = function(req, res) {
         name: req.body.name
     };
 
-    console.log(userData.email);
-    console.log(userData.pw);
-    console.log(userData.name);
+
 
     User.saveUser(userData, function(err, doc) {
         doc.email=userData.email;
         doc.pw=userData.pw;
         doc.name=userData.name;
+
+
 
         res.redirect("/signin");
         res.status(200).send(Result.SUCCESS(doc));
@@ -110,9 +110,10 @@ UserCtrl.loginUser = function(req, res) {
         }
         if(criteria.email === doc.email && req.body.pw === doc.pw){
             console.log('success');
-            SessionService.registerSession(function(req, doc){
 
-            });
+            SessionService.registerSession(function(req,doc){
+            }); //session 등록
+
             return res.status(200).send(Result.SUCCESS(doc._id));
         } else {
             console.log('fail');
