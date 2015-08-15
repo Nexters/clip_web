@@ -19,6 +19,10 @@ ClipSchema.index({ user: 1, keyword: 1, pubDate: -1 });
  * Model Methods
  */
 
+ClipSchema.statics.getClip = function(criteria, projection, options, callback) {
+    this.findOne(criteria, projection, options, callback);
+};
+
 ClipSchema.statics.getClips = function(criteria, projection, options, callback) {
     this.find(criteria, projection, options, callback);
 };

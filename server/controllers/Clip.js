@@ -31,6 +31,7 @@ ClipCtrl.saveUserClips = function(req, res) {
     console.log("1");
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
 
+
     req.checkBody('title', 'Invalid title').notEmpty();
     req.checkBody('feeds', 'Invalid feeds').notEmpty();
     req.checkBody('keywords', 'Invalid keywords').notEmpty();
@@ -38,7 +39,7 @@ ClipCtrl.saveUserClips = function(req, res) {
     console.log(errors);
     if (errors) return res.status(400).send(Result.ERROR(errors));
 
-    console.log(user);
+    //console.log(user);
     console.log(title);
     console.log(feeds);
     console.log(keywords);
@@ -48,8 +49,9 @@ ClipCtrl.saveUserClips = function(req, res) {
         feeds:req.body.feeds,
         keywords:req.body.keywords
     };
-    Clip.getClips({title: clipData.title}, function(err, user) {
+    Clip.getClip({title: clipData.title}, function(err, user) {
         if (err) res.status(400).send(Result.ERROR(err));
+        console.log(user);
         if (user) res.status(400).send(Result.ERROR("이미 존재하는 clip정보"));
         Clip.saveClip(clipData, function(err, doc) {
             return res.status(200).send(Result.SUCCESS(doc));
