@@ -29,7 +29,6 @@ UserCtrl.getUserPage = function(req, res) {
 UserCtrl.getAllUsers = function(req, res) {
     var errors;
     req.checkQuery('test', 'Must be true').isIn(["true"]);
-    console.log(req.query.a);
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     User.getUsers({}, function(err, docs) {
@@ -40,7 +39,6 @@ UserCtrl.getAllUsers = function(req, res) {
 UserCtrl.getUser = function(req, res) {
     var errors, criteria;
     req.checkParams('id', 'Invalid id').notEmpty();
-    console.log(req.params);
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     criteria = { _id: req.params.id };
@@ -114,7 +112,6 @@ UserCtrl.updateUser = function(req, res) {
 
     var errors, conditions, update = {};
     req.checkParams('id', 'Invalid id').notEmpty();
-    console.log(req.params);
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     conditions = {_id: req.params.id};
@@ -134,8 +131,6 @@ UserCtrl.updateUser = function(req, res) {
         update.pw = req.body.pw;
     }
     User.updateUser(conditions, update, function(err, doc) {
-        console.log('update:',update);
-        console.log('doc:',doc);
         return res.status(200).send(Result.SUCCESS('success'));
     })
 };
