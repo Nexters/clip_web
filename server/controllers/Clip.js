@@ -33,6 +33,10 @@ ClipCtrl.saveUserClips = function(req, res) {
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    console.log(user);
+    console.log(title);
+    console.log(feeds);
+    console.log(keywords);
     clipData = {
         user: Session.getSessionId(req),
         title:req.body.title,
