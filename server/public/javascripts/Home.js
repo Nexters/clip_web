@@ -17,6 +17,9 @@
     function getFeedBoxHtml(feed) {
         var html =
             '<li>'+
+                '<span class="clip-icon-circle on">'+
+                    '<img src="/images/tag_clip_icon.png">'+
+                '</span>'+
                 '<div class="img-box">'+
                     '<img src="'+feed.image+'" align="middle">'+
                 '</div>'+

@@ -2,6 +2,9 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Result = require('../services/Result');
 var async = require('async');
+var SessionService = require('../services/Seesion');
+
+
 
 function UserCtrl() {
 
@@ -20,13 +23,7 @@ UserCtrl.getHomePage = function(req, res) {
 };
 
 UserCtrl.getUserPage = function(req, res) {
-    var errors;
-    req.checkQuery('test', 'Must be true').isIn(["true"]);
-    errors = req.validationErrors();
-    if (errors) return res.status(400).send(Result.ERROR(errors));
-    User.getUsers({}, function(err, docs) {
-        res.status(200).send(Result.SUCCESS(docs));
-    });
+    res.render('myclip');
 };
 
 UserCtrl.getAllUsers = function(req, res) {
@@ -78,6 +75,8 @@ UserCtrl.saveUser = function(req, res) {
         doc.name=userData.name;
 
 
+
+        res.redirect("/signin");
         res.status(200).send(Result.SUCCESS(doc));
     });
 };
@@ -113,6 +112,10 @@ UserCtrl.loginUser = function(req, res) {
         }
         if(criteria.email === doc.email && req.body.pw === doc.pw){
             console.log('success');
+
+
+            SessionService.registerSession(function(req,doc){
+            }); //session 등록
 
             return res.status(200).send(Result.SUCCESS(doc._id));
         } else {
