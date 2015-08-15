@@ -63,7 +63,6 @@ UserCtrl.saveUser = function(req, res) {
     userData = {
         email: req.body.email,
         pw: req.body.pw,
-        pw2:req.body.pw2,
         name: req.body.name
     };
 
@@ -116,7 +115,7 @@ UserCtrl.loginUser = function(req, res) {
         if(criteria.email === doc.email && req.body.pw === doc.pw){
             console.log('success');
 
-            
+
             SessionService.registerSession(function(req,user){
             }); //session 등록
 
