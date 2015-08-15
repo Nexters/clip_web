@@ -405,3 +405,31 @@ ul#feed_list_panel > li {
     width: 31px;
     height: 37px;
 }
+
+
+.clip-icon-circle {
+    width: 40px;
+    height: 40px;
+    top: 9px;
+    right: 9px;
+    z-index: 10;
+    display: inline-block;
+    overflow: hidden;
+    position: absolute;
+    background-color: #5B6FFB;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+}
+
+.clip-icon-circle.on {
+    background-color: #5B6FFB;
+}
+
+.clip-icon-circle.off {
+    background-color: #D0D0D0;
+}
+
+.clip-icon-circle > img {
+    width: 40px;
+    height: 40px;
+}
