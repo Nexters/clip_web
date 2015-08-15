@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Result = require('../services/Result');
 var async = require('async');
+var SessionService = require('../services/Session');
+
 
 function UserCtrl() {
 
@@ -61,17 +63,26 @@ UserCtrl.saveUser = function(req, res) {
     userData = {
         email: req.body.email,
         pw: req.body.pw,
+        pw2:req.body.pw2,
         name: req.body.name
     };
 
-    console.log(userData.email);
-    console.log(userData.pw);
-    console.log(userData.name);
+
+   // if(req.body.pw!==req.body.pw2){
+
+       // alert("비밀번호가 일치 하지않습니다 ");
+  //  }
+
+
+
 
     User.saveUser(userData, function(err, doc) {
         doc.email=userData.email;
         doc.pw=userData.pw;
         doc.name=userData.name;
+
+
+
 
         res.redirect("/signin");
         res.status(200).send(Result.SUCCESS(doc));
@@ -99,7 +110,7 @@ UserCtrl.loginUser = function(req, res) {
     errors = req.validationErrors();
     if(errors) return res.status(400).send(Result.ERROR(errors));
     criteria = {email: req.body.email};
-    console.log(criteria)
+    console.log(criteria);
 
     User.getUser(criteria, function(err,doc) {
         console.log(doc);
@@ -109,6 +120,10 @@ UserCtrl.loginUser = function(req, res) {
         }
         if(criteria.email === doc.email && req.body.pw === doc.pw){
             console.log('success');
+
+            SessionService.registerSession(function(req,doc){
+            }); //session 등록
+
             return res.status(200).send(Result.SUCCESS(doc._id));
         } else {
             console.log('fail');

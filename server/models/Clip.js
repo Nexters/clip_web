@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 var ClipSchema = new Schema({
     user: { type: String, required: true }, // 유저 ID
     title: { type: String, required: true }, // 클립 제목
-    feeds: { type: Array, default: [] }, // 클립에 포함된 피드 리스트 (ID)
+    feeds: { type: Array, default: [] }, // 클립에 포함된 피드 리스트
     keywords: { type: Array, default: [] }, // 클립에 포함된 키워드 리스트
     createDate: { type: Date, required: true } // 등록된 시간
 }, {collection: 'clip'});
