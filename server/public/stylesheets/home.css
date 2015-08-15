@@ -191,7 +191,7 @@ footer {
 }
 
 .keyword-move-btn.prev-btn {
-    left: 195px;
+    left: 190px;
 }
 
 .keyword-move-btn.next-btn {
@@ -203,7 +203,7 @@ footer {
     position: absolute;
     left: 200px;
     height: 70px;
-    padding-left: 15px;
+    padding-left: 10px;
     padding-right: 10px;
     min-width: 400px;
     overflow: hidden;
@@ -394,6 +394,9 @@ ul#feed_list_panel > li {
 }
 
 #feed_list_panel > li > div.title-box > p {
+    font-family:"NotoSansCJKkr_Medium";
+    font-size: 13px;
+    color: RGB(101,101,101);
     height: 63px;
     overflow: hidden;
 }
@@ -403,19 +406,35 @@ ul#feed_list_panel > li {
 }
 
 #feed_list_panel > li > div.keyword-box > div.keyword {
-    display: inline-block;
     float: left;
     width: 220px;
     height: 37px;
     overflow:hidden;
     white-space:nowrap;
     text-overflow: ellipsis;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#feed_list_panel > li > div.keyword-box > div.keyword > span {
+    position: absolute;
+    width: 190px;
+    left: 28px;
+    bottom: 12px;
+    font-family:"Montserrat_Light";
+    font-size: 12px;
+    color: RGB(172,172,172);
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
 }
 
 #feed_list_panel > li > div.keyword-box > div.clip {
     display: inline-block;
     float: right;
-    width: 31px;
+    padding-top: 10px;
+    width: 19px;
     height: 37px;
 }
 
@@ -428,12 +447,12 @@ ul#feed_list_panel > li {
     top: 9px;
     right: 9px;
     display: inline-block;
-    -webkit-box-shadow: 0px 1px 3px #666666;
-    -moz-box-shadow: 0px 1px 3px #666666;
-    box-shadow: 0px 1px 3px #666666;
+    -webkit-box-shadow: 0px 1px 3px #888888;
+    -moz-box-shadow: 0px 1px 3px #888888;
+    box-shadow: 0px 1px 3px #888888;
     overflow: hidden;
     position: absolute;
-    background-color: #5B6FFB;
+    background-color: #D0D0D0;
     border-radius: 20px;
     -webkit-border-radius: 20px;
 }
@@ -442,11 +461,7 @@ ul#feed_list_panel > li {
     background-color: #5B6FFB;
 }
 
-.clip-icon-circle.off {
-    background-color: #D0D0D0;
-}
-
 .clip-icon-circle > img {
-    width: 40px;
-    height: 40px;
+    padding-top: 9px;
+    padding-left: 12px;
 }

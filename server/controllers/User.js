@@ -50,38 +50,26 @@ UserCtrl.getUser = function(req, res) {
 
 UserCtrl.saveUser = function(req, res) {
     var errors, userData;
+    var email,pw,name;
 
-    var email,pw,pw2,name;
-
-
-    req.checkBody('email', 'Invalid email').isEmail();
+    req.checkBody('email', 'Invalid email').notEmpty();
     req.checkBody('pw', 'Invalid pw').notEmpty();
-    req.checkBody('pw2', 'Invalid pw2').notEmpty();
     req.checkBody('name', 'Invalid name').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     userData = {
         email: req.body.email,
         pw: req.body.pw,
-        pw2:req.body.pw2,
         name: req.body.name
     };
-
-
-
-
-    User.saveUser(userData, function(err, doc) {
-        doc.email=userData.email;
-        doc.pw=userData.pw;
-        doc.name=userData.name;
-
-
-
-
-
-        res.status(200).send(Result.SUCCESS(doc));
-
+    User.getUser({$or:[{email: userData.email}, {name: userData.name}]}, function(err, user) {
+        if (err) res.status(400).send(Result.ERROR(err));
+        if (user) res.status(400).send(Result.ERROR("이미 존재하는 유저"));
+        User.saveUser(userData, function(err, doc) {
+            return res.status(200).send(Result.SUCCESS(doc));
+        });
     });
+
 };
 
 UserCtrl.loginUser = function(req, res) {
@@ -97,11 +85,7 @@ UserCtrl.loginUser = function(req, res) {
     req.checkBody('email', 'Invalid email').notEmpty();
     req.checkBody('pw', 'Invalid pass word').notEmpty();
 
-
     console.log(req.body);
-
-
-
 
     errors = req.validationErrors();
     if(errors) return res.status(400).send(Result.ERROR(errors));
@@ -116,20 +100,20 @@ UserCtrl.loginUser = function(req, res) {
         }
         if(criteria.email === doc.email && req.body.pw === doc.pw){
             console.log('success');
-
             
-            SessionService.registerSession(function(req,user){
-            }); //session 등록
-
-            return res.status(200).send(Result.SUCCESS(doc._id));
+            SessionService.registerSession(function(req, doc) {
+                req.session._id = doc._id;
+                req.session.name = doc.name;
+                req.session.profileUrl = doc.profileUrl;
+                console.log(req);
+            });
+            res.status(200).send(Result.SUCCESS(doc._id));
         } else {
             console.log('fail');
             return res.status(400).send(Result.ERROR('fail'));
         }
     });
 };
-
-
 
 UserCtrl.updateUser = function(req, res) {
     // PUT
@@ -166,5 +150,4 @@ UserCtrl.updateUser = function(req, res) {
 };
 
 module.exports = UserCtrl;
-
 
