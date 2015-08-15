@@ -52,7 +52,7 @@ UserCtrl.saveUser = function(req, res) {
     var errors, userData;
     var email,pw,name;
 
-    req.checkBody('email', 'Invalid email').isEmail();
+    req.checkBody('email', 'Invalid email').notEmpty();
     req.checkBody('pw', 'Invalid pw').notEmpty();
     req.checkBody('name', 'Invalid name').notEmpty();
     errors = req.validationErrors();
@@ -62,12 +62,14 @@ UserCtrl.saveUser = function(req, res) {
         pw: req.body.pw,
         name: req.body.name
     };
-    
-    User.saveUser(userData, function(err, doc) {
-
-        //res.redirect("/signin");
-        return res.status(200).send(Result.SUCCESS(doc));
+    User.getUser({$or:[{email: userData.email}, {name: userData.name}]}, function(err, user) {
+        if (err) res.status(400).send(Result.ERROR(err));
+        if (user) res.status(400).send(Result.ERROR("이미 존재하는 유저"));
+        User.saveUser(userData, function(err, doc) {
+            return res.status(200).send(Result.SUCCESS(doc));
+        });
     });
+
 };
 
 UserCtrl.loginUser = function(req, res) {
