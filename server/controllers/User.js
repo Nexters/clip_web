@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Result = require('../services/Result');
 var async = require('async');
+var SessionService = require('../services/Session')
 
 function UserCtrl() {
 
@@ -99,7 +100,7 @@ UserCtrl.loginUser = function(req, res) {
     errors = req.validationErrors();
     if(errors) return res.status(400).send(Result.ERROR(errors));
     criteria = {email: req.body.email};
-    console.log(criteria)
+    console.log(criteria);
 
     User.getUser(criteria, function(err,doc) {
         console.log(doc);
@@ -109,6 +110,9 @@ UserCtrl.loginUser = function(req, res) {
         }
         if(criteria.email === doc.email && req.body.pw === doc.pw){
             console.log('success');
+            SessionService.registerSession(function(req, doc){
+
+            });
             return res.status(200).send(Result.SUCCESS(doc._id));
         } else {
             console.log('fail');
