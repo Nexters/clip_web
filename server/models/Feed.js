@@ -17,6 +17,7 @@ var FeedSchema = new Schema({
     hasKeyword: { type: Boolean, required: true }, // 피드가 키워드 포함하고 있는지 여부
     pubDate: { type: Date, required: true }, // 등록된 시간
     // 클라이언트로 내려주는 데이터를 위한 필드들
+    keywordString: { type: String }, // 키워드 배열 스트링
     isCliped: { type: Boolean }, // 클립 여부
     clipTitle: { type: String } // 클립 타이틀
 }, {collection: 'feed'});
@@ -39,6 +40,7 @@ function makeFeeds(feeds, clips) {
         } else {
             feeds[i].isCliped = false;
         }
+        feeds[i].keywordString = feeds[i].keywords.join(', ');
     }
 }
 
