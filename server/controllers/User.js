@@ -73,7 +73,7 @@ UserCtrl.saveUser = function(req, res) {
         doc.pw=userData.pw;
         doc.name=userData.name;
 
-
+        res.redirect("/signin");
         res.status(200).send(Result.SUCCESS(doc));
     });
 };
