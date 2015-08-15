@@ -94,14 +94,10 @@ UserCtrl.loginUser = function(req, res) {
     console.log(criteria);
 
     User.getUser(criteria, function(err,doc) {
-        console.log(doc);
-        if (doc === null){
-            console.log('fail');
+        if (doc === null) {
             return res.status(403).send(Result.ERROR('fail'));
         }
-        if(criteria.email === doc.email && req.body.pw === doc.pw){
-            console.log('success');
-            
+        if (criteria.email === doc.email && req.body.pw === doc.pw) {
             Session.registerSession(function(req, doc) {
                 req.session._id = doc._id;
                 req.session.name = doc.name;
@@ -110,7 +106,6 @@ UserCtrl.loginUser = function(req, res) {
             });
             res.status(200).send(Result.SUCCESS(doc._id));
         } else {
-            console.log('fail');
             return res.status(400).send(Result.ERROR('fail'));
         }
     });
@@ -148,6 +143,10 @@ UserCtrl.updateUser = function(req, res) {
         console.log('doc:',doc);
         return res.status(200).send(Result.SUCCESS('success'));
     })
+};
+
+UserCtrl.logoutUser = function(req) {
+    SessionService.removeSession(req);
 };
 
 module.exports = UserCtrl;
