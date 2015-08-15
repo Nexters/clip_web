@@ -144,5 +144,9 @@ UserCtrl.updateUser = function(req, res) {
     })
 };
 
+UserCtrl.logoutUser = function(req) {
+    SessionService.removeSession(req);
+};
+
 module.exports = UserCtrl;
 
