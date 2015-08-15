@@ -4,5 +4,7 @@ var clipCtrl = require('../controllers/Clip');
 
 /* GET clips */
 router.get('/user/id/:user', clipCtrl.getUserClips);
+/* POST clips */
+router.post('/Save', clipCtrl.saveUserClips);
 
 module.exports = router;

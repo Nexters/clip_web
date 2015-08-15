@@ -23,21 +23,23 @@ ClipCtrl.getUserClips = function(req, res) {
 
 };
 
-UserCtrl.saveUserClips = function(req, res) {
+ClipCtrl.saveUserClips = function(req, res) {
     var errors, clipData;
-    var title,feeds,keywords;
+    var title,feeds,keywords,user;
 
     req.checkBody('title', 'Invalid title').notEmpty();
     req.checkBody('feeds', 'Invalid feeds').notEmpty();
     req.checkBody('keywords', 'Invalid keywords').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
+    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
     clipData = {
+        user: Session.getSessionId(req),
         title:req.body.title,
         feeds:req.body.feeds,
         keywords:req.body.keywords
     };
-    Clip.getClips({$or:[{title: clipData.title}, {feeds: clipData.feeds}]}, function(err, user) {
+    Clip.getClips({title: clipData.title}, function(err, user) {
         if (err) res.status(400).send(Result.ERROR(err));
         if (user) res.status(400).send(Result.ERROR("이미 존재하는 clip정보"));
         Clip.saveClip(clipData, function(err, doc) {
