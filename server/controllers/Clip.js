@@ -31,29 +31,24 @@ ClipCtrl.saveUserClips = function(req, res) {
     console.log("1");
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
 
-
     req.checkBody('title', 'Invalid title').notEmpty();
     req.checkBody('feeds', 'Invalid feeds').notEmpty();
     req.checkBody('keywords', 'Invalid keywords').notEmpty();
     errors = req.validationErrors();
-    console.log(errors);
     if (errors) return res.status(400).send(Result.ERROR(errors));
-
-    //console.log(user);
-    console.log(title);
-    console.log(feeds);
-    console.log(keywords);
     clipData = {
         user: Session.getSessionId(req),
         title:req.body.title,
         feeds:req.body.feeds,
         keywords:req.body.keywords
     };
-    Clip.getClip({title: clipData.title}, function(err, user) {
+    console.log(clipData.user);
+    Clip.getClip({title: clipData.title}, function(err, clip) {
         if (err) res.status(400).send(Result.ERROR(err));
-        console.log(user);
-        if (user) res.status(400).send(Result.ERROR("이미 존재하는 clip정보"));
-        Clip.saveClip(clipData, function(err, doc) {
+        //if (title) res.status(400).send(Result.ERROR("이미 존재하는 clip정보"));
+        //Clip.saveClip(clipData, function(err, doc) {
+            if (clip && clip._id) res.status(400).send(Result.ERROR("이미 존재하는 clip정보"));
+            Clip.saveClip(clipData, function(err, doc) {
             return res.status(200).send(Result.SUCCESS(doc));
         });
     });
