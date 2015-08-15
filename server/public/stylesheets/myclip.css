@@ -6,10 +6,12 @@ html,
 body {
     overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
+
 body {
     padding-top: 50px;
-    background-color: RGB(248,248,248) !important;
+    background-color: RGB(248, 248, 248) !important;
 }
+
 footer {
     padding: 30px 0;
 }
@@ -71,7 +73,6 @@ ul#feed_list_panel > li {
     max-height: 276px;
 }
 
-
 .container {
     margin-left: 35px !important;
     margin-right: 35px !important;
@@ -83,7 +84,7 @@ ul#feed_list_panel > li {
 
 .navbar {
     z-index: 100;
-    background-color: RGB(255,255,255);
+    background-color: RGB(255, 255, 255);
 }
 
 .navbar-header {
@@ -95,15 +96,15 @@ ul#feed_list_panel > li {
 .navbar-brand {
     margin: 0px !important;
     padding: 3px 15px !important;
-    font-size : 30px;
-    color: RGB(80,100,250);
+    font-size: 30px;
+    color: RGB(80, 100, 250);
     line-height: 40px;
-    font-family:"Montserrat_Bold";
+    font-family: "Montserrat_Bold";
     width: 100px;
 }
 
 .navbar-brand:hover {
-    color: RGB(80,100,250) !important;
+    color: RGB(80, 100, 250) !important;
 }
 
 .navbar-profile {
@@ -147,14 +148,13 @@ ul#feed_list_panel > li {
     display: inline-block;
     margin: 0px 0px 0px 12px;
     padding: 0px;
-    font-family:"Montserrat_Light";
+    font-family: "Montserrat_Light";
     font-size: 15px;
-    color: RGB(140,140,140);
+    color: RGB(140, 140, 140);
     /*overflow:hidden;*/
     /*white-space:nowrap;*/
     text-overflow: ellipsis;
 }
-
 
 .fixed-keyword-bar {
     z-index: 100;
@@ -162,26 +162,23 @@ ul#feed_list_panel > li {
     height: 70px;
     position: fixed;
     padding-right: 280px;
-    background-color: RGB(248,248,248);
+    background-color: RGB(248, 248, 248);
     border-top: 0.08em solid #ebebeb;
     border-bottom: 0.08em solid #ebebeb;
-    box-shadow: 0 0 1px rgba(0,0,0,.3);
+    box-shadow: 0 0 1px rgba(0, 0, 0, .3);
     -moz-box-shadow: 0px 0px 1px #e6e6e6;
     -webkit-box-shadow: 0px 0px 1px #e6e6e6;
 }
-
 
 .row-offcanvas {
     padding-top: 90px !important;
 }
 
-
-
 /*키워드 영역 관련*/
 .fixed-keyword-bar .keyword-bar-keywords .myclip-bar-title-box {
     float: left;
     display: inline;
-    font-family:"Montserrat_Regular";
+    font-family: "Montserrat_Regular";
     color: #646464;
     font-size: 17px;
     width: 130px;
@@ -189,18 +186,20 @@ ul#feed_list_panel > li {
     line-height: 70px;
     margin: 0px 40px 0px 34px;
 }
-.board-setting{
+
+.board-setting {
     font-family: "NotoSansCJKkr-Regular";
     font-size: 15px;
-    color:#999898;
+    color: #999898;
     width: 102px;
     height: 35px;
     border-style: solid;
-    border-color:#999898;
-    border-radius:13px;
+    border-color: #999898;
+    border-radius: 13px;
     border-width: 1.5px;
 
 }
+
 .fixed-keyword-bar .keyword-bar-keywords {
     display: inline;
     height: 70px;
@@ -225,31 +224,29 @@ ul#feed_list_panel > li {
     min-width: 400px;
     max-width: 600px;
 
-
-
 }
-.keyword-title{
-    margin-top:12px;
-    margin-left:-8px;
+
+.keyword-title {
+    margin-top: 12px;
+    margin-left: -8px;
     margin-bottom: 30px;
-    font-family:"NotoSansCJKkr_Regular";
-    color:#999898;
+    font-family: "NotoSansCJKkr_Regular";
+    color: #999898;
     font-size: 15px;
 
 }
-.keyword-txt{
+
+.keyword-txt {
     cursor: pointer;
-    font-family:"Montserrat_Light";
-    color:#999898;
+    font-family: "Montserrat_Light";
+    color: #999898;
     font-size: 14px;
     text-decoration: none;
     margin-top: 10px;
     margin-left: 3px;
     margin-right: 3px;
-    margin-bottom: 8px ;
+    margin-bottom: 8px;
 }
-
-
 
 .keyword-txt-btn {
 
@@ -258,16 +255,14 @@ ul#feed_list_panel > li {
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
-    font-family:"NotoSansCJKkr_Regular";
-    color:#999898;
+    font-family: "NotoSansCJKkr_Regular";
+    color: #999898;
     font-size: 14px;
     padding: 5px 20px 5px 20px;
     border: solid #cccccc 1px;
     text-decoration: none;
 
-
 }
-
 
 .keyword-txt-btn.active {
     background: #5064FA;
@@ -276,12 +271,12 @@ ul#feed_list_panel > li {
 
 /*사이드바 영역 관련*/
 
-.myclip_title{
+.myclip_title {
     font-family: "Montserrat_Light";
     font-size: 14px;
     margin-left: 16px;
     margin-top: 29px;
-    color:rgb(172,172,172);
+    color: rgb(172, 172, 172);
 
 }
 
@@ -296,7 +291,8 @@ ul#feed_list_panel > li {
     right: 0px;
     background-color: #ffffff;
 }
-.sidebar-image-box{
+
+.sidebar-image-box {
     margin-top: 12px;
     margin-bottom: 15px;
     border-radius: 30px;
@@ -304,28 +300,31 @@ ul#feed_list_panel > li {
     width: 57px;
     height: 57px;
 }
-.sidebar-setting-icon{
-    margin-top:-32px;
-    margin-left:220px;
+
+.sidebar-setting-icon {
+    margin-top: -32px;
+    margin-left: 220px;
 
 }
+
 .sidebar-first-box {
     height: 195px;
     width: 261px;
-    padding: 34px  12px;
+    padding: 34px 12px;
     background-color: #5064FA;
 }
 
 .sidebar-name-txt {
-    font-family:"NotoSansCJKkr_Regular";
-    color:#ffffff;
-    font-size:17px;
+    font-family: "NotoSansCJKkr_Regular";
+    color: #ffffff;
+    font-size: 17px;
     margin-bottom: -3px;
 }
+
 .sidebar-email-txt {
-    font-family:"NotoSansCJKkr_Regular";
-    color:#ffffff;
-    font-size:12px;
+    font-family: "NotoSansCJKkr_Regular";
+    color: #ffffff;
+    font-size: 12px;
     margin-bottom: -3px;
 }
 
@@ -335,12 +334,13 @@ ul#feed_list_panel > li {
     width: 261px;
     background-color: #ffffff;
 }
+
 .sidebar-third-box {
     padding: 5px 20px 5px 20px;
     height: 195px;
     width: 261px;
     background-color: #ffffff;
-    border-top :0.08em solid #ebebeb;
+    border-top: 0.08em solid #ebebeb;
 }
 
 .board-title-box {
@@ -359,11 +359,11 @@ ul#feed_list_panel > li {
     line-height: 30px;
     margin-left: 9px;
     margin-top: 4px;
-    font-family:"NotoSansCJKkr_Regular";
-    color:RGB(183,183,183);
-    font-size:15px;
+    font-family: "NotoSansCJKkr_Regular";
+    color: RGB(183, 183, 183);
+    font-size: 15px;
     border: none;
-    outline:0px none black;
+    outline: 0px none black;
 }
 
 .board-title-box img {
@@ -378,9 +378,13 @@ ul#feed_list_panel > li {
     margin-left: 9px;
     background: url('/images/myboard_list_icon.png') 200px center no-repeat;
     -webkit-appearance: none;
-    border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
     border: none;
-    outline:0px none black;
+    border-right: 0px;
+    border-top: 0px;
+    boder-left: 0px;
+    boder-bottom: 0px;
+    border: none;
+    outline: 0px none black;
 }
 
 .sidebar-content-box {
@@ -388,7 +392,7 @@ ul#feed_list_panel > li {
     background-color: #ffffff;
 }
 
-.start_btn{
+.start_btn {
     cursor: pointer;
     width: 236px;
     height: 38px;
@@ -397,7 +401,7 @@ ul#feed_list_panel > li {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    font-family:"NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr_Regular";
     color: #ffffff;
     font-size: 15px;
     background: #5064fa;
@@ -406,10 +410,10 @@ ul#feed_list_panel > li {
     line-height: 38px;
 }
 
-.board_clip_btn_bg{
+.board_clip_btn_bg {
     background-color: #eaeaea;
     height: 100%;
-    padding : 11px 2px 2px 2px;
+    padding: 11px 2px 2px 2px;
 }
 
 .board_clip_btn {
@@ -421,7 +425,7 @@ ul#feed_list_panel > li {
     -moz-border-radius: 30px;
     border-radius: 30px;
     border: solid #5064fa 1px;
-    font-family:"NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr_Regular";
     color: #5064fa;
     font-size: 16px;
     background: #ffffff;
@@ -437,7 +441,7 @@ ul#feed_list_panel > li {
 .sidebar-content-line-box {
     margin: 0px auto;
     padding: 7px 7px 0px 7px;
-    list-style:none;
+    list-style: none;
 
 }
 
@@ -448,13 +452,14 @@ ul#feed_list_panel > li {
     width: 79px;
     height: 80px;
 }
-.centered{
+
+.centered {
     display: block;
     margin-left: auto;
     margin-right: auto
 }
 
-.modal_title{
+.modal_title {
     font-family: "NotoSansCJKkr_Medium";
     font-size: 30px;
     color: RGB(80, 100, 250);
@@ -463,7 +468,8 @@ ul#feed_list_panel > li {
     text-align: center;
     width: 749px;
 }
-.modal_subtitle{
+
+.modal_subtitle {
     font-family: "NotoSansCJKkr_Regular";
     font-size: 16px;
     color: RGB(129, 129, 129);
@@ -471,6 +477,7 @@ ul#feed_list_panel > li {
     text-align: center;
     width: 749px;
 }
+
 .keyword-enroll {
     font-family: "NotoSansCJKkr_Regular";
     font-size: 14px;
@@ -478,6 +485,7 @@ ul#feed_list_panel > li {
     margin-bottom: 8px;
     margin-left: 123px;
 }
+
 .site {
     font-family: "NotoSansCJKkr_Regular";
     font-size: 14px;
@@ -486,44 +494,52 @@ ul#feed_list_panel > li {
     margin-left: 123px;
     margin-bottom: 8px;
 }
-.modal-middle{
+
+.modal-middle {
     height: 423px;
     width: 749px;
     background-color: #DADADA;
 }
-.modal-header{
+
+.modal-header {
     width: 749px;
     height: 122px;
     background-color: #FFFFFF;
 }
-.modal-content{
+
+.modal-content {
     width: 749px;
     height: 546px;
     background-color: #F6F6F6;
 }
-#modal_input_site{
+
+#modal_input_site {
     margin-left: 123px;
     margin-bottom: 8px;
     height: 32px;
     width: 392px;
     padding: 11px 10px 11px 10px;
-    border: 0.05px solid color: #CCCCCC;
+    border: 0.05px solid color : #CCCCCC;
 
 }
-#modal_input_site:focus{
+
+#modal_input_site:focus {
     outline: none;
 }
-#modal_input_sitebox{
+
+#modal_input_sitebox {
     margin-left: 123px;
     margin-bottom: 24px;
     padding: 11px 11px 11px 11px;
     width: 473px;
     height: 97px;
-    border: 0.05px solid color: #CCCCCC;
+    border: 0.05px solid color : #CCCCCC;
 }
-#modal_input_sitebox{
+
+#modal_input_sitebox {
     outline: none;
 }
+
 #keyword-box {
     margin-left: 123px;
     margin-bottom: 30px;
@@ -531,17 +547,18 @@ ul#feed_list_panel > li {
     padding: 11px 11px 11px 11px;
     width: 473px;
     height: 83px;
-    border: 0.05px solid color: #CCCCCC;
+    border: 0.05px solid color : #CCCCCC;
     text-decoration: none;
     border-radius: 5px;
 }
-#modal_key_btn{
+
+#modal_key_btn {
     font-family: "NotoSansCJKkr_Regular";
     font-size: 17px;
     font-weight: bold;
     padding: 15px 79px 15px 79px;
     margin-left: 264.5px;
-    color: RGB(80,100,250);
+    color: RGB(80, 100, 250);
     background-color: transparent;
     width: 220px;
     height: 49px;
@@ -549,7 +566,8 @@ ul#feed_list_panel > li {
     text-decoration: none;
     border-radius: 30px;
 }
-#modal_add_btn{
+
+#modal_add_btn {
     font-family: "NotoSansCJKkr_Regular";
     font-size: 15px;
     color: #FFFFFF;
@@ -557,15 +575,17 @@ ul#feed_list_panel > li {
     border-radius: 5px;
     border: solid 0px;
     width: 64px;
-    height:31px;
+    height: 31px;
     margin-left: 13px;
 }
+
 /* entire container, keeps perspective */
 
 /* flip the pane when hovered */
 .flip-container:hover .flipper, .flip-container.hover .flipper {
     transform: rotateY(180deg);
 }
+
 .flip-container, .front, .back {
     width: 320px;
     height: 480px;
@@ -600,29 +620,29 @@ ul#feed_list_panel > li {
     transform: rotateY(180deg);
 }
 
-.cards{
+.cards {
     width: 90%;
     height: 100%;
     margin: 0 auto;
     margin-top: 58px;
     margin-bottom: 17px;
-    padding:58px 15px 15px 15px;
+    padding: 58px 15px 15px 15px;
 }
 
-.cards .card{
+.cards .card {
     width: 251px;
     height: 276px;
     margin-right: 1.5%;
     margin-left: 1.5%;
     float: left;
     border-radius: 3px;
-    border:solid 3px;
-    border-color:#CCCCCC;
+    border: solid 3px;
+    border-color: #CCCCCC;
     margin-bottom: 30px;
 
 }
 
-.card .card_image{
+.card .card_image {
     -webkit-border-radius: 3px 3px 0 0;
     -moz-border-radius: 3px;
     background-color: grey;
@@ -633,37 +653,38 @@ ul#feed_list_panel > li {
     /*height: 236px;*/
 }
 
- .icon{
-     position: relative;
+.icon {
+    position: relative;
     float: right;
     right: 15px;
-    margin-top:-25px;
-
+    margin-top: -25px;
 
 }
 
-.card .comment{
+.card .comment {
     font-family: "NotoSansCJKkr_Regular";
-    color:#585858;
-    font-size:15px;
+    color: #585858;
+    font-size: 15px;
     padding-top: 10px;
     padding-left: 10px;
-    float:left;
+    float: left;
 }
-.card .board-num{
+
+.card .board-num {
     font-family: "Montserrat_Light";
-    color:#5064fa;
-    font-size:13px;
+    color: #5064fa;
+    font-size: 13px;
     padding-right: 10px;
     padding-top: 10px;
-    float:right;
+    float: right;
 }
-.card .card_image:hover{
+
+.card .card_image:hover {
     opacity: 0.7;
 }
 
-.card .comment:hover{
-    text-overflow:inherit;
+.card .comment:hover {
+    text-overflow: inherit;
     overflow: visible;
 
 }
