@@ -59,19 +59,6 @@ footer {
     }
 }
 
-.float-left {
-    float: left;
-}
-
-.float-right {
-    float: right;
-}
-
-ul#feed_list_panel > li {
-    max-height: 276px;
-}
-
-
 .container {
     margin-left: 35px !important;
     margin-right: 35px !important;
@@ -182,7 +169,7 @@ ul#feed_list_panel > li {
     width: 110px;
     height: 70px;
     line-height: 70px;
-    margin: 0px 40px 0px 34px;
+    margin: 0px 40px 0px 24px;
 }
 
 .fixed-keyword-bar .keyword-bar-keywords {
@@ -193,7 +180,7 @@ ul#feed_list_panel > li {
 }
 
 .keyword-move-btn {
-    position: relative;
+    position: absolute;
     height: 16px;
     line-height: 70px;
 }
@@ -203,11 +190,30 @@ ul#feed_list_panel > li {
     height: 16px;
 }
 
-.keyword-txt-box {
-    display: inline;
-    padding-left: 10px;
+.keyword-move-btn.prev-btn {
+    left: 195px;
+}
+
+.keyword-move-btn.next-btn {
+    right: 0px;
+}
+
+.keyword-txt-box-wrapper {
+    display: block;
+    position: absolute;
+    left: 200px;
+    height: 70px;
+    padding-left: 15px;
+    padding-right: 10px;
     min-width: 400px;
-    max-width: 600px;
+    overflow: hidden;
+}
+
+.keyword-txt-box {
+    width: 100%;
+    height: 70px;
+    min-width: 400px;
+    overflow: hidden;
 }
 
 
@@ -220,10 +226,12 @@ ul#feed_list_panel > li {
     color: RGB(80,100,250);
     font-size: 14px;
     background: #ffffff;
-    padding: 5px 20px 5px 20px;
+    padding: 5px 15px 5px 15px;
     border: solid #5064FA 1px;
     text-decoration: none;
     margin: 0px 8px;
+    height: 29px;
+    line-height: 29px;
 }
 
 .keyword-txt-btn.active {
@@ -342,6 +350,12 @@ ul#feed_list_panel > li {
 
 
 /*피드 리스트 관련*/
+
+ul#feed_list_panel > li {
+    max-height: 276px;
+}
+
+
 .row-offcanvas {
     padding-right: 260px;
     padding-top: 90px !important;
@@ -361,7 +375,6 @@ ul#feed_list_panel > li {
 #feed_list_panel > li > div {
     height: 100px;
 }
-
 
 #feed_list_panel > li > div.img-box {
     width: 251px;
@@ -408,12 +421,16 @@ ul#feed_list_panel > li {
 
 
 .clip-icon-circle {
+    z-index: 10;
+    cursor:pointer;
     width: 40px;
     height: 40px;
     top: 9px;
     right: 9px;
-    z-index: 10;
     display: inline-block;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
     overflow: hidden;
     position: absolute;
     background-color: #5B6FFB;

@@ -8,6 +8,12 @@
             var emailval = $("#input_email1").val();
             var passwordVal = $("#input_password1").val();
             var checkVal = $("#input_conpass").val();
+            var name= $('#input_name').val();
+            var email = $('#input_email1').val();
+            var passwd = $('#input_password1').val();
+
+            console.log(email);
+
 
             $(".error").hide();
 
@@ -49,6 +55,18 @@
                     $("#input_conpass").focus();
                 });
                 hasError = true;
+            }
+            else{
+                var params = {'name':name, 'email': email, 'pw': passwd};
+                HttpUtil.postData('/user/save', params, function(err, data) {
+                    if(err != null){
+                        alert("회원가입이 실패했습니다.");
+                        return false;
+                    }
+                    location.href="/signin";
+                    return false;
+                });
+                return false;
             }
 
             if(hasError == true) {return false;}
