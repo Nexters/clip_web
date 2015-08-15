@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Result = require('../services/Result');
 var async = require('async');
-var SessionService = require('../services/Seesion');
+var SessionService = require('../services/Session');
 
 
 
@@ -64,8 +64,16 @@ UserCtrl.saveUser = function(req, res) {
     userData = {
         email: req.body.email,
         pw: req.body.pw,
+        pw2:req.body.pw2,
         name: req.body.name
     };
+
+
+   // if(req.body.pw!==req.body.pw2){
+
+       // alert("비밀번호가 일치 하지않습니다 ");
+  //  }
+
 
 
 
@@ -73,6 +81,7 @@ UserCtrl.saveUser = function(req, res) {
         doc.email=userData.email;
         doc.pw=userData.pw;
         doc.name=userData.name;
+
 
 
 
