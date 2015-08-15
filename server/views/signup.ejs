@@ -17,23 +17,23 @@
 
 <div align="center" class="centered">
 
-  <div id="form"  name="signupform">
-    <a href="/signin">
-      <input id="login_btn" type="image" name="signup" src="/images/clip_signup_login.png"></a>
+    <div id="form"  name="signupform">
+        <a href="/signin">
+            <input id="login_btn" type="image" name="signup" src="/images/clip_signup_login.png"></a>
 
-    <div  align="center" id="signup">
-      Sign up
+        <div  align="center" id="signup">
+            Sign up
+        </div>
+
+        <form method="post" action="user/save">
+            <input id="input_name" type="text" name="name" maxlength="10"  placeholder="Name" />
+            <input id="input_email1" type="email" name="email" placeholder="Email">
+            <input id="input_password1" type="password" name="pw"  placeholder="password">
+            <input id="input_conpass" type="password" name="pw2" placeholder="Confirm Password" >
+            <input id="signup_btn" type="image" name="signup" src="/images/signup_button2.png">
+        </form>
+
     </div>
-
-<form method="post" action="user/save">
-    <input id="input_name" type="text" name="name" maxlength="10"  placeholder="Name" />
-    <input id="input_email1" type="email" name="email" placeholder="Email">
-    <input id="input_password1" type="password" name="pw"  placeholder="password">
-    <input id="input_conpass" type="password" name="pw2" placeholder="Confirm Password" >
-    <input id="signup_btn" type="image" name="signup" src="/images/signup_button2.png">
-</form>
-
-  </div>
 </div>
 <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

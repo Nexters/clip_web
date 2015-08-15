@@ -68,12 +68,6 @@ UserCtrl.saveUser = function(req, res) {
     };
 
 
-   // if(req.body.pw!==req.body.pw2){
-
-       // alert("비밀번호가 일치 하지않습니다 ");
-  //  }
-
-
 
 
     User.saveUser(userData, function(err, doc) {
@@ -85,7 +79,7 @@ UserCtrl.saveUser = function(req, res) {
 
 
         res.redirect("/signin");
-        res.status(200).send(Result.SUCCESS(doc));
+       return res.status(200).send(Result.SUCCESS(doc));
     });
 };
 
@@ -98,6 +92,7 @@ UserCtrl.loginUser = function(req, res) {
     // TODO: 과제1 로그인 여기에 구현해야 함
 
     var errors, criteria;
+    var user;
     req.checkBody('email', 'Invalid email').notEmpty();
     req.checkBody('pw', 'Invalid pass word').notEmpty();
 
@@ -121,7 +116,8 @@ UserCtrl.loginUser = function(req, res) {
         if(criteria.email === doc.email && req.body.pw === doc.pw){
             console.log('success');
 
-            SessionService.registerSession(function(req,doc){
+            
+            SessionService.registerSession(function(req,user){
             }); //session 등록
 
             return res.status(200).send(Result.SUCCESS(doc._id));
