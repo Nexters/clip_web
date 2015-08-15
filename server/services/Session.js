@@ -28,4 +28,3 @@ SessionService.removeSession = function (req) {
 
 module.exports = SessionService;
 
-

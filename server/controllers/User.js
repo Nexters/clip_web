@@ -100,6 +100,8 @@ UserCtrl.loginUser = function(req, res) {
         }
         if(criteria.email === doc.email && req.body.pw === doc.pw){
             console.log('success');
+            SessionService.registerSession(req, doc);
+                console.log('세션아이디:',req.session);
             res.status(200).send(Result.SUCCESS(doc._id));
         } else {
             console.log('fail');
