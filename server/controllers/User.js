@@ -146,7 +146,9 @@ UserCtrl.updateUser = function(req, res) {
 };
 
 UserCtrl.logoutUser = function(req) {
+    console.log(req.session);
     SessionService.removeSession(req);
+    console.log('세션종료로 세션 삭제:',req.session);
 };
 
 module.exports = UserCtrl;
