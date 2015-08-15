@@ -131,7 +131,7 @@ UserCtrl.updateUser = function(req, res) {
     })
 };
 
-UserCtrl.logoutUser = function(req) {
+UserCtrl.logoutUser = function(req, res) {
     console.log(req.session);
     Session.removeSession(req);
     console.log(req.session);
