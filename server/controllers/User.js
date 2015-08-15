@@ -82,16 +82,12 @@ UserCtrl.loginUser = function(req, res) {
     // TODO: 과제1 로그인 여기에 구현해야 함
 
     var errors, criteria;
-    var user;
     req.checkBody('email', 'Invalid email').notEmpty();
     req.checkBody('pw', 'Invalid pass word').notEmpty();
-
-    console.log(req.body);
 
     errors = req.validationErrors();
     if(errors) return res.status(400).send(Result.ERROR(errors));
     criteria = {email: req.body.email};
-    console.log(criteria);
 
     User.getUser(criteria, function(err,doc) {
         if (doc === null) {
@@ -102,7 +98,6 @@ UserCtrl.loginUser = function(req, res) {
                 req.session._id = doc._id;
                 req.session.name = doc.name;
                 req.session.profileUrl = doc.profileUrl;
-                console.log(req);
             });
             res.status(200).send(Result.SUCCESS(doc._id));
         } else {
@@ -146,9 +141,7 @@ UserCtrl.updateUser = function(req, res) {
 };
 
 UserCtrl.logoutUser = function(req) {
-    console.log(req.session);
     SessionService.removeSession(req);
-    console.log('세션종료로 세션 삭제:',req.session);
 };
 
 module.exports = UserCtrl;
