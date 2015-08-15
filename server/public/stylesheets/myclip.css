@@ -8,7 +8,7 @@ body {
 }
 body {
     padding-top: 50px;
-    background-color: RGB(255,255,255) !important;
+    background-color: RGB(248,248,248) !important;
 }
 footer {
     padding: 30px 0;
@@ -163,8 +163,8 @@ ul#feed_list_panel > li {
     position: fixed;
     padding-right: 280px;
     background-color: RGB(248,248,248);
-    border-top: 0.08em solid #ffffff;
-    border-bottom: 0.08em solid #ffffff;
+    border-top: 0.08em solid #ebebeb;
+    border-bottom: 0.08em solid #ebebeb;
     box-shadow: 0 0 1px rgba(0,0,0,.3);
     -moz-box-shadow: 0px 0px 1px #e6e6e6;
     -webkit-box-shadow: 0px 0px 1px #e6e6e6;
@@ -224,26 +224,28 @@ ul#feed_list_panel > li {
     padding-left: 10px;
     min-width: 400px;
     max-width: 600px;
+
+
+
 }
 .keyword-title{
     margin-top:12px;
-    margin-left:12px;
+    margin-left:-8px;
     margin-bottom: 30px;
+    font-family:"NotoSansCJKkr_Regular";
+    color:#999898;
+    font-size: 15px;
+
 }
 .keyword-txt{
     cursor: pointer;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    border-radius: 30px;
     font-family:"Montserrat_Light";
     color:#999898;
     font-size: 14px;
-    padding: 5px 20px 5px 20px;
-    border: solid #999898 1px;
     text-decoration: none;
     margin-top: 10px;
-    margin-left:12px ;
-    margin-right: 8px;
+    margin-left: 3px;
+    margin-right: 3px;
     margin-bottom: 8px ;
 }
 
@@ -251,15 +253,18 @@ ul#feed_list_panel > li {
 
 .keyword-txt-btn {
 
+    width: 102px;
+    height: 35px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
-    font-family:"Montserrat_Light";
+    font-family:"NotoSansCJKkr_Regular";
     color:#999898;
     font-size: 14px;
     padding: 5px 20px 5px 20px;
-    border: solid #999898 1px;
+    border: solid #cccccc 1px;
     text-decoration: none;
+
 
 }
 
@@ -284,7 +289,7 @@ ul#feed_list_panel > li {
     z-index: 101;
     width: 261px;
     height: 100%;
-    border-left: 0.08em solid #ffffff;
+    border-left: 0.08em solid #e0e0e0;
     margin-top: 50px;
     position: fixed;
     top: 0px;
@@ -325,14 +330,17 @@ ul#feed_list_panel > li {
 }
 
 .sidebar-second-box {
+    padding: 5px 20px 5px 20px;
     height: 195px;
     width: 261px;
     background-color: #ffffff;
 }
 .sidebar-third-box {
+    padding: 5px 20px 5px 20px;
     height: 195px;
     width: 261px;
     background-color: #ffffff;
+    border-top :0.08em solid #ebebeb;
 }
 
 .board-title-box {
@@ -396,6 +404,30 @@ ul#feed_list_panel > li {
     text-decoration: none;
     text-align: center;
     line-height: 38px;
+}
+
+.board_clip_btn_bg{
+    background-color: #eaeaea;
+    height: 100%;
+    padding : 11px 2px 2px 2px;
+}
+
+.board_clip_btn {
+    width: 238px;
+    height: 48px;
+    margin-top: 12px;
+    margin-left: 12px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    border: solid #5064fa 1px;
+    font-family:"NotoSansCJKkr_Regular";
+    color: #5064fa;
+    font-size: 16px;
+    background: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    line-height: 48px;
 }
 
 .board_clip_btn.active {
@@ -586,41 +618,46 @@ ul#feed_list_panel > li {
     border-radius: 3px;
     border:solid 3px;
     border-color:#CCCCCC;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 
 }
 
 .card .card_image{
     -webkit-border-radius: 3px 3px 0 0;
     -moz-border-radius: 3px;
-    background-color: lightpink;
+    background-color: grey;
     background-size: cover;
     width: 100%;
-    height: 236px;
+    height: 85%;
+
+    /*height: 236px;*/
 }
 
-.card .site{
-    height: 29px;
-    width: 29px;
-    position: relative;
+ .icon{
+     position: relative;
     float: right;
-    right: 5%;
-    top:-15px;
-    background-color: blue;
+    right: 15px;
+    margin-top:-25px;
+
+
 }
 
 .card .comment{
-    min-height: 50px;
-    width: 100%;
-    padding-left:10px;
-    padding-right: 10px;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-family: "NotoSansCJKkr_Regular";
+    color:#585858;
+    font-size:15px;
+    padding-top: 10px;
+    padding-left: 10px;
+    float:left;
 }
-
+.card .board-num{
+    font-family: "Montserrat_Light";
+    color:#5064fa;
+    font-size:13px;
+    padding-right: 10px;
+    padding-top: 10px;
+    float:right;
+}
 .card .card_image:hover{
     opacity: 0.7;
 }
@@ -631,85 +668,7 @@ ul#feed_list_panel > li {
 
 }
 
-.card .info{
 
-    margin-bottom: 5px;
-    width: 100%;
-    padding-left:10px;
-    padding-right: 10px;
-    border-bottom: solid 1px;
-    padding-top:5px;
-    padding-bottom: 5px;
 
-}
-
-.info span{
-    font-size: 13px;
-}
-
-.card .icons{
-    width: 100%;
-    height: 43px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding-left:10px;
-    padding-right: 10px;
-}
-
-.card .will{
-    width: 50%;
-    float: left;
-}
-
-.card .will_icon{
-    width: 30px;
-    float: left;
-    height: 30px;
-    margin-top: 4px;
-    background-color: purple;
-    background-size: cover;
-}
-
-.card .will_text{
-    line-height: 30px;
-    font-size: 12px;
-    float: left;
-    margin-left: 8px;
-
-}
-
-.card .reply{
-    width: 50%;
-    float: right;
-}
-.card .reply_icon{
-    width: 30px;
-    float: left;
-    height: 30px;
-    margin-top: 4px;
-    background-color: pink;
-    background-size: cover;
-}
-.card .reply_text{
-    width: 50%;
-    float: left;
-    font-size: 12px;
-    line-height: 30px;
-    margin-left: 8px;
-}
-
-.card .icon_info{
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding-left:5px;
-    padding-left: 5px;
-    font-size: 10px;
-    color:#222;
-    width: 100%;
-    background-color: #FFF;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-}
 
 
