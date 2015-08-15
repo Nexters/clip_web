@@ -29,13 +29,13 @@
             <a class="navbar-brand" href="#">Clip</a>
         </div><!-- /.navbar-header -->
         <div class="navbar-profile">
-            <div class="home-icon-box">
+            <a class="home-icon-box" href="/home">
                 <img src="/images/home_icon.png">
-            </div>
-            <div class="home-profile-box">
+            </a>
+            <a class="home-profile-box" href="/user">
                 <img class="user-profile-img" src="<%= user.profileUrl %>">
                 <p class="user-profile-txt"><%= user.name %></p>
-            </div>
+            </a>
         </div><!-- /.navbar-profile -->
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
@@ -72,10 +72,11 @@
             <div class="sidebar-title-txt">내 클립보드에 담기</div>
             <div class="board-title-box">
                 <input id="board_title_input" type="text">
-                <img src="/images/cardboard_add_button.png"
+                <img id="board_add_btn" src="/images/cardboard_add_button.png"
             </div>
             <div class="board-title-box">
                 <select id="board_title_select" class="board-select-box">
+                    <option>보드를 선택해주세요.</option>
                     <% for (var i=0; i<user.clips.length; i++) { %>
                     <% var clip = user.clips[i]; %>
                     <option><%= clip.title %></option>
@@ -85,13 +86,10 @@
         </div>
     </div>
     <div class="sidebar-content-box">
-        <ul class="sidebar-content-line-box">
-            <li></li>
-            <li></li>
-            <li></li>
+        <ul id="sidebar_clip_list" class="sidebar-content-line-box">
         </ul>
     </div>
-    <div class="board_clip_btn">
+    <div id="board_clip_btn">
         클립하기
     </div>
 </div><!--/.container-->

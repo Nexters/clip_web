@@ -1,11 +1,50 @@
 (function () {
-
     var ITEM_PER_PAGE = 10;
     var pageNum = 0;
     var isCompleteLoading = false;
+    var clips = [];
 
     function init() {
         initWookmark();
+    }
+
+    function bindEvent() {
+        $('#board_add_btn').unbind('click').click(function() {
+            var clipTitle = $('#board_title_input').val();
+            if (!clipTitle) return alert("클립보드 제목을 입력해주세요!");
+            HttpUtil.postData('/clip/save', {title: clipTitle}, function(err, allClips) {
+                if (err) return alert(err);
+                var html = '';
+                clips = allClips;
+                for (var i=0; i<allClips.length; i++) {
+                    if (clipTitle === allClips[i].title) {
+                        html += '<option selected>'+allClips[i].title+'</option>';
+                    } else {
+                        html += '<option>'+allClips[i].title+'</option>';
+                    }
+                }
+                $('#board_title_select').empty();
+                $('#board_title_select').append(html);
+            });
+        });
+
+        $('#feed_list_panel > li > .clip-icon-circle').unbind('click').click(function() {
+            var $feedItem = $(this).parent();
+            var feed = { id: $feedItem.data('id') };
+            if ($(this).hasClass('on')) {
+                $(this).removeClass('on');
+                $('#sidebar_clip_list').find('li[data-id='+feed.id+']').remove();
+            } else {
+                $(this).addClass('on');
+                feed.title = $feedItem.find('.title-txt').text();
+                feed.src = $feedItem.find('.title-img').attr('src');
+                $('#sidebar_clip_list').append(getSmallFeedBoxHtml(feed));
+            }
+        });
+
+        $('#board_clip_btn').unbind('click').click(function() {
+           // TODO: 서버에 클립 리퀘스트 요청
+        });
     }
 
     function getFeedBoxImageSrc(description) {
@@ -16,15 +55,15 @@
 
     function getFeedBoxHtml(feed) {
         var html =
-            '<li>'+
+            '<li data-id="'+feed._id+'">'+
                 '<span class="clip-icon-circle">'+
                     '<img src="/images/clip_btn.png" align="center">'+
                 '</span>'+
                 '<div class="img-box">'+
-                    '<img src="'+feed.image+'" align="middle">'+
+                    '<img class="title-img" src="'+feed.image+'" align="middle">'+
                 '</div>'+
                 '<div class="title-box">'+
-                    '<p>'+feed.title+'</p>'+
+                    '<p class="title-txt">'+feed.title+'</p>'+
                 '</div>'+
                 '<div class="keyword-box">'+
                     '<div class="keyword">'+
@@ -38,6 +77,19 @@
                 }
             html += '</div>'+
                 '</div>'+
+            '</li>';
+        return html;
+    }
+
+    function getSmallFeedBoxHtml(feed) {
+        var html =
+            '<li data-id="'+feed.id+'">'+
+                '<div class="img-wrapper">'+
+                    '<img src="'+feed.src+'">'+
+                '</div>'+
+                '<span class="title-wrapper">'+
+                    '<p>'+feed.title+'</p>'+
+                '</span>'+
             '</li>';
         return html;
     }
@@ -96,6 +148,7 @@
 
             HttpUtil.getData('/feed/user/id/55b4a8955c91698d7c449146', params, function(err, data) {
                 onLoadData(data);
+                bindEvent();
             });
         }
 

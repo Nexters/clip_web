@@ -309,9 +309,10 @@ footer {
 .sidebar-content-box {
     height: 268px;
     background-color: #ffffff;
+    overflow-y: auto;
 }
 
-.board_clip_btn {
+#board_clip_btn {
     cursor: pointer;
     width: 236px;
     height: 38px;
@@ -329,7 +330,7 @@ footer {
     line-height: 38px;
 }
 
-.board_clip_btn.active {
+#board_clip_btn.active {
     background: #3B47BE;
 }
 
@@ -337,15 +338,54 @@ footer {
     margin: 0px auto;
     padding: 7px 7px 0px 7px;
     list-style:none;
-
 }
 
 .sidebar-content-line-box > li {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    float: left;
     display: inline-block;
-    background-color: #000000;
-    margin: 0px 0px;
-    width: 79px;
+    margin: 3px 1px;
+    width: 80px;
     height: 80px;
+}
+
+.sidebar-content-line-box > li > .img-wrapper {
+    /*-webkit-border-radius: 5px;*/
+    /*-moz-border-radius: 5px;*/
+}
+
+.sidebar-content-line-box > li > .img-wrapper > img {
+    /*-webkit-border-radius: 5px;*/
+    /*-moz-border-radius: 5px;*/
+    display: inline-block;
+    width: 78px;
+    height: 78px;
+}
+
+.sidebar-content-line-box > li > .title-wrapper {
+    display: inline-block;
+    /*position: absolute;*/
+    width: 78px;
+    height: 20px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    padding: 5px;
+}
+
+.sidebar-content-line-box > li > .title-wrapper > p {
+    font-family:"NotoSansCJKkr_Medium";
+    font-size: 13px;
+    color: #cccccc;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    /*height: 63px;*/
+    /*overflow: hidden;*/
 }
 
 
@@ -391,6 +431,7 @@ ul#feed_list_panel > li {
     height: 63px;
     padding: 10px;
     text-align: left !important;
+    border-top: 1px solid #cccccc;
 }
 
 #feed_list_panel > li > div.title-box > p {
@@ -464,4 +505,9 @@ ul#feed_list_panel > li {
 .clip-icon-circle > img {
     padding-top: 9px;
     padding-left: 12px;
+}
+
+/* 사이드바 관련 */
+#sidebar_clip_list > li > img {
+
 }
