@@ -1,7 +1,7 @@
 (function () {
 
     var ITEM_PER_PAGE = 10;
-    var page = 0;
+    var pageNum = 0;
     var isCompleteLoading = false;
 
     function init() {
@@ -82,7 +82,7 @@
         function loadData() {
             if (isCompleteLoading) return;
             var params = {
-                pageNum: page,
+                pageNum: pageNum,
                 perPage: ITEM_PER_PAGE
             };
             isLoading = true;
@@ -98,8 +98,8 @@
          */
         function onLoadData(feedData) {
             isLoading = false;
-            // Increment page index for future calls.
-            page++;
+            // Increment pageNum index for future calls.
+            pageNum++;
             var length = feedData.length;
             var html = '';
             var i;
@@ -116,7 +116,7 @@
                 html += getFeedBoxHtml(feedData[i]);
             }
 
-            // Add image HTML to the page.
+            // Add image HTML to the pageNum.
             $(container).append(html);
             // Apply layout.
             applyLayout();

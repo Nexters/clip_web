@@ -64,6 +64,7 @@ UserCtrl.saveUser = function(req, res) {
     };
     
     User.saveUser(userData, function(err, doc) {
+
         //res.redirect("/signin");
         return res.status(200).send(Result.SUCCESS(doc));
     });

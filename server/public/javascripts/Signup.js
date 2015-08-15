@@ -60,15 +60,14 @@
                 var params = {'name':name, 'email': email, 'pw': passwd}
                 HttpUtil.postData('/user/save', params, function(err, data) {
                     if(err != null){
-                        alert("회원가입이 실패했습니다.");s
+                        alert("회원가입이 실패했습니다.");
                         return false;
                     }
-                    location.href="/home/" + data;
+                    location.href="/signin/" + data;
                     return false;
                 });
                 return false;
             }
-
 
             if(hasError == true) {return false;}
         });
