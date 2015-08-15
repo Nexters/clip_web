@@ -78,13 +78,9 @@ UserCtrl.saveUser = function(req, res) {
 
 
 
-<<<<<<< Updated upstream
-        res.redirect("/signin");
-       return res.status(200).send(Result.SUCCESS(doc));
-=======
-       // res.redirect("/signin");
+
         res.status(200).send(Result.SUCCESS(doc));
->>>>>>> Stashed changes
+
     });
 };
 
