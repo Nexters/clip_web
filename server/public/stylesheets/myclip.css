@@ -583,7 +583,7 @@ ul#feed_list_panel > li {
     margin-right: 1.5%;
     margin-left: 1.5%;
     float: left;
-    border-radius: 20px;
+    border-radius: 3px;
     border:solid 3px;
     border-color:#CCCCCC;
     margin-bottom: 15px;
@@ -591,8 +591,8 @@ ul#feed_list_panel > li {
 }
 
 .card .card_image{
-    -webkit-border-radius: 20px 20px 0 0;
-    -moz-border-radius: 20px;
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px;
     background-color: lightpink;
     background-size: cover;
     width: 100%;
