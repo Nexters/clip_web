@@ -100,6 +100,13 @@ UserCtrl.loginUser = function(req, res) {
         }
         if(criteria.email === doc.email && req.body.pw === doc.pw){
             console.log('success');
+            
+            SessionService.registerSession(function(req, doc) {
+                req.session._id = doc._id;
+                req.session.name = doc.name;
+                req.session.profileUrl = doc.profileUrl;
+                console.log(req);
+            });
             res.status(200).send(Result.SUCCESS(doc._id));
         } else {
             console.log('fail');
@@ -143,5 +150,4 @@ UserCtrl.updateUser = function(req, res) {
 };
 
 module.exports = UserCtrl;
-
 
