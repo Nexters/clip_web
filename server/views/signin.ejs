@@ -29,17 +29,17 @@
         <e class="mailinfo">
 
             <div id="login" class="form">
-                <form name="loginform"  method="post" action="/login">
+                <form name="loginform"  method="post" action="user/login">
                     <!-- 로그인 글씨 -->
                     <h1>Log in</h1>
                     <!-- 폼 -->
                     <input id="input_email" type="email" name="email" class="text"  placeholder="Email"><br>
-                    <input id="pw" type="password" name="password" placeholder="Password"><br>
+                    <input id="pw" type="password" name="pw" placeholder="Password"><br>
                     <!-- 로그인 버튼 -->
                     <input id="signin_btn" type="image" name="Log in" src="/images/login_button.png">
                     <h2><input class="test" type="image" name="sign up" src="/images/password.png"></h2>
-                    <button id="join" formaction="http://localhost:3000/signup">이메일로 가입하기</button>
-
+                    <button id="join" formaction="http://localhost:3000/signup"><a href="/signup">이메일로 가입하기</a></button>
+<!--formation 질문  -->
                 </form>
             </div>
         </e>
