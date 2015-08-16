@@ -53,7 +53,7 @@
         <span class="keyword-move-btn next-btn"><img data-status="next" src="/images/keyword_next_icon.png"></span>
     </div>
 </div>
-<div class="container card-container">
+<div class="card-container">
     <div class="row row-offcanvas row-offcanvas-right">
         <div role="main" id="feed_container">
             <ul id="feed_list_panel" class="tiles-wrap animated">
@@ -76,7 +76,7 @@
             </div>
             <div class="board-title-box">
                 <select id="board_title_select" class="board-select-box">
-                    <option>보드를 선택해주세요.</option>
+                    <option value="0">클립보드를 선택해주세요.</option>
                     <% for (var i=0; i<user.clips.length; i++) { %>
                     <% var clip = user.clips[i]; %>
                     <option><%= clip.title %></option>

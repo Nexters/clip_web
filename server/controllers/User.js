@@ -61,7 +61,7 @@ UserCtrl.saveUser = function(req, res) {
         pw: req.body.pw,
         name: req.body.name
     };
-    User.getUser({$or:[{email: userData.email}, {name: userData.name}]}, function(err, user) {
+    User.findOne({$or:[{email: userData.email}, {name: userData.name}]}, function(err, user) {
         if (err) res.status(400).send(Result.ERROR(err));
         if (user) res.status(400).send(Result.ERROR("이미 존재하는 유저"));
         User.saveUser(userData, function(err, doc) {

@@ -24,21 +24,16 @@ ClipCtrl.getUserClips = function(req, res) {
 
 };
 
-ClipCtrl.saveUserClips = function(req, res) {
+ClipCtrl.saveUserClip = function(req, res) {
     var errors, clipData;
     var title,feeds,keywords,user;
-
-    console.log("1");
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
-
 
     req.checkBody('title', 'Invalid title').notEmpty();
     req.checkBody('feeds', 'Invalid feeds').notEmpty();
     req.checkBody('keywords', 'Invalid keywords').notEmpty();
     errors = req.validationErrors();
-    console.log(errors);
     if (errors) return res.status(400).send(Result.ERROR(errors));
-
 
     clipData = {
         user: Session.getSessionId(req),
@@ -47,15 +42,16 @@ ClipCtrl.saveUserClips = function(req, res) {
         keywords:req.body.keywords
     };
     Clip.getClip({title: clipData.title}, function(err, clip) {
-        if (err) res.status(400).send(Result.ERROR(err));
-        console.log(clip);
-        if (clip && clip._id) res.status(400).send(Result.ERROR("이미 존재하는 clip정보"));
+        if (err) return res.status(400).send(Result.ERROR(err));
+        if (clip && clip._id) return res.status(400).send(Result.ERROR("이미 존재하는 clip 정보"));
         Clip.saveClip(clipData, function(err, doc) {
-            return res.status(200).send(Result.SUCCESS(doc));
+            res.status(200).send(Result.SUCCESS(doc));
         });
     });
+};
 
-}
+
+
 
 ClipCtrl.deleteUserClips = function(req, res) {
     var criteria,errors;
@@ -70,8 +66,8 @@ ClipCtrl.deleteUserClips = function(req, res) {
     Clip.deleteClip(criteria,function(err,doc){
         res.status(200).send(Result.SUCCESS(doc));
     });
-
 }
+
 
 
 module.exports = ClipCtrl;
