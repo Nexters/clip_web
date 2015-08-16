@@ -13,7 +13,8 @@ var ClipSchema = new Schema({
     createDate: { type: Date, required: true } // 등록된 시간
 }, {collection: 'clip'});
 
-ClipSchema.index({ user: 1, keyword: 1, pubDate: -1 });
+ClipSchema.index({ user: 1 });
+ClipSchema.index({ createDate: -1 });
 
 /**
  * Model Methods

@@ -22,7 +22,9 @@ var FeedSchema = new Schema({
     clipTitle: { type: String } // 클립 타이틀
 }, {collection: 'feed'});
 
-FeedSchema.index({ user: 1, keyword: 1, pubDate: -1 });
+FeedSchema.index({ user: 1 });
+FeedSchema.index({ keyword: 1 });
+FeedSchema.index({ pubDate: -1 });
 
 function makeFeeds(feeds, clips) {
     var clipMap = {};

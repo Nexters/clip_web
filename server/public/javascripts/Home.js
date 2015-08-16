@@ -172,12 +172,6 @@
             isLoading = true;
             $loaderCircle.show();
 
-            //TODO: 샘플 데이터 없기 때문에 임시로 이렇게 해놓음!
-            //HttpUtil.getData('/feed/user/id/55b4a8955c91698d7c449146', params, function(err, data) {
-            //    onLoadData(data);
-            //    bindEvent();
-            //});
-
             HttpUtil.getData('/feed/user', params, function(err, data) {
                 onLoadData(data);
                 bindEvent();
