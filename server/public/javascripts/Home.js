@@ -39,11 +39,24 @@
                 feed.title = $feedItem.find('.title-txt').text();
                 feed.src = $feedItem.find('.title-img').attr('src');
                 $('#sidebar_clip_list').append(getSmallFeedBoxHtml(feed));
+                bindBoardEvent();
             }
         });
 
         $('#board_clip_btn').unbind('click').click(function() {
            // TODO: 서버에 클립 리퀘스트 요청
+        });
+    }
+
+    /**
+     * 보드 아이템 관련 이벤트 바인딩
+     */
+    function bindBoardEvent() {
+        $('#sidebar_clip_list .card-delete-btn').unbind('click').click(function() {
+            var $boardItem = $(this).parent().parent();
+            var feedId = $boardItem.data('id');
+            $boardItem.remove();
+            $('#feed_list_panel').find('li[data-id='+feedId+']').children('.clip-icon-circle').removeClass('on');
         });
     }
 
@@ -85,11 +98,12 @@
         var html =
             '<li data-id="'+feed.id+'">'+
                 '<div class="img-wrapper">'+
-                    '<img src="'+feed.src+'">'+
+                    '<img class="card-delete-btn" src="/images/card_delete_icon.png">'+
+                    '<img class="card-image" src="'+feed.src+'">'+
+                    '<span class="title-wrapper">'+
+                        '<p>'+feed.title+'</p>'+
+                    '</span>'+
                 '</div>'+
-                '<span class="title-wrapper">'+
-                    '<p>'+feed.title+'</p>'+
-                '</span>'+
             '</li>';
         return html;
     }

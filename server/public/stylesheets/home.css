@@ -352,22 +352,35 @@ footer {
     height: 80px;
 }
 
-.sidebar-content-line-box > li > .img-wrapper {
-    /*-webkit-border-radius: 5px;*/
-    /*-moz-border-radius: 5px;*/
+.sidebar-content-line-box > li .img-wrapper {
+    position: relative;
 }
 
-.sidebar-content-line-box > li > .img-wrapper > img {
-    /*-webkit-border-radius: 5px;*/
-    /*-moz-border-radius: 5px;*/
-    display: inline-block;
+.sidebar-content-line-box > li .img-wrapper img.card-image {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    /*display: inline-block;*/
     width: 78px;
     height: 78px;
 }
 
-.sidebar-content-line-box > li > .title-wrapper {
-    display: inline-block;
-    /*position: absolute;*/
+.sidebar-content-line-box > li .img-wrapper img.card-delete-btn {
+    cursor: pointer;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 5px;
+    top: 5px;
+}
+
+
+.sidebar-content-line-box > li .title-wrapper {
+    /*display: inline-block;*/
+    float: left;
+    left: 0px;
+    bottom: 8px;
+    position: absolute;
     width: 78px;
     height: 20px;
     overflow:hidden;
@@ -377,7 +390,7 @@ footer {
     padding: 5px;
 }
 
-.sidebar-content-line-box > li > .title-wrapper > p {
+.sidebar-content-line-box > li .title-wrapper p {
     font-family:"NotoSansCJKkr_Medium";
     font-size: 13px;
     color: #cccccc;
