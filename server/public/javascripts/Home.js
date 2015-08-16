@@ -46,6 +46,7 @@
             console.log(feeds);
             HttpUtil.putData('/clip/update/id/'+$selectedBoard.val(), {feeds: feeds}, function(err, clip) {
                 if (err) return alert(err);
+                alert("클립되었습니다.");
                 $('#feed_list_panel > li > .clip-icon-circle').removeClass('on');
                 $('#sidebar_clip_list').empty();
             });
