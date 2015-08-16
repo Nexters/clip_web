@@ -12,25 +12,21 @@
         $('#board_add_btn').unbind('click').click(function() {
             var clipTitle = $('#board_title_input').val();
             if (!clipTitle) return alert("클립보드 제목을 입력해주세요!");
-            HttpUtil.postData('/clip/save', {title: clipTitle}, function(err, allClips) {
+            HttpUtil.postData('/clip/save', {title: clipTitle}, function(err, clip) {
                 if (err) return alert(err);
-                var html = '';
-                clips = allClips;
-                for (var i=0; i<allClips.length; i++) {
-                    if (clipTitle === allClips[i].title) {
-                        html += '<option selected>'+allClips[i].title+'</option>';
-                    } else {
-                        html += '<option>'+allClips[i].title+'</option>';
-                    }
-                }
-                $('#board_title_select').empty();
+                var html = '<option value="'+clip._id+'" selected>'+clip.title+'</option>';
                 $('#board_title_select').append(html);
+                $('#board_title_input').val("");
             });
         });
 
         $('#feed_list_panel > li > .clip-icon-circle').unbind('click').click(function() {
             var $feedItem = $(this).parent();
             var feed = { id: $feedItem.data('id') };
+            if ($('#board_title_select option:selected').val() === "0") {
+                return alert("먼저 클립할 클립보드를 선택해주세요!");
+            }
+
             if ($(this).hasClass('on')) {
                 $(this).removeClass('on');
                 $('#sidebar_clip_list').find('li[data-id='+feed.id+']').remove();
@@ -44,7 +40,15 @@
         });
 
         $('#board_clip_btn').unbind('click').click(function() {
-           // TODO: 서버에 클립 리퀘스트 요청
+            var $selectedBoard = $('#board_title_select option:selected');
+            var feeds = makeFeeds();
+            if ($selectedBoard.val() === "0") return alert("클립보드 제목을 입력해주세요!");
+            console.log(feeds);
+            HttpUtil.putData('/clip/update/id/'+$selectedBoard.val(), {feeds: feeds}, function(err, clip) {
+                if (err) return alert(err);
+                $('#feed_list_panel > li > .clip-icon-circle').removeClass('on');
+                $('#sidebar_clip_list').empty();
+            });
         });
     }
 
@@ -58,6 +62,14 @@
             $boardItem.remove();
             $('#feed_list_panel').find('li[data-id='+feedId+']').children('.clip-icon-circle').removeClass('on');
         });
+    }
+
+    function makeFeeds() {
+        var feeds = [];
+        $('#sidebar_clip_list > li').each(function(idx, item) {
+            feeds.push($(item).data('id'));
+        });
+        return feeds;
     }
 
     function getFeedBoxImageSrc(description) {

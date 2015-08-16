@@ -24,39 +24,47 @@ ClipCtrl.getUserClips = function(req, res) {
 
 };
 
-ClipCtrl.saveUserClips = function(req, res) {
+ClipCtrl.saveUserClip = function(req, res) {
     var errors, clipData;
-    var title,feeds,keywords,user;
-
-    console.log("1");
+    var title,feeds,keywords;
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
 
     req.checkBody('title', 'Invalid title').notEmpty();
-    req.checkBody('feeds', 'Invalid feeds').notEmpty();
-    req.checkBody('keywords', 'Invalid keywords').notEmpty();
+    //req.checkBody('feeds', 'Invalid feeds').notEmpty();
+    //req.checkBody('keywords', 'Invalid keywords').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     clipData = {
         user: Session.getSessionId(req),
         title:req.body.title,
-        feeds:req.body.feeds,
-        keywords:req.body.keywords
+        //feeds:req.body.feeds,
+        //keywords:req.body.keywords
     };
-    console.log(clipData.user);
     Clip.getClip({title: clipData.title}, function(err, clip) {
-        if (err) res.status(400).send(Result.ERROR(err));
-        //if (title) res.status(400).send(Result.ERROR("이미 존재하는 clip정보"));
-        //Clip.saveClip(clipData, function(err, doc) {
-            if (clip && clip._id) res.status(400).send(Result.ERROR("이미 존재하는 clip정보"));
-            Clip.saveClip(clipData, function(err, doc) {
-            return res.status(200).send(Result.SUCCESS(doc));
+        if (err) return res.status(400).send(Result.ERROR(err));
+        if (clip && clip._id) return res.status(400).send(Result.ERROR("이미 존재하는 clip 정보"));
+        Clip.saveClip(clipData, function(err, doc) {
+            res.status(200).send(Result.SUCCESS(doc));
         });
     });
+};
 
 
-
-
-}
+ClipCtrl.updateUserClip = function(req, res) {
+    var errors, conditions, updateData;
+    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    console.log(req.body);
+    req.checkParams('id', 'Invalid id').notEmpty();
+    req.checkBody('feeds', 'Invalid feeds').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    conditions = { _id: req.params.id };
+    updateData = { feeds: req.body.feeds };
+    Clip.updateClip(conditions, updateData, function(err, clips) {
+        if (err) return res.status(400).send(Result.ERROR(err));
+        res.status(200).send(Result.SUCCESS(clips));
+    });
+};
 
 
 module.exports = ClipCtrl;

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
+    _ = require('underscore'),
     async = require('async');
 
 /**
@@ -9,7 +10,6 @@ var ClipSchema = new Schema({
     user: { type: String, required: true }, // 유저 ID
     title: { type: String, required: true }, // 클립 제목
     feeds: { type: Array, default: [] }, // 클립에 포함된 피드 리스트
-    keywords: { type: Array, default: [] }, // 클립에 포함된 키워드 리스트
     createDate: { type: Date, required: true } // 등록된 시간
 }, {collection: 'clip'});
 
@@ -35,9 +35,21 @@ ClipSchema.statics.saveClip = function(doc, callback) {
 };
 
 ClipSchema.statics.updateClip = function(conditions, doc, callback) {
+    var self = this;
     if (!conditions || !doc) return;
-
-    this.update(conditions, doc, callback);
+    async.waterfall([
+        function(callback) {
+            self.findOne(conditions, function(err, clip) {
+                callback(err, clip);
+            });
+        },
+        function(clip, callback) {
+            doc.feeds = _.union(clip.feeds, doc.feeds);
+            self.update(conditions, doc, callback);
+        }
+    ], function (err, doc) {
+        callback(err, doc);
+    });
 };
 
 ClipSchema.statics.deleteClip = function(criteria, callback) {

@@ -39,7 +39,6 @@ UserSchema.statics.getUser = function(criteria, callback) {
         function(user, callback) {
             self.model('Clip').find({user: criteria._id}, function(err, clips) {
                 if (err) return callback(err);
-                console.log(clips);
                 user.clips = clips || [];
                 callback(null, user);
             });
