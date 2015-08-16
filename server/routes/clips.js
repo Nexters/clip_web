@@ -7,4 +7,6 @@ router.get('/user/id/:user', clipCtrl.getUserClips);
 /* POST clips */
 router.post('/save', clipCtrl.saveUserClips);
 
+router.post('/delete', clipCtrl.deleteUserClips);
+
 module.exports = router;

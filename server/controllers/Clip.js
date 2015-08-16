@@ -17,7 +17,7 @@ ClipCtrl.getUserClips = function(req, res) {
     req.checkParams('id', 'Invalid id').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
-    criteria ={_id: req.params.id}
+    criteria ={_id: req.params.id};
     Clip.getClips(criteria,function(err,doc){
         res.status(200).send(Result.SUCCESS(doc));
     });
@@ -39,10 +39,7 @@ ClipCtrl.saveUserClips = function(req, res) {
     console.log(errors);
     if (errors) return res.status(400).send(Result.ERROR(errors));
 
-    //console.log(user);
-    console.log(title);
-    console.log(feeds);
-    console.log(keywords);
+
     clipData = {
         user: Session.getSessionId(req),
         title:req.body.title,
@@ -58,8 +55,21 @@ ClipCtrl.saveUserClips = function(req, res) {
         });
     });
 
+}
 
-
+ClipCtrl.deleteUserClips = function(req, res) {
+    var criteria,errors;
+    var user;
+    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    errors = req.validationErrors();
+    console.log(errors);
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    criteria ={
+        user: Session.getSessionId(req)
+    };
+    Clip.deleteClip(criteria,function(err,doc){
+        res.status(200).send(Result.SUCCESS(doc));
+    });
 
 }
 
