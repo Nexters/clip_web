@@ -34,7 +34,6 @@ ClipCtrl.saveUserClip = function(req, res) {
     req.checkBody('keywords', 'Invalid keywords').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
-
     clipData = {
         user: Session.getSessionId(req),
         title:req.body.title,
@@ -66,8 +65,7 @@ ClipCtrl.deleteUserClips = function(req, res) {
     Clip.deleteClip(criteria,function(err,doc){
         res.status(200).send(Result.SUCCESS(doc));
     });
+
 }
-
-
 
 module.exports = ClipCtrl;
