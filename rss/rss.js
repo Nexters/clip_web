@@ -168,7 +168,7 @@ function fetch(userId, feed, keywordArray, lastFeedDate) {
             var pubDate = moment(post.pubDate);
             if (lastDate.isBefore(pubDate)) {
                 logger.debug(post);
-                postArray.push(makeFeedData(userId, keywordArray, post, feed, pubDate));
+                postArray.push(makeFeedData(userId, keywordArray, post, feed, pubDate.toDate()));
             }
         }
         saveFeedData(postArray, function(err) {

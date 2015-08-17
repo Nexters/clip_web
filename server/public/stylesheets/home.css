@@ -234,9 +234,10 @@ footer {
     line-height: 29px;
 }
 
-.keyword-txt-btn.active {
+.keyword-txt-btn.on {
     background: #5064FA;
     text-decoration: none;
+    color: #ffffff;
 }
 
 /*사이드바 영역 관련*/

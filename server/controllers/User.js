@@ -10,11 +10,8 @@ function UserCtrl() {
 }
 
 UserCtrl.getHomePage = function(req, res) {
-    // TODO: 세션으로 달아야함. 주석풀기
-    //if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
-    //var criteria = { _id: Session.getSessionId(req) };
-
-    var criteria = { _id: '55b4a8955c91698d7c449146' };
+    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    var criteria = { _id: Session.getSessionId(req) };
     var data = {};
     User.getUser(criteria, function(err, doc) {
         data.user = doc;
@@ -62,8 +59,8 @@ UserCtrl.saveUser = function(req, res) {
         name: req.body.name
     };
     User.findOne({$or:[{email: userData.email}, {name: userData.name}]}, function(err, user) {
-        if (err) res.status(400).send(Result.ERROR(err));
-        if (user) res.status(400).send(Result.ERROR("이미 존재하는 유저"));
+        if (err) return res.status(400).send(Result.ERROR(err));
+        if (user) return res.status(200).send(Result.ERROR("이미 존재하는 유저입니다."));
         User.saveUser(userData, function(err, doc) {
             return res.status(200).send(Result.SUCCESS(doc));
         });
@@ -72,13 +69,6 @@ UserCtrl.saveUser = function(req, res) {
 };
 
 UserCtrl.loginUser = function(req, res) {
-    // POST
-    // email, pw
-    //
-    // email로 criteria 만들어서 해당 email을 가진 유저 존재하는지 확인하고
-    // 존재안하면 fail 리턴. 존재하면 pw가 넘겨받은 pw랑 같은지 확인해서 같으면 success, 다르면 fail
-    // TODO: 과제1 로그인 여기에 구현해야 함
-
     var errors, criteria;
     req.checkBody('email', 'Invalid email').notEmpty();
     req.checkBody('pw', 'Invalid pass word').notEmpty();

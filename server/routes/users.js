@@ -11,13 +11,13 @@ router.get('/id/:id', userCtrl.getUser);
 /* POST save user */
 router.post('/save', userCtrl.saveUser);
 
-/* POST login user */
-router.post('/login', userCtrl.loginUser);
-
 /* PUT update user */
 router.put('/id/:id', userCtrl.updateUser);
 
-/* POST logOut user */
+/* POST login user */
+router.post('/login', userCtrl.loginUser);
+
+/* POST logout user */
 router.post('/logout', userCtrl.logoutUser);
 
 module.exports = router;

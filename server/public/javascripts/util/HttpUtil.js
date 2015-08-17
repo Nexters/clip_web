@@ -32,9 +32,9 @@ HttpUtil.postData = function(url, params, callback) {
         },
         success: function successHandler(data, status, xhr) {
             if (data.resultCode === 0) {
-                callback(null, data.data)
+                callback(null, data.data);
             } else {
-                callback("Error", null);
+                callback("Error", data.errors);
             }
         }
     });
