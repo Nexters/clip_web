@@ -1,5 +1,6 @@
 (function () {
     var ITEM_PER_PAGE = 10;
+    var keyword = 'All';
     var pageNum = 0;
     var isCompleteLoading = false;
 
@@ -49,6 +50,14 @@
                 $('#feed_list_panel > li > .clip-icon-circle').removeClass('on');
                 $('#sidebar_clip_list').empty();
             });
+        });
+
+        $('.keyword-txt-box > span').unbind('click').click(function() {
+            $('.keyword-txt-box > span').removeClass('on');
+            $(this).addClass('on');
+            keyword = $(this).text();
+            console.log(keyword);
+            initWookmark();
         });
     }
 
@@ -121,9 +130,8 @@
     }
 
     function initWookmark() {
-        var handler = null,
-            isLoading = false,
-            apiURL = 'http://www.wookmark.com/api/json/popular',
+        console.log("INIT");
+        var isLoading = false,
             container = '#feed_list_panel',
             $loaderCircle = $('#loaderCircle'),
             wookmark = undefined,
@@ -164,11 +172,15 @@
          * Loads data from the API.
          */
         function loadData() {
+            console.log("loadData");
             if (isCompleteLoading) return;
             var params = {
                 pageNum: pageNum,
                 perPage: ITEM_PER_PAGE
             };
+            if (keyword !== 'All') {
+                params.keyword = keyword;
+            }
             isLoading = true;
             $loaderCircle.show();
 
@@ -208,7 +220,11 @@
         }
 
         // Capture scroll event.
-        $(document).bind('scroll', onScroll);
+        $(document).unbind('scroll').bind('scroll', onScroll);
+        // Clear Data
+        pageNum = 0;
+        isCompleteLoading = false;
+        $(container).empty();
         // Load first data from the API.
         loadData();
     }

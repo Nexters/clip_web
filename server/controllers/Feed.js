@@ -19,7 +19,7 @@ FeedCtrl.getMyFeeds = function(req, res) {
     if (errors) return res.status(400).send(Result.ERROR(errors));
     var criteria = { user: Session.getSessionId(req) };
     if (req.query.keyword) {
-        criteria.keyword = req.query.keyword;
+        criteria.keywords = req.query.keyword;
     }
     options = {
         skip: parseInt(req.query.pageNum) * parseInt(req.query.perPage),
