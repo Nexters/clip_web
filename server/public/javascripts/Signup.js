@@ -1,4 +1,6 @@
-(function login() {
+(function () {
+    'use strict';
+
     function init() {
         $("#signup_btn").click(function(){
             var minLength = 6;

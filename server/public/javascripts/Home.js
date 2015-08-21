@@ -1,4 +1,6 @@
 (function () {
+    'use strict';
+
     var ITEM_PER_PAGE = 10;
     var keyword = 'All';
     var pageNum = 0;

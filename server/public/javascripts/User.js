@@ -1,10 +1,21 @@
-$('.sidebar-setting-icon').click(function() {
-    $('#setting_modal').modal('show');
-});
+(function () {
+    'use strict';
 
+    function init() {
+        $('.sidebar-setting-icon').click(function() {
+            $('#setting_modal').modal('show');
+            initModal();
+        });
+    }
 
-new Taggle('keyword-box', {
-    placeholder: '태그 입력',
-    duplicateTagClass: 'bounce'
-    //tags: ['These', 'are', 'prefilled', 'tags']
-});
+    function initModal() {
+        new Taggle('keyword-box', {
+            placeholder: '태그 입력',
+            duplicateTagClass: 'bounce'
+        });
+    }
+
+    $(document).ready(function() {
+        init();
+    });
+}());

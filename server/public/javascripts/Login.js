@@ -1,4 +1,6 @@
 (function () {
+    'use strict';
+
     function login() {
         var email = $('#input_email').val();
         var passwd = $('#pw').val();
