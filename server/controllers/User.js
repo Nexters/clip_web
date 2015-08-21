@@ -91,11 +91,6 @@ UserCtrl.loginUser = function(req, res) {
 };
 
 UserCtrl.updateUser = function(req, res) {
-    // PUT
-    // id <- params, 업데이트 되는 필드 데이터 <- req.body
-    // 업데이트 가능한 필드: feeds, keywords, name, profileUrl, pw
-    // TODO: 과제2 유저 정보 업데이트하는 부분 여기에 구현해야 함
-
     var errors, conditions, update = {};
     req.checkParams('id', 'Invalid id').notEmpty();
     errors = req.validationErrors();
@@ -122,9 +117,7 @@ UserCtrl.updateUser = function(req, res) {
 };
 
 UserCtrl.logoutUser = function(req, res) {
-    console.log(req.session);
     Session.removeSession(req);
-    console.log(req.session);
     res.status(200).send(Result.SUCCESS('success'));
 };
 
