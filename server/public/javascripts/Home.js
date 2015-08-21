@@ -74,11 +74,11 @@
             isLoading = false;
             // Increment pageNum index for future calls.
             pageNum++;
-            var length = feedData.length;
+            var length = feedData && feedData.length;
             var html = '';
             var i;
 
-            if (length === 0) {
+            if (!length) {
                 isCompleteLoading = true;
                 $loaderCircle.hide();
                 return;

@@ -544,10 +544,10 @@ ul#feed_list_panel > li {
     margin-left: 123px;
     margin-bottom: 30px;
     margin-top: 8px;
-    padding: 11px 11px 11px 11px;
     width: 473px;
     height: 83px;
-    border: 0.05px solid color : #CCCCCC;
+    border: 1px solid #CCCCCC;
+    background-color: #ffffff;
     text-decoration: none;
     border-radius: 5px;
 }
@@ -689,6 +689,21 @@ ul#feed_list_panel > li {
 
 }
 
+.taggle_placeholder {
+    position: relative !important;
+}
+
+.taggle_list {
+    margin-top: -15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 0px !important;
+    max-height: 72px !important;
+    overflow-y: auto;
+}
+.taggle_input {
+    width: 100% !important;
+}
 
 
 
