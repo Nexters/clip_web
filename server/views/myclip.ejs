@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="">    <script>
+        var g_data = {
+            user : <%- JSON.stringify(user) %>
+        }
+    </script>
+
     <title>Clip - Home</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -22,6 +27,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 
 <body>
 <nav class="navbar navbar-fixed-top">
@@ -140,7 +146,7 @@
                     <br>
                     <div id="keyword-box">
                     </div>
-                    <a class="go_home" href="/myclip">
+                    <a class="go_home" href="javascript: void(0);">
                         <button id="modal_key_btn" type="button" class="modal-start-btn">등록하기</button>
                     </a>
 
