@@ -25,16 +25,25 @@ UserCtrl.getUserPage = function(req, res) {
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
     var criteria = { _id: Session.getSessionId(req) };
     var data = {};
-    logger.debug(criteria);
-    User.getUser(criteria, function(err, doc) {
-        data.user = doc;
-        criteria={ user: Session.getSessionId(req)};
-        Clip.getClips(criteria, {}, {}, function(err,docs){
-            data.clips = docs;
-            res.render('myclip', data);
-        });
+    if(!req || !res) return;
+    async.waterfall([
+        function(callback) {
+            User.getUser(criteria, function(err,doc) {
+                data.user = doc;
+                callback(err);
+            });
+        },
+        function(callback) {
+            criteria={ user: Session.getSessionId(req)};
+            Clip.getClips(criteria, {}, {}, function(err, doc){
+                data.clips = doc;
+                callback(err);
+            });
+        }
+    ], function (err) {
+        if (err) return res.status(400).send(Result.ERROR(err));
+        res.render('myclip', data);
     });
-
 };
 
 UserCtrl.getAllUsers = function(req, res) {
@@ -72,14 +81,25 @@ UserCtrl.saveUser = function(req, res) {
         pw: req.body.pw,
         name: req.body.name
     };
-    User.findOne({$or:[{email: userData.email}, {name: userData.name}]}, function(err, user) {
+    if(!req || !res) return;
+    async.waterfall([
+        function(callback){
+            User.findOne({$or:[{email: userData.email}, {name: userData.name}]}, function(err, user) {
+                if (err) return res.status(400).send(Result.ERROR(err));
+                if (user) return res.status(200).send(Result.ERROR("이미 존재하는 유저입니다."));
+                callback(err);
+            });
+        },
+        function(callback) {
+            User.saveUser(userData, function(err, doc) {
+                callback(err);
+                return res.status(200).send(Result.SUCCESS(doc));
+            });
+        }
+    ],
+    function(err) {
         if (err) return res.status(400).send(Result.ERROR(err));
-        if (user) return res.status(200).send(Result.ERROR("이미 존재하는 유저입니다."));
-        User.saveUser(userData, function(err, doc) {
-            return res.status(200).send(Result.SUCCESS(doc));
-        });
     });
-
 };
 
 UserCtrl.loginUser = function(req, res) {
