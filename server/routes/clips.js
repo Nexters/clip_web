@@ -13,4 +13,6 @@ router.post('/save', clipCtrl.saveUserClip);
 
 router.post('/delete', clipCtrl.deleteUserClips);
 
+router.post('/deleteall', clipCtrl.deleteUserClipsAll);
+
 module.exports = router;
