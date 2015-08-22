@@ -21,7 +21,13 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        var g_data = {
+            user : <%- JSON.stringify(user) %>
+        }
+    </script>
 </head>
+
 
 <body>
 <nav class="navbar navbar-fixed-top">
@@ -44,34 +50,31 @@
 <div class="fixed-keyword-bar">
     <div class="keyword-bar-keywords col-xs-12 col-sm-12">
         <div class="myclip-bar-title-box">My Clipboard</div>
-        <img src="/images/myboard_arrow_icon.png">
-        <span class="myclip_title"><%= clips[0].title %></span>
+        <img src="/images/myboard_arrow_icon.png"/>
+        <span ><input type="text" class="myclip_title"/></span>
         <qoqo class="float-right">
-            <span class="keyword-txt-btn">보드관리</span></qoqo>
+            <span id="board-setting-btn">보드관리</span>
+        </qoqo>
+
     </div>
 
 </div>
 
 <!--보드 이미지 보드 부분 -->
 <div class="boards">
-
+    <% for(var i=0; i<clips.length; i++) { %>
     <div class="board">
-        <a href="#">
-            <div class="icon"><img src="/images/clip_icon.png"></div>
-        </a>
         <div class="board_image">
-
-
-        <div class="card_image"></div>
-
-        <!--<span><img src="/images/clip_icon.png"></span>-->
-        <span class="comment"><%= clips[0].title %></span>
-        <span class="board-num">32</span>
-
-
-
+            <img class="icon" src="/images/clip_icon.png" z-index="3">
+            <img class="board_delete_btn" src="/images/profile_setting_icon.png" z-index="2">
+            <img class="board_image_size" src="<%= clips[i].boardImageUrl %>" z-index="1">
+        </div>
+        <div class="board_title">
+        <span class="comment"><%= clips[i].title %></span>
+        <span class="board-num"><%= clips[i].feedCount %></span>
+        </div>
     </div>
-
+    <% } %>
 </div>
 
 <div class="right-sidebar">
@@ -87,18 +90,24 @@
     </div>
     <div class="sidebar-second-box">
         <div class="keyword-title">키워드 목록</div>
-        <!-- 키워드 관리 부분  -->
+        <!-- 키워드 목록  -->
         <div class="keyword-txt-box">
             <% for (var i=0; i<user.keywords.length; i++) { %>
             <% if (i !== user.keywords.length-1) { %>
                 <% user.keywords[i] += ','; %>
             <% } %>
+            <span class="keyword-txt"><%= user.keywords[i] %></span>
             <% } %>
         </div>
-
     </div>
     <div class="sidebar-third-box">
         <div class="keyword-title">웹 사이트 목록</div>
+        <!-- 사이트 목록  -->
+        <div class="keyword-txt-box">
+            <% for (var i=0; i<user.feeds.length; i++) { %>
+            <p class="keyword-txt"><%= user.feeds[i] %></p>
+            <% } %>
+        </div>
     </div>
     <div id="keyword_setting_btn" class="board_clip_btn_bg">
         <div class="board_clip_btn">키워드 관리</div>
@@ -137,7 +146,7 @@
                     <br>
                     <div id="keyword-box">
                     </div>
-                    <a class="go_home" href="/myclip">
+                    <a class="go_home" href="javascript: void(0);">
                         <button id="modal_key_btn" type="button" class="modal-start-btn">등록하기</button>
                     </a>
 

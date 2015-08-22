@@ -48,10 +48,14 @@ ClipCtrl.updateUserClip = function(req, res) {
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
     req.checkParams('id', 'Invalid id').notEmpty();
     req.checkBody('feeds', 'Invalid feeds').notEmpty();
+    req.checkBody('boardImageUrl', 'Invalid boardImageUrl').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     conditions = { _id: req.params.id };
-    updateData = { feeds: req.body.feeds };
+    updateData = {
+        feeds: req.body.feeds,
+        boardImageUrl: req.body.boardImageUrl
+    };
     Clip.updateClip(conditions, updateData, function(err, clips) {
         if (err) return res.status(400).send(Result.ERROR(err));
         res.status(200).send(Result.SUCCESS(clips));
