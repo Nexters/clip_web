@@ -40,3 +40,10 @@
     font-style: normal;
     font-weight: normal;
 }
+
+@font-face {
+    font-family:"Roboto-Thin";
+    src: url('/font/Roboto-Thin.ttf')format("truetype");
+    font-style: normal;
+    font-weight: bold;
+}

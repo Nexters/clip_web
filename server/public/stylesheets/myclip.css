@@ -494,6 +494,27 @@ ul#feed_list_panel > li {
     margin-left: 123px;
     margin-bottom: 8px;
 }
+.site_list{
+    font-family: "Roboto-Thin";
+    font-weight: bold;
+    font-size: 12px;
+    color: RGB(122,122,122);
+    margin-left: 123px;
+    background-color: white;
+    list-style: none;
+    border: 1px solid #CCCCCC;
+    -webkit-border-radius: 5px;
+    /*border-radius: 5px;*/
+    -webkit-appearance: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    box-shadow: none;
+    width: 473px;
+    min-height: 97px;
+    padding: 11px 11px 11px 11px;
+    margin-bottom: 24px;
+}
 
 .modal-middle {
     height: 423px;
@@ -502,9 +523,11 @@ ul#feed_list_panel > li {
 }
 
 .modal-header {
-    width: 749px;
+    width: 746px;
     height: 122px;
     background-color: #FFFFFF;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 }
 
 .modal-content {
@@ -513,50 +536,56 @@ ul#feed_list_panel > li {
     background-color: #F6F6F6;
 }
 
+.site-delete-btn {
+    width: 7px;
+    height: 7px;
+    margin-left: 42px;
+}
 #modal_input_site {
+    font-family: "Roboto-Thin";
+    font-weight: bold;
+    font-size: 12px;
+    color: RGB(122,122,122);
     margin-left: 123px;
     margin-bottom: 8px;
     height: 32px;
     width: 392px;
     padding: 11px 10px 11px 10px;
-    border: 0.05px solid color : #CCCCCC;
-
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 
 #modal_input_site:focus {
     outline: none;
 }
 
-#modal_input_sitebox {
-    margin-left: 123px;
-    margin-bottom: 24px;
-    padding: 11px 11px 11px 11px;
-    width: 473px;
-    height: 97px;
-    border: 0.05px solid color : #CCCCCC;
-}
 
-#modal_input_sitebox {
-    outline: none;
-}
-
-#keyword-box {
+.keyword_list{
+    font-size: 12px;
+    color: RGB(112,112,112);
     margin-left: 123px;
-    margin-bottom: 30px;
-    margin-top: 8px;
-    padding: 11px 11px 11px 11px;
-    width: 473px;
-    height: 83px;
-    border: 0.05px solid color : #CCCCCC;
-    text-decoration: none;
+    background-color: white;
+    list-style: none;
+    border: 1px solid #CCCCCC;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
     border-radius: 5px;
+    width: 473px;
+    min-height: 83px;
+    padding: 11px 11px 11px 11px;
+    margin-top: 8px;
+    margin-bottom: 21px;
 }
 
 #modal_key_btn {
     font-family: "NotoSansCJKkr_Regular";
     font-size: 17px;
     font-weight: bold;
-    padding: 15px 79px 15px 79px;
+    padding: 14px 79px 15px 79px;
     margin-left: 264.5px;
     color: RGB(80, 100, 250);
     background-color: transparent;
@@ -567,6 +596,9 @@ ul#feed_list_panel > li {
     border-radius: 30px;
 }
 
+#modal_key_btn:focus{
+    outline: none;
+}
 #modal_add_btn {
     font-family: "NotoSansCJKkr_Regular";
     font-size: 15px;
@@ -577,8 +609,24 @@ ul#feed_list_panel > li {
     width: 64px;
     height: 31px;
     margin-left: 13px;
+    margin-bottom: 9px;
+    padding-top: 4px;
+    padding-bottom: 1px;
 }
 
+
+#modal_add_btn:focus {
+    outline: none;
+}
+
+.site-delete-btn {
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
+}
+.site-delete-btn:focus{
+    outline: none;
+}
 /* entire container, keeps perspective */
 
 /* flip the pane when hovered */

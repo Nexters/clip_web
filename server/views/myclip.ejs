@@ -31,9 +31,9 @@
         <!-- /.navbar-header -->
 
         <div class="navbar-profile">
-            <div class="home-icon-box">
+            <a class="home-icon-box" href="/home">
                 <img src="/images/home_icon.png">
-            </div>
+            </a>
             <div class="home-profile-box">
                 <img class="user-profile-img" src="/images/empty_user_icon.png">
 
@@ -110,8 +110,6 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
                 <!--<h4 id="login_modal_title" class="modal_title">키워드 등록</h4>-->
                 <h4 id="login_modal_title" class="modal_title">키워드 등록</h4>
                 <h5 id="modal_sub_title" class="modal_subtitle">클립하고 싶은 키워드 또는 사이트를 등록해주세요.</h5>
@@ -121,17 +119,29 @@
                 <div>
                     <h6 class="site">사이트 등록</h6>
 
-                    <input id="modal_input_site" type="text" placeholder="www.naver.com"/>
-                    <button id="modal_add_btn" type="button" class="add-btn">+ 추가</button>
+                    <input id="modal_input_site" type="text" />
+                    <button id="modal_add_btn" type="button" class="add-btn">+ 추가</button><br>
+
                 </div>
                 <div>
-                    <input id="modal_input_sitebox" type="textbox" placeholder="입력한내용"/>
+                    <!--<input id="modal_input_sitebox" type="textbox" placeholder="입력한내용"/>-->
+                    <ul class="site_list">
+
+                    </ul>
                 </div>
                 <div class="login-password-container">
                     <h7 class="keyword-enroll">키워드 등록</h7>
                     <br>
-                    <input id="keyword-box" type="keybox"/><br>
-                    <button id="modal_key_btn" type="button" class="modal-start-btn">시작하기</button>
+                    <!--<input id="keyword_list" type="key_list"/><br>-->
+                    <div>
+                        <ul class="keyword_list">
+
+                        </ul>
+                    </div>
+                    <a class="go_home" href="/myclip">
+                        <button id="modal_key_btn" type="button" class="modal-start-btn">등록하기</button>
+                    </a>
+
                 </div>
             </div>
         </div>
