@@ -112,16 +112,26 @@
         initWookmark();
     }
 
+    function saveClipBoard() {
+        var clipTitle = $('#board_title_input').val();
+        if (!clipTitle) return alert("클립보드 제목을 입력해주세요!");
+        HttpUtil.postData('/clip/save', {title: clipTitle}, function(err, clip) {
+            if (err) return alert(err);
+            var html = '<option value="'+clip._id+'" selected>'+clip.title+'</option>';
+            $('#board_title_select').append(html);
+            $('#board_title_input').val("");
+        });
+    }
+
     function bindEvent() {
         $('#board_add_btn').unbind('click').click(function() {
-            var clipTitle = $('#board_title_input').val();
-            if (!clipTitle) return alert("클립보드 제목을 입력해주세요!");
-            HttpUtil.postData('/clip/save', {title: clipTitle}, function(err, clip) {
-                if (err) return alert(err);
-                var html = '<option value="'+clip._id+'" selected>'+clip.title+'</option>';
-                $('#board_title_select').append(html);
-                $('#board_title_input').val("");
-            });
+            saveClipBoard();
+        });
+
+        $('#board_title_input').unbind('keypress').keypress(function(e) {
+            if (e.which === 13) {
+                saveClipBoard();
+            }
         });
 
         $('#feed_list_panel > li > .clip-icon-circle').unbind('click').click(function() {
@@ -146,9 +156,11 @@
         $('#board_clip_btn').unbind('click').click(function() {
             var $selectedBoard = $('#board_title_select option:selected');
             var feeds = makeFeeds();
+            var boardImageUrl = makeBoardImg();
             if ($selectedBoard.val() === "0") return alert("클립보드 제목을 입력해주세요!");
             console.log(feeds);
-            HttpUtil.putData('/clip/update/id/'+$selectedBoard.val(), {feeds: feeds}, function(err, clip) {
+            console.log(boardImageUrl);
+            HttpUtil.putData('/clip/update/id/'+$selectedBoard.val(), {feeds: feeds, boardImageUrl: boardImageUrl}, function(err, clip) {
                 if (err) return alert(err);
                 alert("클립되었습니다.");
                 $('#feed_list_panel > li > .clip-icon-circle').removeClass('on');
@@ -183,6 +195,15 @@
             feeds.push($(item).data('id'));
         });
         return feeds;
+    }
+
+    function makeBoardImg() {
+        var feedImgArray = [];
+        $('#sidebar_clip_list > li img.card-image').each(function(idx, item) {
+            feedImgArray.push($(item).attr('src'));
+        });
+
+        return _.sample(feedImgArray);
     }
 
     function getFeedBoxImageSrc(description) {

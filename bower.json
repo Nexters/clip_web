@@ -21,6 +21,7 @@
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.5",
     "wookmark": "~2.0.1",
-    "taggle.js": "~1.5.1"
+    "taggle.js": "~1.5.1",
+    "underscore": "~1.8.3"
   }
 }
