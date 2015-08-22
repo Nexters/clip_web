@@ -1,3 +1,4 @@
+
 (function () {
     'use strict';
 
@@ -18,9 +19,29 @@
             HttpUtil.postData('/feed/check', {feed: $('#modal_input_site').val()}, function(err, result) {
                 if (err) return alert('등록할 수 없는 사이트입니다.(RSS를 지원하는 사이트만 추가 가능합니다.)');
                 alert("추가되었습니다.");
-                $('#modal_input_sitebox').append('<p>'+result+'</p>');
+                var button = $('<img/>', {
+                    src: 'images/card_delete_icon.png',
+                    class: 'site-delete-btn',
+                    click: function() {
+                        $(this).parent().remove();
+                    }
+                });
+                var siteUrl = $('#modal_input_site').val();
+                $('.site_list').append('<li>' + siteUrl + '</li>').children().last().append(button);
+                $('#modal_input_site').val('');
+
             });
         });
+
+
+
+
+
+        $('.site-delete-btn').click(function(){
+            console.log('click');
+            console.log($(this).parent);
+        });
+
     }
 
     $(document).ready(function() {
