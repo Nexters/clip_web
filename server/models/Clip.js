@@ -56,7 +56,8 @@ ClipSchema.statics.updateClip = function(conditions, doc, callback) {
 ClipSchema.statics.deleteClip = function(criteria, callback) {
     if (!criteria) return;
 
-    this.remove(criteria, callback);
+    //this.remove(criteria, callback);
+    this.update(criteria, callback);
 };
 
 
