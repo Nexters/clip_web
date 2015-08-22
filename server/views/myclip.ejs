@@ -86,6 +86,9 @@
         <div class="keyword-title">키워드 목록</div>
         <div>
             <% for (var i=0; i<user.keywords.length; i++) { %>
+            <% if (i !== user.keywords.length-1) { %>
+            <% user.keywords[i] += ','; %>
+            <% } %>
             <span class="keyword-txt"><%= user.keywords[i] %></span>
             <% } %>
         </div>
