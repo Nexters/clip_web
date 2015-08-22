@@ -1,9 +1,114 @@
 (function () {
-    var ITEM_PER_PAGE = 10;
+    'use strict';
+
+    var ITEM_PER_PAGE = 20;
+    var keyword = 'All';
     var pageNum = 0;
     var isCompleteLoading = false;
+    var isLoading = false;
+    var container = '#feed_list_panel';
+    var $loaderCircle = $('#loaderCircle');
+    var wookmark = undefined;
+    var options = {
+        offset: 12, // Optional, the distance between grid items
+        itemWidth: 251 // Optional, the width of a grid item
+    };
 
     function init() {
+        initWookmark();
+    }
+
+    function initWookmark() {
+        /**
+         * When scrolled all the way to the bottom, add more tiles.
+         */
+        function onScroll(event) {
+            // Only check when we're not still waiting for data.
+            if(!isLoading) {
+                // Check if we're within 100 pixels of the bottom edge of the broser window.
+                var closeToBottom = ($(window).scrollTop() + $(window).height() > $(document).height() - 100);
+                if (closeToBottom) {
+                    loadData();
+                }
+            }
+        }
+        /**
+         * Refreshes the layout after all images have loaded
+         */
+        function applyLayout() {
+            imagesLoaded(container, function () {
+                if (wookmark === undefined) {
+                    wookmark = new Wookmark(container, options);
+                } else {
+                    wookmark.initItems();
+                    wookmark.layout(true);
+                }
+                $loaderCircle.hide();
+            });
+
+        }
+
+        /**
+         * Loads data from the API.
+         */
+        function loadData() {
+            if (isCompleteLoading) return;
+            var params = {
+                pageNum: pageNum,
+                perPage: ITEM_PER_PAGE
+            };
+            if (keyword !== 'All') {
+                params.keyword = keyword;
+            }
+            isLoading = true;
+            $loaderCircle.show();
+
+            HttpUtil.getData('/feed/user', params, function(err, data) {
+                onLoadData(data);
+                bindEvent();
+            });
+        }
+
+        /**
+         * Receives data from the API, creates HTML for images and updates the layout
+         */
+        function onLoadData(feedData) {
+            isLoading = false;
+            // Increment pageNum index for future calls.
+            pageNum++;
+            var length = feedData && feedData.length;
+            var html = '';
+            var i;
+
+            if (!length) {
+                isCompleteLoading = true;
+                $loaderCircle.hide();
+                return;
+            }
+
+            // Create HTML for the images.
+            for(i=0; i<length; i++) {
+                feedData[i].image = getFeedBoxImageSrc(feedData[i].description);
+                html += getFeedBoxHtml(feedData[i]);
+            }
+
+            // Add image HTML to the pageNum.
+            $(container).append(html);
+            // Apply layout.
+            applyLayout();
+        }
+
+        // Capture scroll event.
+        $(document).unbind('scroll').bind('scroll', onScroll);
+        // Load first data from the API.
+        loadData();
+    }
+
+    function resetWookmark() {
+        pageNum = 0;
+        isCompleteLoading = false;
+        isLoading = false;
+        $(container).empty();
         initWookmark();
     }
 
@@ -50,6 +155,14 @@
                 $('#sidebar_clip_list').empty();
             });
         });
+
+        $('.keyword-txt-box > span').unbind('click').click(function() {
+            $('.keyword-txt-box > span').removeClass('on');
+            $(this).addClass('on');
+            keyword = $(this).text();
+            console.log("keyword:", keyword);
+            resetWookmark();
+        });
     }
 
     /**
@@ -85,7 +198,7 @@
                     '<img src="/images/clip_btn.png" align="center">'+
                 '</span>'+
                 '<div class="img-box">'+
-                    '<img class="title-img" src="'+feed.image+'" align="middle">'+
+                    '<img class="title-img" src="'+feed.image+'" align="middle" onError="this.src='+"\'/images/card_no_image.png\'"+'">'+
                 '</div>'+
                 '<div class="title-box">'+
                     '<p class="title-txt">'+feed.title+'</p>'+
@@ -111,7 +224,7 @@
             '<li data-id="'+feed.id+'">'+
                 '<div class="img-wrapper">'+
                     '<img class="card-delete-btn" src="/images/card_delete_icon.png">'+
-                    '<img class="card-image" src="'+feed.src+'">'+
+                    '<img class="card-image" src="'+feed.src+'" onError="this.src='+"\'/images/card_no_image.png\'"+'">'+
                     '<span class="title-wrapper">'+
                         '<p>'+feed.title+'</p>'+
                     '</span>'+
@@ -119,100 +232,6 @@
             '</li>';
         return html;
     }
-
-    function initWookmark() {
-        var handler = null,
-            isLoading = false,
-            apiURL = 'http://www.wookmark.com/api/json/popular',
-            container = '#feed_list_panel',
-            $loaderCircle = $('#loaderCircle'),
-            wookmark = undefined,
-            options = {
-                offset: 12, // Optional, the distance between grid items
-                itemWidth: 251 // Optional, the width of a grid item
-            };
-        /**
-         * When scrolled all the way to the bottom, add more tiles.
-         */
-        function onScroll(event) {
-            // Only check when we're not still waiting for data.
-            if(!isLoading) {
-                // Check if we're within 100 pixels of the bottom edge of the broser window.
-                var closeToBottom = ($(window).scrollTop() + $(window).height() > $(document).height() - 100);
-                if (closeToBottom) {
-                    loadData();
-                }
-            }
-        }
-        /**
-         * Refreshes the layout after all images have loaded
-         */
-        function applyLayout() {
-            imagesLoaded(container, function () {
-                if (wookmark === undefined) {
-                    wookmark = new Wookmark(container, options);
-                } else {
-                    wookmark.initItems();
-                    wookmark.layout(true);
-                }
-                $loaderCircle.hide();
-            });
-
-        }
-
-        /**
-         * Loads data from the API.
-         */
-        function loadData() {
-            if (isCompleteLoading) return;
-            var params = {
-                pageNum: pageNum,
-                perPage: ITEM_PER_PAGE
-            };
-            isLoading = true;
-            $loaderCircle.show();
-
-            HttpUtil.getData('/feed/user', params, function(err, data) {
-                onLoadData(data);
-                bindEvent();
-            });
-        }
-
-        /**
-         * Receives data from the API, creates HTML for images and updates the layout
-         */
-        function onLoadData(feedData) {
-            isLoading = false;
-            // Increment pageNum index for future calls.
-            pageNum++;
-            var length = feedData.length;
-            var html = '';
-            var i;
-
-            if (length === 0) {
-                isCompleteLoading = true;
-                $loaderCircle.hide();
-                return;
-            }
-
-            // Create HTML for the images.
-            for(i=0; i<length; i++) {
-                feedData[i].image = getFeedBoxImageSrc(feedData[i].description);
-                html += getFeedBoxHtml(feedData[i]);
-            }
-
-            // Add image HTML to the pageNum.
-            $(container).append(html);
-            // Apply layout.
-            applyLayout();
-        }
-
-        // Capture scroll event.
-        $(document).bind('scroll', onScroll);
-        // Load first data from the API.
-        loadData();
-    }
-
 
     $(document).ready(function() {
         init();

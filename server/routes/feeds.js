@@ -5,7 +5,8 @@ var feedCtrl = require('../controllers/Feed');
 /* GET feeds */
 router.get('/user', feedCtrl.getMyFeeds);
 
-/* GET feeds */
-router.get('/user/id/:user', feedCtrl.getUserFeeds);
+/* POST check feed */
+router.post('/check', feedCtrl.checkFeed);
+
 
 module.exports = router;

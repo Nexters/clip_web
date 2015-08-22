@@ -25,20 +25,15 @@ ClipCtrl.getUserClips = function(req, res) {
 };
 
 ClipCtrl.saveUserClip = function(req, res) {
-    var errors, clipData;
-    var title,feeds,keywords,user;
+    var errors, clipData, title;
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
 
     req.checkBody('title', 'Invalid title').notEmpty();
-    req.checkBody('feeds', 'Invalid feeds').notEmpty();
-    req.checkBody('keywords', 'Invalid keywords').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     clipData = {
         user: Session.getSessionId(req),
-        title:req.body.title,
-        feeds:req.body.feeds,
-        keywords:req.body.keywords
+        title:req.body.title
     };
     Clip.getClip({title: clipData.title}, function(err, clip) {
         if (err) return res.status(400).send(Result.ERROR(err));
@@ -49,8 +44,20 @@ ClipCtrl.saveUserClip = function(req, res) {
     });
 };
 
-
-
+ClipCtrl.updateUserClip = function(req, res) {
+    var errors, conditions, updateData;
+    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    req.checkParams('id', 'Invalid id').notEmpty();
+    req.checkBody('feeds', 'Invalid feeds').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    conditions = { _id: req.params.id };
+    updateData = { feeds: req.body.feeds };
+    Clip.updateClip(conditions, updateData, function(err, clips) {
+        if (err) return res.status(400).send(Result.ERROR(err));
+        res.status(200).send(Result.SUCCESS(clips));
+    });
+};
 
 ClipCtrl.deleteUserClips = function(req, res) {
     var criteria,errors;

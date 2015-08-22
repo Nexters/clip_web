@@ -411,6 +411,7 @@ ul#feed_list_panel > li {
 }
 
 .board_clip_btn_bg {
+    cursor: pointer;
     background-color: #eaeaea;
     height: 100%;
     padding: 11px 2px 2px 2px;
@@ -564,6 +565,17 @@ ul#feed_list_panel > li {
     outline: none;
 }
 
+#modal_input_sitebox {
+    margin-left: 123px;
+    margin-bottom: 24px;
+    padding: 11px 11px 11px 11px;
+    width: 473px;
+    height: 97px;
+    border: 1px solid #CCCCCC;
+    background-color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+}
 
 .keyword_list{
     font-size: 12px;
@@ -574,6 +586,13 @@ ul#feed_list_panel > li {
     border: 1px solid #CCCCCC;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
+    margin-bottom: 30px;
+    margin-top: 8px;
+    width: 473px;
+    height: 83px;
+    border: 1px solid #CCCCCC;
+    background-color: #ffffff;
+    text-decoration: none;
     border-radius: 5px;
     width: 473px;
     min-height: 83px;
@@ -738,6 +757,21 @@ ul#feed_list_panel > li {
 
 }
 
+.taggle_placeholder {
+    position: relative !important;
+}
+
+.taggle_list {
+    margin-top: -15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 0px !important;
+    max-height: 72px !important;
+    overflow-y: auto;
+}
+.taggle_input {
+    width: 100% !important;
+}
 
 
 

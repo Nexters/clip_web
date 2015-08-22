@@ -1,4 +1,6 @@
-(function main() {
+(function () {
+    'use strict';
+
     function init() {
         HttpUtil.getData("/data/test",{aa:"aa"},function(err, data) {
            console.log(data);

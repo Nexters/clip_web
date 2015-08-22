@@ -23,7 +23,7 @@ var UserSchema = new Schema({
 UserSchema.index({ name: 1 }, { unique: true });
 
 
-/**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+/**
  * Model Methods
  */
 
