@@ -22,8 +22,27 @@ $('#modal_add_btn').click(function(){
     $('.site_list').append('<li>' + siteUrl + '</li>').children().last().append(button);
     $('#modal_input_site').val('');
 });
-/*
- * 사이트 삭제 */
+
+
+
+function show() {
+
+    $('#board_delete_btn').display = "show";
+
+}
+
+function hide() {
+
+    $('#board_delete_btn').display = "hide";
+
+}
+
+$('#board_setting_btn').click(function() {
+    $('#board_delete_btn').show();
+});
+
+    /*
+     * 사이트 삭제 */
 
 $('.site-delete-btn').click(function(){
     console.log('click');
