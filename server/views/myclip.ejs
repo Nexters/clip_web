@@ -54,18 +54,20 @@
 
 <!--보드 이미지 보드 부분 -->
 <div class="boards">
-
+    <% for(var i=0; i<clips.length; i++) { %>
     <div class="board">
         <a href="#">
             <div class="icon"><img src="/images/clip_icon.png"></div>
         </a>
-        <div class="board_image"><img id="board_delete_btn" src="/images/profile_setting_icon.png">
-        <div class="card_image"></div>
-        <!--<span><img src="/images/clip_icon.png"></span>-->
-        <span class="comment"><%= clips[0].title %></span>
-        <span class="board-num">32</span>
+        <div class="board_image">
+            <img src="<%= clips[i].boardImageUrl %>">
+            <img id="board_delete_btn" src="/images/profile_setting_icon.png"></div>
+        <div class="card_image">
+        </div>
+        <span class="comment"><%= clips[i].title %></span>
+        <span class="board-num"><%= clips[i].feedCount %></span>
     </div>
-
+    <% } %>
 </div>
 
 <div class="right-sidebar">

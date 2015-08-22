@@ -1,6 +1,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     _ = require('underscore'),
+    log4js = require('log4js'),
+    logger = log4js.getLogger('models/User'),
     async = require('async');
 
 /**
@@ -9,6 +11,7 @@ var mongoose = require('mongoose'),
 var ClipSchema = new Schema({
     user: { type: String, required: true }, // 유저 ID
     title: { type: String, required: true }, // 클립 제목
+    boardImageUrl: { type: String, default: '/images/card_no_image.png' }, // 보드 이미지
     feeds: { type: Array, default: [] }, // 클립에 포함된 피드 리스트
     createDate: { type: Date, required: true }, // 등록된 시간
     // 클라이언트로 내려주는 데이터를 위한 필드들
@@ -29,8 +32,9 @@ ClipSchema.statics.getClip = function(criteria, projection, options, callback) {
 ClipSchema.statics.getClips = function(criteria, projection, options, callback) {
     this.find(criteria, projection, options, function(err, clips) {
         if (err) return callback(err);
+        logger.debug(clips);
         _.map(clips, function(clip) {
-            clip.feedCount = (clip.feeds && clip.feeds.length) || 0;
+            clip.feedCount = clip.feeds.length || 0;
         });
         callback(null, clips);
     });

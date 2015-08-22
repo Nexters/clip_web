@@ -2,9 +2,10 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Result = require('../services/Result');
 var async = require('async');
+var log4js = require('log4js');
+var logger = log4js.getLogger('controllers/User');
 var Session = require('../services/Session');
 var Clip = mongoose.model('Clip');
-
 
 function UserCtrl() {
 
@@ -24,10 +25,11 @@ UserCtrl.getUserPage = function(req, res) {
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
     var criteria = { _id: Session.getSessionId(req) };
     var data = {};
+    logger.debug(criteria);
     User.getUser(criteria, function(err, doc) {
         data.user = doc;
         criteria={ user: Session.getSessionId(req)};
-        Clip.getClips(criteria,function(err,docs){
+        Clip.getClips(criteria, {}, {}, function(err,docs){
             data.clips = docs;
             res.render('myclip', data);
         });
