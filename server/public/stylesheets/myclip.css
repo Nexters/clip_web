@@ -251,8 +251,10 @@ p.keyword-txt {
     margin-bottom: 8px;
 }
 
-#board_delete_btn{
+.board_delete_btn{
+    position: absolute;
     display: none;
+    z-index: 2;
 }
 #board-setting-btn {
     cursor: pointer;
@@ -753,22 +755,31 @@ p.keyword-txt {
 }
 
 .board .board_image {
+    position: relative;
     -webkit-border-radius: 3px 3px 0 0;
     -moz-border-radius: 3px;
-    background-color: grey;
-    background-size: cover;
-    width: 100%;
-    height: 85%;
-
+    width: 245px;
+    height: 236px;
+    z-index: 1;
     /*height: 236px;*/
+}
+.board_image_size{
+    position: absolute;
+    width: 245px;
+    height: 236px;
+    z-index: 1;
+
+}
+.board_title{
+    height: 40px;
 }
 
 .icon {
-    position: relative;
+    position: absolute;
     float: right;
     right: 15px;
     margin-top: -25px;
-
+    z-index: 2;
 }
 
 .board .comment {

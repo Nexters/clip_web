@@ -45,8 +45,7 @@
     <div class="keyword-bar-keywords col-xs-12 col-sm-12">
         <div class="myclip-bar-title-box">My Clipboard</div>
         <img src="/images/myboard_arrow_icon.png"/>
-        <span class="myclip_title"><%= clips[0].title %></span>
-
+        <span ><input type="text" class="myclip_title"/></span>
         <qoqo class="float-right">
             <span id="board-setting-btn">보드관리</span>
         </qoqo>
@@ -59,17 +58,15 @@
 <div class="boards">
     <% for(var i=0; i<clips.length; i++) { %>
     <div class="board">
-        <a href="#">
-            <div class="icon"><img src="/images/clip_icon.png"></div>
-        </a>
-
         <div class="board_image">
-            <img src="<%= clips[i].boardImageUrl %>">
-            <img id="board_delete_btn" src="/images/profile_setting_icon.png"></div>
-        <div class="card_image">
+            <img class="icon" src="/images/clip_icon.png" z-index="3">
+            <img class="board_delete_btn" src="/images/profile_setting_icon.png" z-index="2">
+            <img class="board_image_size" src="<%= clips[i].boardImageUrl %>" z-index="1">
         </div>
+        <div class="board_title">
         <span class="comment"><%= clips[i].title %></span>
         <span class="board-num"><%= clips[i].feedCount %></span>
+        </div>
     </div>
     <% } %>
 </div>
