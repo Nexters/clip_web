@@ -3,6 +3,37 @@
     'use strict';
 
     function init() {
+
+
+        //var hasBeenClicked = false;
+        //
+        //$('#board-setting-btn').click(function () {
+        //    hasBeenClicked = true;
+        //    console.log('click');
+        //});
+        //
+        //if (hasBeenClicked) {
+        //    // The link has been clicked.
+        //    $('#board_delete_btn').show();
+        //}
+        //else {
+        //    // The link has not been clicked.
+        //    $('#board_delete_btn').hide();
+        //
+        //}
+
+        $('#board-setting-btn').click(function () {
+            if ( $('#board_delete_btn').css('display') == 'none'){
+                $('#board_delete_btn').show();
+            }
+            else{
+                $('#board_delete_btn').hide();
+            }
+        });
+
+
+
+
         new Taggle('keyword-box', {
             placeholder: '태그 입력',
             duplicateTagClass: 'bounce'
@@ -12,6 +43,12 @@
             $('#setting_modal').modal('show');
             initModal();
         });
+
+
+        //$('#board-setting-btn').click(function() {
+        //   $('#board_delete_btn').show();
+        //});
+
     }
 
     function initModal() {

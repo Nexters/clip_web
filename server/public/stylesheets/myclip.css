@@ -248,8 +248,11 @@ ul#feed_list_panel > li {
     margin-bottom: 8px;
 }
 
-.keyword-txt-btn {
-
+#board_delete_btn{
+    display: none;
+}
+#board-setting-btn {
+    cursor: pointer;
     width: 102px;
     height: 35px;
     -webkit-border-radius: 30px;
@@ -264,7 +267,7 @@ ul#feed_list_panel > li {
 
 }
 
-.keyword-txt-btn.active {
+#board-setting-btn.active {
     background: #5064FA;
     text-decoration: none;
 }
