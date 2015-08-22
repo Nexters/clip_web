@@ -10,7 +10,9 @@ var ClipSchema = new Schema({
     user: { type: String, required: true }, // 유저 ID
     title: { type: String, required: true }, // 클립 제목
     feeds: { type: Array, default: [] }, // 클립에 포함된 피드 리스트
-    createDate: { type: Date, required: true } // 등록된 시간
+    createDate: { type: Date, required: true }, // 등록된 시간
+    // 클라이언트로 내려주는 데이터를 위한 필드들
+    feedCount: { type: String } // 포함된 피드 개수
 }, {collection: 'clip'});
 
 ClipSchema.index({ user: 1 });
@@ -25,7 +27,13 @@ ClipSchema.statics.getClip = function(criteria, projection, options, callback) {
 };
 
 ClipSchema.statics.getClips = function(criteria, projection, options, callback) {
-    this.find(criteria, projection, options, callback);
+    this.find(criteria, projection, options, function(err, clips) {
+        if (err) return callback(err);
+        _.map(clips, function(clip) {
+            clip.feedCount = (clip.feeds && clip.feeds.length) || 0;
+        });
+        callback(null, clips);
+    });
 };
 
 ClipSchema.statics.saveClip = function(doc, callback) {
