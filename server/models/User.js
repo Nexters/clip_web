@@ -55,7 +55,6 @@ UserSchema.statics.getUsers = function(criteria, projection, options, callback) 
 
 UserSchema.statics.saveUser = function(doc, callback) {
 
-    console.log(doc);
     if (!doc) return;
 
     doc.createDate = doc.createDate ? doc.createDate : new Date();
