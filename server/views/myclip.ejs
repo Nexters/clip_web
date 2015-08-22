@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/javascripts/bower_components/normalize.css/normalize.css">
     <link rel="stylesheet" href="/javascripts/bower_components/wookmark/css/main.css">
+    <link rel="stylesheet" href="/javascripts/bower_components/taggle.js/assets/css/taggle.css">
     <link rel="stylesheet" href="/stylesheets/common.css"/>
     <link rel="stylesheet" href="/stylesheets/myclip.css"/>
 
@@ -105,6 +106,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                 <!--<h4 id="login_modal_title" class="modal_title">키워드 등록</h4>-->
                 <h4 id="login_modal_title" class="modal_title">키워드 등록</h4>
                 <h5 id="modal_sub_title" class="modal_subtitle">클립하고 싶은 키워드 또는 사이트를 등록해주세요.</h5>
@@ -125,11 +128,7 @@
                 <div class="login-password-container">
                     <h7 class="keyword-enroll">키워드 등록</h7>
                     <br>
-                    <!--<input id="keyword_list" type="key_list"/><br>-->
-                    <div>
-                        <ul class="keyword_list">
-
-                        </ul>
+                    <div id="keyword-box">
                     </div>
                     <a class="go_home" href="/myclip">
                         <button id="modal_key_btn" type="button" class="modal-start-btn">등록하기</button>
