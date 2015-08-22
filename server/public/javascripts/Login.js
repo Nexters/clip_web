@@ -20,7 +20,7 @@
                     alert("로그인이 실패했습니다.");
                     return false;
                 }
-                location.href="/home";
+                location.href="/user";
                 return false;
             });
             return false;

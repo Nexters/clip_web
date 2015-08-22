@@ -52,19 +52,22 @@
 
 </div>
 
-<!--보드 이미지 카드 부분 -->
-<div class="cards">
+<!--보드 이미지 보드 부분 -->
+<div class="boards">
 
-    <div class="card">
+    <div class="board">
         <a href="#">
             <div class="icon"><img src="/images/clip_icon.png"></div>
         </a>
+        <div class="board_image">
+
 
         <div class="card_image"></div>
 
         <!--<span><img src="/images/clip_icon.png"></span>-->
         <span class="comment"><%= clips[0].title %></span>
         <span class="board-num">32</span>
+
 
 
     </div>
@@ -84,14 +87,15 @@
     </div>
     <div class="sidebar-second-box">
         <div class="keyword-title">키워드 목록</div>
-        <div>
+        <!-- 키워드 관리 부분  -->
+        <div class="keyword-txt-box">
             <% for (var i=0; i<user.keywords.length; i++) { %>
             <% if (i !== user.keywords.length-1) { %>
-            <% user.keywords[i] += ','; %>
+                <% user.keywords[i] += ','; %>
             <% } %>
-            <span class="keyword-txt"><%= user.keywords[i] %></span>
             <% } %>
         </div>
+
     </div>
     <div class="sidebar-third-box">
         <div class="keyword-title">웹 사이트 목록</div>
@@ -109,7 +113,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close_btn" data-dismiss="modal" aria-label="Close"><span
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 <!--<h4 id="login_modal_title" class="modal_title">키워드 등록</h4>-->
                 <h4 id="login_modal_title" class="modal_title">키워드 등록</h4>

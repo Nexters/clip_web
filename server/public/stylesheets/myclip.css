@@ -78,7 +78,7 @@ ul#feed_list_panel > li {
     margin-right: 35px !important;
 }
 
-.card-container {
+.board-container {
     overflow-y: auto;
 }
 
@@ -293,7 +293,7 @@ ul#feed_list_panel > li {
 }
 
 .sidebar-image-box {
-    margin-top: 5px;
+    margin-top: 6px;
     margin-bottom: 15px;
     border-radius: 30px;
     -webkit-border-radius: 30px;
@@ -302,6 +302,7 @@ ul#feed_list_panel > li {
 }
 
 .sidebar-setting-icon {
+    margin-top: -2px;
     margin-left: 220px;
 
 }
@@ -309,7 +310,7 @@ ul#feed_list_panel > li {
 .sidebar-first-box {
     height: 165px;
     width: 261px;
-    padding: 12px;
+    padding:12px;
     background-color: #5064FA;
 }
 
@@ -669,9 +670,7 @@ ul#feed_list_panel > li {
     font-size: 14px;
     color: RGB(129,129,129);
 }
-.close_btn{
-    
-    background-color: #FFFFFF;
+.close{
     color: #5064FA !important;
 }
 
@@ -724,16 +723,17 @@ ul#feed_list_panel > li {
     transform: rotateY(180deg);
 }
 
-.cards {
-    width: 90%;
-    height: 100%;
+.boards {
+    width: 900px;
+    height: 1000px;
     margin: 0 auto;
     margin-top: 58px;
     margin-bottom: 17px;
+    margin-right: 500px;
     padding: 58px 15px 15px 15px;
 }
 
-.cards .card {
+ .board {
     width: 251px;
     height: 276px;
     margin-right: 1.5%;
@@ -746,7 +746,7 @@ ul#feed_list_panel > li {
 
 }
 
-.card .card_image {
+.board .board_image {
     -webkit-border-radius: 3px 3px 0 0;
     -moz-border-radius: 3px;
     background-color: grey;
@@ -765,7 +765,7 @@ ul#feed_list_panel > li {
 
 }
 
-.card .comment {
+.board .comment {
     font-family: "NotoSansCJKkr_Regular";
     color: #585858;
     font-size: 15px;
@@ -774,7 +774,7 @@ ul#feed_list_panel > li {
     float: left;
 }
 
-.card .board-num {
+.board .board-num {
     font-family: "Montserrat_Light";
     color: #5064fa;
     font-size: 13px;
@@ -783,11 +783,11 @@ ul#feed_list_panel > li {
     float: right;
 }
 
-.card .card_image:hover {
+.board .board_image:hover {
     opacity: 0.7;
 }
 
-.card .comment:hover {
+.board .comment:hover {
     text-overflow: inherit;
     overflow: visible;
 
