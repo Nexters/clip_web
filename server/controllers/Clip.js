@@ -12,7 +12,6 @@ function ClipCtrl() {
 }
 
 ClipCtrl.getUserClips = function(req, res) {
-    // TODO: 여기에 유저 클립 목록 가져오는 코드 작성해야함
     var criteria,errors;
     req.checkParams('id', 'Invalid id').notEmpty();
     errors = req.validationErrors();
@@ -63,7 +62,6 @@ ClipCtrl.deleteUserClips = function(req, res) {
     var criteria,errors;
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
     errors = req.validationErrors();
-    console.log(errors);
     if (errors) return res.status(400).send(Result.ERROR(errors));
     criteria ={
         _id: ObjectId(Session.getSessionId(req)),
