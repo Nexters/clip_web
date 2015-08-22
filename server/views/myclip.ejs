@@ -47,7 +47,7 @@
         <img src="/images/myboard_arrow_icon.png">
         <span class="myclip_title"><%= clips[0].title %></span>
         <qoqo class="float-right">
-            <span class="keyword-txt-btn">보드관리</span></qoqo>
+            <span><button class="keyword-txt-btn" id="board_setting_btn">보드관리</button></span></qoqo>
     </div>
 
 </div>
@@ -59,7 +59,7 @@
         <a href="#">
             <div class="icon"><img src="/images/clip_icon.png"></div>
         </a>
-        <div class="board_image"></div>
+        <div class="board_image"><img id="board_delete_btn" src="/images/profile_setting_icon.png">
         <div class="card_image"></div>
         <!--<span><img src="/images/clip_icon.png"></span>-->
         <span class="comment"><%= clips[0].title %></span>
