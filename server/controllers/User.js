@@ -27,9 +27,11 @@ UserCtrl.getUserPage = function(req, res) {
     var data = {};
     logger.debug(criteria);
     User.getUser(criteria, function(err, doc) {
+        logger.error(err);
         data.user = doc;
         criteria={ user: Session.getSessionId(req)};
-        Clip.getClips(criteria, {}, {}, function(err,docs){
+        Clip.getClips(criteria, {}, {}, function(err, docs){
+            logger.error(err);
             data.clips = docs;
             res.render('myclip', data);
         });
