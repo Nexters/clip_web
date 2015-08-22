@@ -198,7 +198,7 @@
                     '<img src="/images/clip_btn.png" align="center">'+
                 '</span>'+
                 '<div class="img-box">'+
-                    '<img class="title-img" src="'+feed.image+'" align="middle">'+
+                    '<img class="title-img" src="'+feed.image+'" align="middle" onError="this.src=\'+"/images/card_no_image.png"+\'">'+
                 '</div>'+
                 '<div class="title-box">'+
                     '<p class="title-txt">'+feed.title+'</p>'+
@@ -211,7 +211,7 @@
                     '</div>'+
                     '<div class="clip">';
                 if (feed.isCliped) {
-                html += '<img src="/images/card_clip_icon.png" align="middle" onError="this.src='+"/images/card_no_image.png"+'">';
+                html += '<img src="/images/card_clip_icon.png" align="middle">';
                 }
             html += '</div>'+
                 '</div>'+
@@ -224,7 +224,7 @@
             '<li data-id="'+feed.id+'">'+
                 '<div class="img-wrapper">'+
                     '<img class="card-delete-btn" src="/images/card_delete_icon.png">'+
-                    '<img class="card-image" src="'+feed.src+'" onError="this.src='+"/images/card_no_image.png"+'">'+
+                    '<img class="card-image" src="'+feed.src+'" onError="this.src=\'+"/images/card_no_image.png"+\'">'+
                     '<span class="title-wrapper">'+
                         '<p>'+feed.title+'</p>'+
                     '</span>'+
