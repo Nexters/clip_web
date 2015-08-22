@@ -12,7 +12,6 @@ function ClipCtrl() {
 }
 
 ClipCtrl.getUserClips = function(req, res) {
-    // TODO: 여기에 유저 클립 목록 가져오는 코드 작성해야함
     var criteria,errors;
     req.checkParams('id', 'Invalid id').notEmpty();
     errors = req.validationErrors();
@@ -35,7 +34,7 @@ ClipCtrl.saveUserClip = function(req, res) {
         user: Session.getSessionId(req),
         title:req.body.title
     };
-    Clip.getClip({title: clipData.title}, function(err, clip) {
+    Clip.getClip({user: clipData.user}, function(err, clip) {
         if (err) return res.status(400).send(Result.ERROR(err));
         if (clip && clip._id) return res.status(400).send(Result.ERROR("이미 존재하는 clip 정보"));
         Clip.saveClip(clipData, function(err, doc) {
@@ -61,13 +60,12 @@ ClipCtrl.updateUserClip = function(req, res) {
 
 ClipCtrl.deleteUserClips = function(req, res) {
     var criteria,errors;
-    var user;
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
     errors = req.validationErrors();
-    console.log(errors);
     if (errors) return res.status(400).send(Result.ERROR(errors));
     criteria ={
-        user: Session.getSessionId(req)
+        _id: ObjectId(Session.getSessionId(req)),
+        $pull:{feeds:req.body.feeds}
     };
     Clip.deleteClip(criteria,function(err,doc){
         res.status(200).send(Result.SUCCESS(doc));
