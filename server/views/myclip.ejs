@@ -50,10 +50,13 @@
 <div class="fixed-keyword-bar">
     <div class="keyword-bar-keywords col-xs-12 col-sm-12">
         <div class="myclip-bar-title-box">My Clipboard</div>
-        <img src="/images/myboard_arrow_icon.png">
+        <img src="/images/myboard_arrow_icon.png"/>
         <span class="myclip_title"><%= clips[0].title %></span>
+
         <qoqo class="float-right">
-            <span><button class="keyword-txt-btn" id="board_setting_btn">보드관리</button></span></qoqo>
+            <span id="board-setting-btn">보드관리</span>
+        </qoqo>
+
     </div>
 
 </div>
@@ -65,6 +68,7 @@
         <a href="#">
             <div class="icon"><img src="/images/clip_icon.png"></div>
         </a>
+
         <div class="board_image">
             <img src="<%= clips[i].boardImageUrl %>">
             <img id="board_delete_btn" src="/images/profile_setting_icon.png"></div>

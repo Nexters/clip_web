@@ -24,23 +24,6 @@ $('#modal_add_btn').click(function(){
 });
 
 
-
-function show() {
-
-    $('#board_delete_btn').display = "show";
-
-}
-
-function hide() {
-
-    $('#board_delete_btn').display = "hide";
-
-}
-
-$('#board_setting_btn').click(function() {
-    $('#board_delete_btn').show();
-});
-
     /*
      * 사이트 삭제 */
 

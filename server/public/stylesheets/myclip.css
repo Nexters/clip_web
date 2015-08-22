@@ -251,8 +251,11 @@ p.keyword-txt {
     margin-bottom: 8px;
 }
 
-.keyword-txt-btn {
-
+#board_delete_btn{
+    display: none;
+}
+#board-setting-btn {
+    cursor: pointer;
     width: 102px;
     height: 35px;
     -webkit-border-radius: 30px;
@@ -267,7 +270,7 @@ p.keyword-txt {
 
 }
 
-.keyword-txt-btn.active {
+#board-setting-btn.active {
     background: #5064FA;
     text-decoration: none;
 }

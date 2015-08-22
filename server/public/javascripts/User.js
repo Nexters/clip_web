@@ -12,10 +12,19 @@
 
     function init() {
         userData = g_data.user;
+
         taggle = new Taggle('keyword-box', {
             tags: userData.keywords,
             placeholder: '태그 입력',
             duplicateTagClass: 'bounce'
+        });
+        $('#board-setting-btn').click(function () {
+            if ( $('#board_delete_btn').css('display') == 'none'){
+                $('#board_delete_btn').show();
+            }
+            else{
+                $('#board_delete_btn').hide();
+            }
         });
 
         $('#keyword_setting_btn').click(function() {
