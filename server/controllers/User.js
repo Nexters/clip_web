@@ -3,6 +3,7 @@ var User = mongoose.model('User');
 var Result = require('../services/Result');
 var async = require('async');
 var Session = require('../services/Session');
+var Clip = mongoose.model('Clip');
 
 
 function UserCtrl() {
@@ -25,8 +26,13 @@ UserCtrl.getUserPage = function(req, res) {
     var data = {};
     User.getUser(criteria, function(err, doc) {
         data.user = doc;
-        res.render('myclip', data);
+        criteria={ user: Session.getSessionId(req)};
+        Clip.getClips(criteria,function(err,docs){
+            data.clips = docs;
+            res.render('myclip', data);
+        });
     });
+
 };
 
 UserCtrl.getAllUsers = function(req, res) {

@@ -45,7 +45,7 @@
     <div class="keyword-bar-keywords col-xs-12 col-sm-12">
         <div class="myclip-bar-title-box">My Clipboard</div>
         <img src="/images/myboard_arrow_icon.png">
-        <span class="myclip_title">관련기사 모음</span>
+        <span class="myclip_title"><%= clips[0].title %></span>
         <qoqo class="float-right">
             <span class="keyword-txt-btn">보드관리</span></qoqo>
     </div>
@@ -61,11 +61,15 @@
         </a>
         <div class="board_image">
 
-        </div>
-        <span class="comment">
-          관련 기사 </span>
-        <span class="board-num">
-            32</span>
+
+        <div class="card_image"></div>
+
+        <!--<span><img src="/images/clip_icon.png"></span>-->
+        <span class="comment"><%= clips[0].title %></span>
+        <span class="board-num">32</span>
+
+
+
     </div>
 
 </div>
