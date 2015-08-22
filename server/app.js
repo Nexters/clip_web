@@ -71,7 +71,7 @@ app.use(expressValidator({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Session
-if (app.get('env') === 'production') {
+//if (app.get('env') === 'production') {
     MongoStore = require('connect-mongo')(session);
     app.use(session({
         secret: config.secret,
@@ -79,13 +79,13 @@ if (app.get('env') === 'production') {
         resave: false,
         saveUninitialized: true
     }));
-} else {
-    app.use(session({
-        secret: config.secret,
-        resave: false,
-        saveUninitialized: true
-    }));
-}
+//} else {
+//    app.use(session({
+//        secret: config.secret,
+//        resave: false,
+//        saveUninitialized: true
+//    }));
+//}
 
 app.use('/', routes);
 app.use('/user', users);
