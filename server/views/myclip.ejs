@@ -45,28 +45,27 @@
     <div class="keyword-bar-keywords col-xs-12 col-sm-12">
         <div class="myclip-bar-title-box">My Clipboard</div>
         <img src="/images/myboard_arrow_icon.png">
-        <span class="myclip_title">IOT 관련기사 모음</span>
+        <span class="myclip_title">관련기사 모음</span>
         <qoqo class="float-right">
             <span class="keyword-txt-btn">보드관리</span></qoqo>
     </div>
 
 </div>
 
-<!--보드 이미지 카드 부분 -->
-<div class="cards">
+<!--보드 이미지 보드 부분 -->
+<div class="boards">
 
-    <div class="card">
+    <div class="board">
         <a href="#">
             <div class="icon"><img src="/images/clip_icon.png"></div>
         </a>
+        <div class="board_image">
 
-        <div class="card_image"></div>
-
-        <!--<span><img src="/images/clip_icon.png"></span>-->
-        <span class="comment">IOT 관련 기사 </span>
-        <span class="board-num">32</span>
-
-
+        </div>
+        <span class="comment">
+          관련 기사 </span>
+        <span class="board-num">
+            32</span>
     </div>
 
 </div>
@@ -84,11 +83,13 @@
     </div>
     <div class="sidebar-second-box">
         <div class="keyword-title">키워드 목록</div>
-        <div>
+        <!-- 키워드 관리 부분  -->
+        <div class="keyword-txt-box">
             <% for (var i=0; i<user.keywords.length; i++) { %>
-            <span class="keyword-txt"><%= user.keywords[i] %></span>
+            <span class="keyword-txt-btn"><%= user.keywords[i] %></span>
             <% } %>
         </div>
+
     </div>
     <div class="sidebar-third-box">
         <div class="keyword-title">웹 사이트 목록</div>
