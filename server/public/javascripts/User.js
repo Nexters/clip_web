@@ -32,13 +32,11 @@
             initModal();
         });
 
-        $('.board_title').click(function(){
-
-
-            $('.myclip_title').text()==$('.comment').text();
-            console.log('click');
-
+        $(".comment").click(function(){
+            $(".myclip_title").text($(this).text());
         });
+
+
     }
 
     function initModalSiteItems() {

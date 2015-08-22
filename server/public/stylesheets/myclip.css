@@ -783,6 +783,7 @@ p.keyword-txt {
 }
 
 .board .comment {
+    cursor:pointer;
     font-family: "NotoSansCJKkr_Regular";
     color: #585858;
     font-size: 15px;
