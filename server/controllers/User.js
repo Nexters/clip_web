@@ -20,7 +20,13 @@ UserCtrl.getHomePage = function(req, res) {
 };
 
 UserCtrl.getUserPage = function(req, res) {
-    res.render('myclip');
+    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    var criteria = { _id: Session.getSessionId(req) };
+    var data = {};
+    User.getUser(criteria, function(err, doc) {
+        data.user = doc;
+        res.render('myclip', data);
+    });
 };
 
 UserCtrl.getAllUsers = function(req, res) {
