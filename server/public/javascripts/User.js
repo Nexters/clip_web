@@ -2,7 +2,7 @@
     'use strict';
 
     function init() {
-        $('.sidebar-setting-icon').click(function() {
+        $('#keyword_setting_btn').click(function() {
             $('#setting_modal').modal('show');
             initModal();
         });

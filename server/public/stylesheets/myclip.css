@@ -411,6 +411,7 @@ ul#feed_list_panel > li {
 }
 
 .board_clip_btn_bg {
+    cursor: pointer;
     background-color: #eaeaea;
     height: 100%;
     padding: 11px 2px 2px 2px;
@@ -533,7 +534,10 @@ ul#feed_list_panel > li {
     padding: 11px 11px 11px 11px;
     width: 473px;
     height: 97px;
-    border: 0.05px solid color : #CCCCCC;
+    border: 1px solid #CCCCCC;
+    background-color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
 #modal_input_sitebox {
