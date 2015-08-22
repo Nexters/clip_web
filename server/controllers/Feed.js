@@ -43,15 +43,18 @@ FeedCtrl.checkFeed = function(req, res) {
     url = req.body.feed;
 
     // '/'로 끝나는 경우 제거
-    if(url && url.match(/\/$/)){
+    if (url && url.match(/\/$/)) {
         url = url.replace(/\/$/,'');
     }
     // http:// 없는 URL 일 때
-    if(url && !url.match(/^[a-zA-Z]+[:\/\/]/)){
+    if (url && !url.match(/^[a-zA-Z]+[:\/\/]/)) {
         url = 'http://' + url;
     }
-    // URL 뒤에 /rss 붙여서 rss 피드 존재하는 사이트인지 확인
-    url = url + '/rss';
+    // URL 뒤에 rss 없는 경우 /rss 붙여서 rss 피드 존재하는 사이트인지 확인
+    if (url && !url.match(/rss/)) {
+        url = url + '/rss';
+    }
+    logger.debug(url);
 
     request.get(url, function (err, response, body) {
         var result = require('querystring').parse(body);
