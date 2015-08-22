@@ -61,7 +61,7 @@ FeedCtrl.checkFeed = function(req, res) {
         if (_.isEmpty(result)) {
             return res.status(400).send(Result.ERROR('Invalid feed'));
         }
-        res.status(200).send(Result.SUCCESS('success'));
+        res.status(200).send(Result.SUCCESS(url));
     });
 };
 
