@@ -219,21 +219,24 @@ ul#feed_list_panel > li {
 }
 
 .keyword-txt-box {
-    display: inline;
-    padding-left: 10px;
     min-width: 400px;
-    max-width: 600px;
+    max-height: 120px;
+    overflow-y: scroll;
 
+}
+
+p.keyword-txt {
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
 .keyword-title {
     margin-top: 12px;
     margin-left: -8px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     font-family: "NotoSansCJKkr_Regular";
     color: #999898;
     font-size: 15px;
-
 }
 
 .keyword-txt {
@@ -330,14 +333,14 @@ ul#feed_list_panel > li {
 
 .sidebar-second-box {
     padding: 5px 20px 5px 20px;
-    height: 195px;
+    height: 180px;
     width: 261px;
     background-color: #ffffff;
 }
 
 .sidebar-third-box {
     padding: 5px 20px 5px 20px;
-    height: 195px;
+    height: 180px;
     width: 261px;
     background-color: #ffffff;
     border-top: 0.08em solid #ebebeb;

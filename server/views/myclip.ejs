@@ -83,18 +83,24 @@
     </div>
     <div class="sidebar-second-box">
         <div class="keyword-title">키워드 목록</div>
-        <!-- 키워드 관리 부분  -->
+        <!-- 키워드 목록  -->
         <div class="keyword-txt-box">
             <% for (var i=0; i<user.keywords.length; i++) { %>
             <% if (i !== user.keywords.length-1) { %>
                 <% user.keywords[i] += ','; %>
             <% } %>
+            <span class="keyword-txt"><%= user.keywords[i] %></span>
             <% } %>
         </div>
-
     </div>
     <div class="sidebar-third-box">
         <div class="keyword-title">웹 사이트 목록</div>
+        <!-- 사이트 목록  -->
+        <div class="keyword-txt-box">
+            <% for (var i=0; i<user.feeds.length; i++) { %>
+            <p class="keyword-txt"><%= user.feeds[i] %></p>
+            <% } %>
+        </div>
     </div>
     <div id="keyword_setting_btn" class="board_clip_btn_bg">
         <div class="board_clip_btn">키워드 관리</div>
