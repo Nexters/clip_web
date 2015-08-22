@@ -19,17 +19,25 @@
             duplicateTagClass: 'bounce'
         });
         $('#board-setting-btn').click(function () {
-            if ( $('#board_delete_btn').css('display') == 'none'){
-                $('#board_delete_btn').show();
+            if ( $('.board_delete_btn').css('display') == 'none'){
+                $('.board_delete_btn').show();
             }
             else{
-                $('#board_delete_btn').hide();
+                $('.board_delete_btn').hide();
             }
         });
 
         $('#keyword_setting_btn').click(function() {
             $('#setting_modal').modal('show');
             initModal();
+        });
+
+        $('.board_title').click(function(){
+
+
+            $('.myclip_title').text()==$('.comment').text();
+            console.log('click');
+
         });
     }
 
