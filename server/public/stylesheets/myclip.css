@@ -293,7 +293,7 @@ ul#feed_list_panel > li {
 }
 
 .sidebar-image-box {
-    margin-top: 12px;
+    margin-top: 5px;
     margin-bottom: 15px;
     border-radius: 30px;
     -webkit-border-radius: 30px;
@@ -302,15 +302,14 @@ ul#feed_list_panel > li {
 }
 
 .sidebar-setting-icon {
-    margin-top: -32px;
     margin-left: 220px;
 
 }
 
 .sidebar-first-box {
-    height: 195px;
+    height: 165px;
     width: 261px;
-    padding: 34px 12px;
+    padding: 12px;
     background-color: #5064FA;
 }
 
