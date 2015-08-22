@@ -34,7 +34,7 @@ ClipCtrl.saveUserClip = function(req, res) {
         user: Session.getSessionId(req),
         title:req.body.title
     };
-    Clip.getClip({user: clipData.user}, function(err, clip) {
+    Clip.getClip({title: clipData.title}, function(err, clip) {
         if (err) return res.status(400).send(Result.ERROR(err));
         if (clip && clip._id) return res.status(400).send(Result.ERROR("이미 존재하는 clip 정보"));
         Clip.saveClip(clipData, function(err, doc) {
