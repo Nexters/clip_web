@@ -1,6 +1,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    _ = require('underscore');
+    _ = require('underscore'),
+    log4js = require('log4js'),
+    logger = log4js.getLogger('models/Feed'),
     async = require('async');
 
 /**
@@ -27,23 +29,26 @@ FeedSchema.index({ keyword: 1 });
 FeedSchema.index({ pubDate: -1 });
 
 function makeFeeds(feeds, clips) {
-    var clipMap = {};
-    var i;
+    var feedArray = [];
     if (!clips || !feeds) return;
 
-    for (i=0; i<clips.length; i++) {
-        clipMap[clips[i]._id] = clips[i];
-    }
+    _.map(clips, function(clip){
+        _.map(clip.feeds, function(feed) {
+            if (feedArray.indexOf(feed) === -1) {
+                feedArray.push(feed);
+            }
+        });
+    });
 
-    for (i=0; i<feeds.length; i++) {
-        if (clipMap[feeds[i]._id]) {
-            feeds[i].isCliped = true;
-            feeds[i].clipTitle = clipMap[feeds[i]._id].title;
+    logger.debug("feedArray: ",feedArray);
+    _.map(feeds, function(feed) {
+        if (feedArray.indexOf(feed._id.toString()) > -1) {
+            feed.isCliped = true;
         } else {
-            feeds[i].isCliped = false;
+            feed.isCliped = false;
         }
-        feeds[i].keywordString = feeds[i].keywords.join(', ');
-    }
+        feed.keywordString = feed.keywords.join(', ');
+    });
 }
 
 /**
@@ -58,9 +63,11 @@ FeedSchema.statics.getFeeds = function(criteria, projection, options, callback) 
             self.find(criteria, projection, options, callback);
         },
         function(feeds, callback) {
-            feedIdArray = _.pluck(feeds, '_id');
-            self.model('Clip').find({_id:{$in: feedIdArray}}, function(err, clips) {
+            feedIdArray = _.map(feeds, function(item) { return item._id.toString() });
+            logger.debug(feedIdArray);
+            self.model('Clip').find({feeds:{$in: feedIdArray}}, function(err, clips) {
                 if (err) return callback(err);
+                logger.debug(clips);
                 makeFeeds(feeds, clips);
                 callback(null, feeds);
             });

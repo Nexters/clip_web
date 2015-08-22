@@ -34,7 +34,7 @@ ClipCtrl.saveUserClip = function(req, res) {
         user: Session.getSessionId(req),
         title:req.body.title
     };
-    Clip.getClip({user: clipData.user}, function(err, clip) {
+    Clip.getClip({title: clipData.title}, function(err, clip) {
         if (err) return res.status(400).send(Result.ERROR(err));
         if (clip && clip._id) return res.status(400).send(Result.ERROR("이미 존재하는 clip 정보"));
         Clip.saveClip(clipData, function(err, doc) {
@@ -71,6 +71,19 @@ ClipCtrl.deleteUserClips = function(req, res) {
         res.status(200).send(Result.SUCCESS(doc));
     });
 
+}
+
+ClipCtrl.deleteUserClipsAll = function(req, res) {
+    var criteria,errors;
+    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    criteria ={
+        user: Session.getSessionId(req)
+    };
+    Clip.deleteClipAll(criteria,function(req, doc){
+        res.status(200).send(Result.SUCCESS(doc));
+    });
 }
 
 module.exports = ClipCtrl;
