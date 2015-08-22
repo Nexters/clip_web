@@ -243,8 +243,8 @@ ul#feed_list_panel > li {
     font-size: 14px;
     text-decoration: none;
     margin-top: 10px;
-    margin-left: 3px;
-    margin-right: 3px;
+    margin-left: 1px;
+    margin-right: 1px;
     margin-bottom: 8px;
 }
 
@@ -293,7 +293,7 @@ ul#feed_list_panel > li {
 }
 
 .sidebar-image-box {
-    margin-top: 5px;
+    margin-top: 12px;
     margin-bottom: 15px;
     border-radius: 30px;
     -webkit-border-radius: 30px;
@@ -302,14 +302,15 @@ ul#feed_list_panel > li {
 }
 
 .sidebar-setting-icon {
+    margin-top: -32px;
     margin-left: 220px;
 
 }
 
 .sidebar-first-box {
-    height: 165px;
+    height: 195px;
     width: 261px;
-    padding: 12px;
+    padding: 34px 12px;
     background-color: #5064FA;
 }
 
@@ -548,7 +549,7 @@ ul#feed_list_panel > li {
     color: RGB(122,122,122);
     margin-left: 123px;
     margin-bottom: 8px;
-    margin-top: -1px;
+    margin-top: -5px;
     height: 32px;
     width: 392px;
     padding: 11px 10px 11px 10px;
@@ -578,7 +579,7 @@ ul#feed_list_panel > li {
 
 #keyword-box {
     margin-left: 123px;
-    margin-bottom: 30px;
+    margin-bottom: 21px;
     margin-top: 8px;
     width: 473px;
     height: 83px;
@@ -640,14 +641,37 @@ ul#feed_list_panel > li {
     width: 64px;
     height: 31px;
     margin-left: 13px;
-    margin-bottom: 9px;
+    margin-bottom: 10px;
     padding-top: 4px;
     padding-bottom: 1px;
 }
 
+#login_modal_title {
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 30px;
+    font-weight: normal;
+    margin-bottom: 4px;
+    margin-top: 20px;
+}
+#modal_sub_title{
+    font-family: "NotoSansCJKkr-Regular";
+    font-size: 16px;
+    font-weight: normal;
+    color: RGB(129,129,129);
+    margin-bottom: 26px;
+}
 
 #modal_add_btn:focus {
     outline: none;
+}
+.site {
+    font-family: "NotoSansCJKkr-Regular";
+    font-weight: normal;
+    font-size: 14px;
+    color: RGB(129,129,129);
+}
+.close{
+    color: #5064FA !important;
 }
 
 .site-delete-btn {
@@ -768,6 +792,15 @@ ul#feed_list_panel > li {
     overflow: visible;
 
 }
+.taggle {
+    font-family: "Roboto_Light";
+    font-size: 12px;
+    color: #FFFFFF;
+    background-color: #5064FA !important;
+    height: 30px !important;
+    border-radius: 30px !important;
+    padding-top: 7px !important;
+}
 
 .taggle_placeholder {
     position: relative !important;
@@ -782,6 +815,8 @@ ul#feed_list_panel > li {
     overflow-y: auto;
 }
 .taggle_input {
+    font-family: "Roboto_Light";
+    font-size: 12px;
     width: 100% !important;
 }
 

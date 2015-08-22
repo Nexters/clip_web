@@ -8,7 +8,7 @@ $('#modal_add_btn').click(function(){
     if(input==""){
         alert("사이트를 입력해주세요!");
         $('#modal_input_site').focus();
-        return falcse;
+        return false;
     }
 
     var button = $('<img/>', {

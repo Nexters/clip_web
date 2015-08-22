@@ -86,7 +86,9 @@
         <!-- 키워드 관리 부분  -->
         <div class="keyword-txt-box">
             <% for (var i=0; i<user.keywords.length; i++) { %>
-            <span class="keyword-txt-btn"><%= user.keywords[i] %></span>
+            <% if (i !== user.keywords.length-1) { %>
+                <% user.keywords[i] += ','; %>
+            <% } %>
             <% } %>
         </div>
 

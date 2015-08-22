@@ -9,7 +9,7 @@ router.get('/user/id/:user', clipCtrl.getUserClips);
 router.post('/save', clipCtrl.saveUserClip);
 
 /* PUT clips */
-//router.put('/update/id/:id', clipCtrl.updateUserClip);
+router.put('/update/id/:id', clipCtrl.updateUserClip);
 
 router.post('/delete', clipCtrl.deleteUserClips);
 
