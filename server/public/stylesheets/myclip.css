@@ -548,6 +548,7 @@ ul#feed_list_panel > li {
     color: RGB(122,122,122);
     margin-left: 123px;
     margin-bottom: 8px;
+    margin-top: -1px;
     height: 32px;
     width: 392px;
     padding: 11px 10px 11px 10px;
