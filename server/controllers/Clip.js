@@ -74,7 +74,6 @@ ClipCtrl.deleteUserClips = function(req, res) {
     Clip.deleteClip(criteria,function(err,doc){
         res.status(200).send(Result.SUCCESS(doc));
     });
-
 }
 
 ClipCtrl.deleteUserClipsAll = function(req, res) {
@@ -83,7 +82,10 @@ ClipCtrl.deleteUserClipsAll = function(req, res) {
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     criteria ={
-        user: Session.getSessionId(req)
+        $and:[
+            {user: Session.getSessionId(req)},
+            {title: req.body.title}
+        ]
     };
     Clip.deleteClipAll(criteria,function(req, doc){
         res.status(200).send(Result.SUCCESS(doc));
