@@ -122,8 +122,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
                 <!--<h4 id="login_modal_title" class="modal_title">키워드 등록</h4>-->
                 <h4 id="login_modal_title" class="modal_title">키워드 등록</h4>
                 <h5 id="modal_sub_title" class="modal_subtitle">클립하고 싶은 키워드 또는 사이트를 등록해주세요.</h5>
@@ -159,6 +158,52 @@
 </div>
 <!-- /.modal -->
 
+
+
+
+<!--profile modal-->
+
+<div id="profile_modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="profile-content">
+            <div class="profile-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+                <!--<h4 id="login_modal_title" class="modal_title">키워드 등록</h4>-->
+                <h4 id="profile_modal_title" class="modal_title">프로필 수정</h4>
+
+            </div>
+
+
+            <div id="profile-middle">
+                <div id="middle_left">
+                    <img class="profile-image-box" src="/images/empty_user_icon.png">
+                    <br><button id="change_btn" type="button" class="change-btn">사진변경</button>
+                    <br><button id="logout_btn" type="button" class="logout-btn">로그아웃</button>
+                </div>
+                <div id="middle_right">
+
+                    <h7 id="profile_name">이름</h7>
+                    <br><input id="profile_email_input" type="text"/>
+                    <br><h8 id="profile_email">이메일 주소</h8>
+                    <br><h9 id="my_email">garin0112@naver.com</h9>
+                    <br><button id="modal_save_btn" type="button" class="save-btn">저장하기</button>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
