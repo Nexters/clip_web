@@ -858,17 +858,21 @@ p.keyword-txt {
 
 
 /*프로필 모달*/
-
+.modal-dialog
+{
+    width: 412px;
+    height: 475px;
+}
 .profile-content {
     width: 412px;
-    height: 392px;
+    height: 475px;
     background-color: #FFFFFF;
     border-radius: 5px;
 }
 
 .profile-header {
     width: 412px;
-    height: 104px;
+    height: 92px;
     background-color: #FFFFFF;
     padding: 10px 10px 10px 10px;
     border-top-left-radius: 5px;
@@ -876,27 +880,27 @@ p.keyword-txt {
 }
 
 .profile-image-box {
-    margin-top: -1px;
-    margin-left: 34px;
-    margin-bottom: 15px;
-    -webkit-border-radius: 30px;
-    width: 57px;
-    height: 57px;
+    margin-top: 1px;
+    margin-left: 29px;
+    margin-bottom: 14px;
+    -webkit-border-radius: 50px;
+    width: 70px;
+    height: 70px;
 }
 
 #change_btn {
     font-family: "NotoSansCJKkr-Regular";
     font-size: 13px;
-    color: RGB(126,126,126);
+    color: #ACACAC;
     font-weight: bold;
     border-radius: 5px;
-    border: solid 1px RGB(126,126,126);
+    border: solid 1px #ACACAC;
     width: 78px;
     height: 31px;
     margin-left: 25px;
-    margin-bottom: 48px;
+    margin-bottom: 135px;
     background-color: #F2F2F2;
-    padding: 5px 6px 3px 6px;
+    padding: 7px 14px 9px 14px;
 }
 
 #change_btn:focus {
@@ -905,23 +909,23 @@ p.keyword-txt {
 
 #profile-middle {
     width: 412px;
-    height: 288px;
+    height: 382px;
     background-color: #F6F6F6;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     border-top: 1px solid #E4E4E4;
-    padding:  15px 10px 10px 10px;
+    padding:  28px 10px 10px 10px;
 
 }
 
 #middle_left {
     width: 191px;
-    height: 250px;
+    height: 344px;
     float: left;
 }
 #middle_right {
     width:200px;
-    height: 250px;
+    height: 344px;
     float:right;
 
 }
@@ -937,10 +941,9 @@ p.keyword-txt {
     font-size: 23px;
     font-weight: normal;
     color: #5064FA;
-    margin-top: 40px;
-    margin-left: 150px;
-    margin-bottom: 30px;
-    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
 
 }
 
@@ -955,8 +958,11 @@ p.keyword-txt {
     height: 42px;
     padding: 10px 20px 13px 20px;
     right: 202px;
-    position : absolute;
     bottom: 15px;
+    float: right;
+    margin-top: 40px;
+    margin-right: 7px;
+    margin-bottom: 7px;
 }
 #modal_save_btn:focus {
     outline: none;
@@ -982,7 +988,7 @@ p.keyword-txt {
 #profile_name {
     font-family: "NotoSansCJKkr-Regular";
     font-size: 13px;
-    color: RGB(73,73,73);
+    color: #616161;
     margin-bottom: 7px;
     margin-top: 28px;
 }
@@ -997,14 +1003,14 @@ p.keyword-txt {
     font-family: "Montserrat_Light";
     font-size: 14px;
     color: RGB(115,115,115);
-    border: 1px solid darkgrey;
+    border: 1px solid #ACACAC;
     border-radius: 5px;
     margin-right: 48px;
     margin-top: 7px;
     margin-bottom: 10px;
     padding: 12px 9px 9px 9px ;
     width: 170px;
-    height: 20px;
+    height: 25px;
 }
 #profile_name_input:focus{
     outline: none;
@@ -1013,8 +1019,9 @@ p.keyword-txt {
     font-family: "Montserrat_Light";
     font-size: 14px;
     color: RGB(115,115,115);
-    margin-bottom: 16px;
+    margin-bottom: 25px;
     margin-left: 0px;
+    margin-top: 7px;
     list-style: none;
     padding: 0px 0px 0px 0px;
 }
@@ -1046,5 +1053,37 @@ p.keyword-txt {
     padding: 6px 15px 9px 15px;
 }
 #change_pw_input{
+    font-family: "Montserrat_Light";
+    font-size: 14px;
+    color: RGB(115,115,115);
+    border: 1px solid #ACACAC;
+    border-radius: 5px;
+    margin-right: 48px;
+    margin-top: 7px;
+    margin-bottom: 10px;
+    padding: 12px 9px 9px 9px ;
+    width: 170px;
+    height: 25px;
+}
 
+#change_pw_input:focus {
+    outline: none;
+}
+
+#change_pw_confirm {
+    font-family: "Montserrat_Light";
+    font-size: 14px;
+    color: RGB(115,115,115);
+    border: 1px solid #ACACAC;
+    border-radius: 5px;
+    margin-right: 48px;
+    margin-top: 7px;
+    margin-bottom: 10px;
+    padding: 12px 9px 9px 9px ;
+    width: 170px;
+    height: 25px;
+}
+
+#change_pw_confirm:focus{
+    outline:none;
 }
