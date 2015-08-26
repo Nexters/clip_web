@@ -85,3 +85,9 @@
         init();
     });
 }());
+
+
+$('.sidebar-setting-icon').click(function() {
+    $('#profile_modal').modal('show');
+    //initModal();
+});
