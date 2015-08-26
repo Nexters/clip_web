@@ -5,6 +5,7 @@
     var newUserData = {};
     var ITEM_PER_PAGE = 20;
     var keyword = 'All';
+    var clipId = null;
     var pageNum = 0;
     var isCompleteLoading = false;
     var isLoading = false;
@@ -44,6 +45,10 @@
         <!-- 보드 타이틀 부분 -->
         $(".board").click(function(){
             $(".myclip_title").text($(this).data('title'));
+            clearBoardList();
+            clipId = $(this).data('id');
+            $('#board_feed_list_container').removeClass('hide');
+            initWookmark();
         });
 
         <!-- 보드 관리  삭제버튼 show hide 부분-->
@@ -187,6 +192,9 @@
             if (keyword !== 'All') {
                 params.keyword = keyword;
             }
+            if (clipId !== null) {
+                params.clipId = clipId;
+            }
             isLoading = true;
             $loaderCircle.show();
 
@@ -231,6 +239,46 @@
         loadData();
     }
 
+    function bindEvent() {
+
+    }
+
+
+    function getFeedBoxImageSrc(description) {
+        var defaultImageSrc = '/images/card_no_image.png';
+        if (!description) return defaultImageSrc;
+        return $(description).find('img').first().attr('src') || defaultImageSrc;
+    }
+
+    function getFeedBoxHtml(feed) {
+        var html =
+            '<li data-id="'+feed._id+'" data-link="'+feed.link+'">'+
+            '<span class="clip-icon-circle on">'+
+            '<img src="/images/clip_btn.png" align="center">'+
+            '</span>'+
+            '<div class="img-box">'+
+            '<img class="title-img" src="'+feed.image+'" align="middle" onError="this.src='+"\'/images/card_no_image.png\'"+'">'+
+            '</div>'+
+            '<div class="title-box">'+
+            '<p class="title-txt">'+feed.title+'</p>'+
+            '</div>'+
+            '<div class="keyword-box">'+
+            '<div class="keyword">'+
+            '<img src="/images/card_keyword_icon.png">'+
+            '<span>'+feed.keywordString+
+            '</span>'+
+            '</div>'+
+            '<div class="clip">';
+        if (feed.isCliped) {
+            html += '<img src="/images/card_clip_icon.png" align="middle">';
+        }
+        html += '</div>'+
+        '</div>'+
+        '</li>';
+        return html;
+    }
+
+
     function resetWookmark() {
         pageNum = 0;
         isCompleteLoading = false;
@@ -239,7 +287,9 @@
         initWookmark();
     }
 
-
+    function clearBoardList() {
+        $('.boards > .board').remove();
+    }
 
     $(document).ready(function() {
         init();
