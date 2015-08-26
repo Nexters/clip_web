@@ -42,9 +42,8 @@
         <!-- 보드 타이틀 부분 -->
         $(".board").click(function(){
             $(".myclip_title").text($(this).data('title'));
-            $('.myclip_title').attr('data-id', $(this).data('id'));
+            $('.myclip_title').attr('data-id')
             clearBoardList();
-
             clipId = $(this).data('id');
             $('#board_feed_list_container').removeClass('hide');
             initWookmark();
@@ -123,10 +122,19 @@
        $('#modal_save_btn').click(function() {
            var userId = userData._id;
            var params = { name: $('#profile_name_input').val()};
+           var userName = $('#profile_name_input').val();
 
            HttpUtil.putData('/user/id/'+userId, params, function (err) {
-               if($('#profile_name_input').val() == " " || null) return alert("입력해주세요!");
                if (err || null) return alert('저장 실패!');
+               <!-- 공백(스페이스) 입력시  -->
+               var blank_pattern = /[\s]/g;
+               if( blank_pattern.test(userName) == true){
+                   alert(' 공백은 사용할 수 없습니다.');
+                   return false;
+               }
+               <!-- 아무것도 입력하지 않았을때 -->
+               if(userName == "") return alert('이름을 입력해주세요.');
+
                alert("저장되었습니다.");
                location.href = "/user";
            });
@@ -251,8 +259,6 @@
             applyLayout();
         }
 
-        $(window).scrollTop(0);
-
         // Capture scroll event.
         $(document).unbind('scroll').bind('scroll', onScroll);
         // Load first data from the API.
@@ -262,21 +268,16 @@
     function bindEvent() {
         $('#feed_list_panel > li > .clip-icon-circle').unbind('click').click(function() {
             var $feedItem = $(this).parent();
-            var clipId = $('.myclip_title').data('id');
             var feed = { feed: $feedItem.data('id') };
+
             if ($(this).hasClass('on')) {
                 $(this).removeClass('on');
-                HttpUtil.putData('/clip/update/id/'+clipId+'/remove/feed', feed, function(err, result) {
-                    if (err) return alert(err);
-                    console.log("success");
-                });
-
+                $('#sidebar_clip_list').find('li[data-id='+feed.id+']').remove();
             } else {
                 $(this).addClass('on');
-                HttpUtil.putData('/clip/update/id/'+clipId+'/add/feed', feed, function(err, result) {
-                    if (err) return alert(err);
-                    console.log("success");
-                });
+                feed.title = $feedItem.find('.title-txt').text();
+                feed.src = $feedItem.find('.title-img').attr('src');
+                $('#sidebar_clip_list').append(getSmallFeedBoxHtml(feed));
             }
             return false;
         });
