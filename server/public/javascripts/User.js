@@ -19,6 +19,9 @@
         });
 
 
+        <!-- 프로필 이름,이메일 설정 부분 -->
+        $('#profile_name_input').val(userData.name);
+        $('.my_email').append('<li>'+userData.email+'<li>');
         <!-- modal 버튼 부분 -->
         $('#keyword_setting_btn').click(function() {
             $('#setting_modal').modal('show');
@@ -80,6 +83,7 @@
         $('.site_list > li').append(button);
     }
 
+    //로그아웃
     function initUserSettingModal() {
         $('#logout_btn').click(function() {
             HttpUtil.postData('/user/logout', {}, function (err) {

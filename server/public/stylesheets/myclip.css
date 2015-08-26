@@ -977,7 +977,7 @@ p.keyword-txt {
     color: RGB(73,73,73);
     margin-bottom: 7px;
 }
-#profile_email_input {
+#profile_name_input {
     font-family: "Montserrat_Light";
     font-size: 14px;
     color: RGB(115,115,115);
@@ -990,14 +990,17 @@ p.keyword-txt {
     width: 170px;
     height: 30px;
 }
-#profile_email_input:focus{
+#profile_name_input:focus{
     outline: none;
 }
-#my_email {
+.my_email {
     font-family: "Montserrat_Light";
     font-size: 14px;
     color: RGB(115,115,115);
     margin-bottom: 58px;
+    margin-left: 0px;
+    list-style: none;
+    padding: 0px 0px 0px 0px;
 }
 
 .hided-input-file-btn {
