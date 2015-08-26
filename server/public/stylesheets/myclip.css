@@ -739,7 +739,7 @@ p.keyword-txt {
 
 .boards {
     width: 900px;
-    height: 1000px;
+    min-height: 600px;
     margin: 0 auto;
     margin-top: 58px;
     margin-bottom: 17px;

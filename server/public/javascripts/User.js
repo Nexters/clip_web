@@ -47,6 +47,7 @@
             $(".myclip_title").text($(this).data('title'));
             $('.myclip_title').attr('data-id', $(this).data('id'));
             clearBoardList();
+
             clipId = $(this).data('id');
             $('#board_feed_list_container').removeClass('hide');
             initWookmark();
@@ -237,6 +238,8 @@
             // Apply layout.
             applyLayout();
         }
+
+        $(window).scrollTop(0);
 
         // Capture scroll event.
         $(document).unbind('scroll').bind('scroll', onScroll);
