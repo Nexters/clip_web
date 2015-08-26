@@ -19,6 +19,9 @@
         });
 
 
+        <!-- 프로필 이름,이메일 설정 부분 -->
+        $('#profile_name_input').val(userData.name);
+        $('.my_email').append('<li>'+userData.email+'<li>');
         <!-- modal 버튼 부분 -->
         $('#keyword_setting_btn').click(function() {
             $('#setting_modal').modal('show');
@@ -81,8 +84,17 @@
         $('.site_list > li').append(button);
     }
 
+    //로그아웃
     function initUserSettingModal() {
-        
+
+        $('#logout_btn').click(function() {
+            HttpUtil.postData('/user/logout', {}, function (err) {
+                if (err || null) return alert('로그아웃 실패!');
+                alert("로그아웃 되었습니다!");
+                location.href = "/signin";
+            });
+        });
+
     }
 
     function initModal() {
