@@ -255,6 +255,7 @@ p.keyword-txt {
 .board_delete_btn{
     position: absolute;
     display: none;
+    margin-left: 230px;
     z-index: 2;
 }
 .board_delete_btn:active{
@@ -826,7 +827,7 @@ p.keyword-txt {
 }
 
 .taggle_list .taggle .close{
-    color: #FFFFFF !important;
+    color: #5064FA !important;
 }
 
 .taggle_placeholder {
