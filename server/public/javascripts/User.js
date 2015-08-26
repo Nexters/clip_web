@@ -26,8 +26,10 @@
         });
 
         <!-- 보드 타이틀 부분 -->
-        $(".comment").click(function(){
-            $(".myclip_title").text($(this).text());
+
+
+        $(".board").click(function(){
+            $(".myclip_title").text($(this).data('title'));
         });
 
         <!-- 보드 삭제 버튼 show hide 부분-->
@@ -63,10 +65,6 @@
             }
         });
 
-        <!-- 보드이미지 부분 -->
-        $(".board_image_size").click(function() {
-            console.log("선택됨");
-        });
 
         $('.sidebar-setting-icon').click(function() {
             $('#profile_modal').modal('show');
