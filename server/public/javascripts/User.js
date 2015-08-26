@@ -1,4 +1,3 @@
-
 (function () {
     'use strict';
 
@@ -18,6 +17,20 @@
             placeholder: '태그 입력',
             duplicateTagClass: 'bounce'
         });
+
+
+        <!-- modal 버튼 부분 -->
+        $('#keyword_setting_btn').click(function() {
+            $('#setting_modal').modal('show');
+            initModal();
+        });
+
+        <!-- 보드 타이틀 부분 -->
+        $(".comment").click(function(){
+            $(".myclip_title").text($(this).text());
+        });
+
+        <!-- 보드 삭제 버튼 show hide 부분-->
         $('#board-setting-btn').click(function () {
             if ( $('.board_delete_btn').css('display') == 'none'){
                 $('.board_delete_btn').show();
@@ -27,15 +40,33 @@
             }
         });
 
-        $('#keyword_setting_btn').click(function() {
-            $('#setting_modal').modal('show');
-            initModal();
+
+        <!-- 보드 삭제 버튼 부분 -->
+        $(".board_delete_btn").click(function(){
+
+            var title = $('.comment').val();
+            if(confirm("정말 삭제하시겠습니까?")){
+                console.log("삭제됨");
+                var params = {'title':title};
+                HttpUtil.postData('/clip/deleteall', params, function(err, data) {
+                    if(err != null){
+                        alert(data);
+                        return false;
+                    }
+                    location.href="/user";
+                    return false;
+                });
+            }
+            else{
+                console.log("삭제되지않음");
+                return false;
+            }
         });
 
-        $(".comment").click(function(){
-            $(".myclip_title").text($(this).text());
+        <!-- 보드이미지 부분 -->
+        $(".board_image_size").click(function() {
+            console.log("선택됨");
         });
-
 
         $('.sidebar-setting-icon').click(function() {
             $('#profile_modal').modal('show');
