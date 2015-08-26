@@ -176,6 +176,7 @@ ul#feed_list_panel > li {
 
 /*키워드 영역 관련*/
 .fixed-keyword-bar .keyword-bar-keywords .myclip-bar-title-box {
+    cursor: pointer;
     float: left;
     display: inline;
     font-family: "Montserrat-Regular";
@@ -1014,4 +1015,8 @@ p.keyword-txt {
     margin-left: 25px;
     font-size: 45px;
     opacity: 0;
+}
+
+#board_feed_list_container {
+    padding-top: 10px !important;
 }

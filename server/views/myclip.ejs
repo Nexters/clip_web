@@ -34,7 +34,7 @@
 <nav class="navbar navbar-fixed-top">
     <div class="container">
         <div class="navbar-header" align="center">
-            <a class="navbar-brand" href="#">Clip</a>
+            <a class="navbar-brand" href="/home">Clip</a>
         </div><!-- /.navbar-header -->
         <div class="navbar-profile">
             <a class="home-icon-box" href="/home">
@@ -53,9 +53,9 @@
         <div class="myclip-bar-title-box">My Clipboard</div>
         <img src="/images/myboard_arrow_icon.png"/>
         <span  class="myclip_title"></span>
-        <qoqo class="float-right">
+        <div class="float-right">
             <span class="board-setting-btn">보드관리</span>
-        </qoqo>
+        </div>
 
     </div>
 
@@ -64,7 +64,7 @@
 <!--보드 이미지 보드 부분 -->
 <div class="boards">
 
-    <div class="row row-offcanvas row-offcanvas-right hide">
+    <div id="board_feed_list_container" class="row row-offcanvas row-offcanvas-right hide">
         <div role="main" id="feed_container">
             <ul id="feed_list_panel" class="tiles-wrap animated">
 
