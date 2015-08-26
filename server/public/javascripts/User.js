@@ -3,6 +3,19 @@
 
     var userData, taggle;
     var newUserData = {};
+    var ITEM_PER_PAGE = 20;
+    var keyword = 'All';
+    var pageNum = 0;
+    var isCompleteLoading = false;
+    var isLoading = false;
+    var container = '#feed_list_panel';
+    var $loaderCircle = $('#loaderCircle');
+    var wookmark = undefined;
+    var options = {
+        offset: 12, // Optional, the distance between grid items
+        itemWidth: 251 // Optional, the width of a grid item
+    };
+
 
     var button = $('<img/>', {
         src: '/images/card_delete_icon.png',
@@ -116,6 +129,104 @@
             });
         });
     }
+
+
+
+    function initWookmark() {
+        /**
+         * When scrolled all the way to the bottom, add more tiles.
+         */
+        function onScroll(event) {
+            // Only check when we're not still waiting for data.
+            if(!isLoading) {
+                // Check if we're within 100 pixels of the bottom edge of the broser window.
+                var closeToBottom = ($(window).scrollTop() + $(window).height() > $(document).height() - 100);
+                if (closeToBottom) {
+                    loadData();
+                }
+            }
+        }
+        /**
+         * Refreshes the layout after all images have loaded
+         */
+        function applyLayout() {
+            imagesLoaded(container, function () {
+                if (wookmark === undefined) {
+                    wookmark = new Wookmark(container, options);
+                } else {
+                    wookmark.initItems();
+                    wookmark.layout(true);
+                }
+                $loaderCircle.hide();
+            });
+
+        }
+
+        /**
+         * Loads data from the API.
+         */
+        function loadData() {
+            if (isCompleteLoading) return;
+            var params = {
+                pageNum: pageNum,
+                perPage: ITEM_PER_PAGE
+            };
+            if (keyword !== 'All') {
+                params.keyword = keyword;
+            }
+            isLoading = true;
+            $loaderCircle.show();
+
+            HttpUtil.getData('/feed/user', params, function(err, data) {
+                onLoadData(data);
+                bindEvent();
+            });
+        }
+
+        /**
+         * Receives data from the API, creates HTML for images and updates the layout
+         */
+        function onLoadData(feedData) {
+            isLoading = false;
+            // Increment pageNum index for future calls.
+            pageNum++;
+            var length = feedData && feedData.length;
+            var html = '';
+            var i;
+
+            if (!length) {
+                isCompleteLoading = true;
+                $loaderCircle.hide();
+                return;
+            }
+
+            // Create HTML for the images.
+            for(i=0; i<length; i++) {
+                feedData[i].image = getFeedBoxImageSrc(feedData[i].description);
+                html += getFeedBoxHtml(feedData[i]);
+            }
+
+            // Add image HTML to the pageNum.
+            $(container).append(html);
+            // Apply layout.
+            applyLayout();
+        }
+
+        // Capture scroll event.
+        $(document).unbind('scroll').bind('scroll', onScroll);
+        // Load first data from the API.
+        loadData();
+    }
+
+    function resetWookmark() {
+        pageNum = 0;
+        isCompleteLoading = false;
+        isLoading = false;
+        $(container).empty();
+        initWookmark();
+    }
+
+
 
     $(document).ready(function() {
         init();
