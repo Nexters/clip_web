@@ -35,6 +35,12 @@
 
     function init() {
 
+        <!-- modal 버튼 부분 -->
+        $('#forgot_pw').click(function() {
+            $('#setting_modal').modal('show');
+            initModal();
+        });
+
         $('#signin_btn').click(function() {
             login();
         });
@@ -64,4 +70,5 @@
         init();
     });
 }());
+
 
