@@ -43,24 +43,26 @@
 
         <!-- 보드 삭제 버튼 부분 -->
         $(".board_delete_btn").click(function(){
-
-            var title = $('.comment').val();
-            if(confirm("정말 삭제하시겠습니까?")){
-                console.log("삭제됨");
-                var params = {'title':title};
-                HttpUtil.postData('/clip/deleteall', params, function(err, data) {
-                    if(err != null){
-                        alert(data);
-                        return false;
-                    }
-                    location.href="/user";
-                    return false;
-                });
-            }
-            else{
-                console.log("삭제되지않음");
-                return false;
-            }
+            var boardId = $(this).parent().parent().data('id');
+            console.log(boardId);
+            //
+            //var title = $('.comment').val();
+            //if(confirm("정말 삭제하시겠습니까?")){
+            //    console.log("삭제됨");
+            //    var params = {'title':title};
+            //    HttpUtil.postData('/clip/deleteall', params, function(err, data) {
+            //        if(err != null){
+            //            alert(data);
+            //            return false;
+            //        }
+            //        location.href="/user";
+            //        return false;
+            //    });
+            //}
+            //else{
+            //    console.log("삭제되지않음");
+            //    return false;
+            //}
         });
 
         <!-- 보드이미지 부분 -->
