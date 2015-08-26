@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/javascripts/bower_components/wookmark/css/main.css">
     <link rel="stylesheet" href="/javascripts/bower_components/taggle.js/assets/css/taggle.css">
     <link rel="stylesheet" href="/stylesheets/common.css"/>
+    <link rel="stylesheet" href="/stylesheets/home.css"/>
     <link rel="stylesheet" href="/stylesheets/myclip.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -53,7 +54,7 @@
         <img src="/images/myboard_arrow_icon.png"/>
         <span  class="myclip_title"></span>
         <qoqo class="float-right">
-            <span id="board-setting-btn">보드관리</span>
+            <span class="board-setting-btn">보드관리</span>
         </qoqo>
 
     </div>
@@ -62,11 +63,28 @@
 
 <!--보드 이미지 보드 부분 -->
 <div class="boards">
+
+    <div class="row row-offcanvas row-offcanvas-right hide">
+        <div role="main" id="feed_container">
+            <ul id="feed_list_panel" class="tiles-wrap animated">
+
+            </ul>
+            <div id="loader">
+                <div align="center" id="loaderCircle">
+                    <img src="/images/loader.gif">
+                </div>
+            </div>
+        </div>
+    </div><!--/row-->
+
     <% for(var i=0; i<clips.length; i++) { %>
-    <div class="board">
+    <div class="board" data-title="<%= clips[i].title %>" data-id="<%= clips[i]._id %>">
         <div class="board_image">
             <img class="icon" src="/images/clip_icon.png" z-index="3">
-            <img class="board_delete_btn" src="/images/profile_setting_icon.png" z-index="2">
+            <!--<img class="board_delete_btn" src="/images/profile_setting_icon.png" z-index="2">-->
+            <button type="button" class="close board_delete_btn"aria-label="Close" z-index="2">
+                <span>&times;</span>
+            </button>
             <img class="board_image_size" src="<%= clips[i].boardImageUrl %>" z-index="1">
         </div>
         <div class="board_title">
@@ -122,8 +140,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
                 <!--<h4 id="login_modal_title" class="modal_title">키워드 등록</h4>-->
                 <h4 id="login_modal_title" class="modal_title">키워드 등록</h4>
                 <h5 id="modal_sub_title" class="modal_subtitle">클립하고 싶은 키워드 또는 사이트를 등록해주세요.</h5>
@@ -160,11 +177,62 @@
 <!-- /.modal -->
 
 
+
+
+<!--profile modal-->
+
+<div id="profile_modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="profile-content">
+            <div class="profile-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+                <!--<h4 id="login_modal_title" class="modal_title">키워드 등록</h4>-->
+                <h4 id="profile_modal_title" class="modal_title">프로필 수정</h4>
+
+            </div>
+
+
+            <div id="profile-middle">
+                <div id="middle_left">
+                    <img class="profile-image-box" src="/images/empty_user_icon.png">
+                    <input class="image-file-upload-btn hided-input-file-btn is-edit-mode" type="file" name="files[]" data-url="/ajax/upload">
+                    <br><button id="change_btn" type="button" class="change-btn">사진변경</button>
+                    <br><button id="logout_btn" type="button" class="logout-btn">로그아웃</button>
+                </div>
+                <div id="middle_right">
+
+                    <h7 id="profile_name">이름</h7>
+                    <br><input id="profile_name_input" type="text"/>
+                    <br><h8 id="profile_email">이메일 주소</h8>
+                    <br><h9><ul class="my_email">
+
+                        </ul></h9>
+                    <br><button id="modal_save_btn" type="button" class="save-btn">저장하기</button>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/javascripts/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
 <script src="/javascripts/bower_components/wookmark/wookmark.min.js"></script>
 <script src="/javascripts/bower_components/taggle.js/dist/taggle.min.js"></script>
+<script src="/javascripts/bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/javascripts/bower_components/jquery-file-upload/js/jquery.fileupload.js"></script>
 <script src="/javascripts/util/HttpUtil.js"></script>
 <script src="/javascripts/User.js"></script>
 </body>

@@ -5,7 +5,7 @@ body {
 }
 
 #top {
-    margin-top:160px;
+    margin-top:80px;
     display:block;
     font-size :108px;
     font-family:"Montserrat_Bold";
@@ -16,7 +16,7 @@ body {
     position: relative;
     top:26px;
     font-size : 32px;
-    font-family:"NotoSansCJKkr_Regular";
+    font-family: 'NotoSansCJKkr-Regular';
     color:white;
 }
 
@@ -27,6 +27,7 @@ body {
     width:391px;
     background-color: white;
     border-radius: 5px;
+    margin-bottom: 80px;
 }
 
 #signup{

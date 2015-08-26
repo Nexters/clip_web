@@ -2,7 +2,11 @@
     'use strict';
 
     function init() {
-        $("#signup_btn").click(function(){
+
+        $("#login_btn").click(function() {
+            location.href="/signin";
+        });
+            $("#signup_btn").click(function(){
             var minLength = 6;
             var $textarea = $('#input_password1');
             var hasError = false;

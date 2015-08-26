@@ -178,7 +178,7 @@ ul#feed_list_panel > li {
 .fixed-keyword-bar .keyword-bar-keywords .myclip-bar-title-box {
     float: left;
     display: inline;
-    font-family: "Montserrat_Regular";
+    font-family: "Montserrat-Regular";
     color: #646464;
     font-size: 17px;
     width: 130px;
@@ -234,7 +234,7 @@ p.keyword-txt {
     margin-top: 12px;
     margin-left: -8px;
     margin-bottom: 15px;
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     color: #999898;
     font-size: 15px;
 }
@@ -256,14 +256,17 @@ p.keyword-txt {
     display: none;
     z-index: 2;
 }
-#board-setting-btn {
+.board_delete_btn:active{
+    background-color: #5064FA;
+}
+.board-setting-btn {
     cursor: pointer;
     width: 102px;
     height: 35px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     color: #999898;
     font-size: 14px;
     padding: 5px 20px 5px 20px;
@@ -272,7 +275,7 @@ p.keyword-txt {
 
 }
 
-#board-setting-btn.active {
+.board-setting-btn:active {
     background: #5064FA;
     text-decoration: none;
 }
@@ -310,6 +313,7 @@ p.keyword-txt {
 }
 
 .sidebar-setting-icon {
+    cursor: pointer;
     margin-top: -2px;
     margin-left: 220px;
 
@@ -323,14 +327,14 @@ p.keyword-txt {
 }
 
 .sidebar-name-txt {
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     color: #ffffff;
     font-size: 17px;
     margin-bottom: -3px;
 }
 
 .sidebar-email-txt {
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     color: #ffffff;
     font-size: 12px;
     margin-bottom: -3px;
@@ -367,7 +371,7 @@ p.keyword-txt {
     line-height: 30px;
     margin-left: 9px;
     margin-top: 4px;
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     color: RGB(183, 183, 183);
     font-size: 15px;
     border: none;
@@ -409,7 +413,7 @@ p.keyword-txt {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     color: #ffffff;
     font-size: 15px;
     background: #5064fa;
@@ -434,7 +438,7 @@ p.keyword-txt {
     -moz-border-radius: 30px;
     border-radius: 30px;
     border: solid #5064fa 1px;
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     color: #5064fa;
     font-size: 16px;
     background: #ffffff;
@@ -469,7 +473,7 @@ p.keyword-txt {
 }
 
 .modal_title {
-    font-family: "NotoSansCJKkr_Medium";
+    font-family: "NotoSansCJKkr-Medium";
     font-size: 30px;
     color: RGB(80, 100, 250);
     margin-top: 23px;
@@ -479,7 +483,7 @@ p.keyword-txt {
 }
 
 .modal_subtitle {
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     font-size: 16px;
     color: RGB(129, 129, 129);
     margin-bottom: 26px;
@@ -488,7 +492,7 @@ p.keyword-txt {
 }
 
 .keyword-enroll {
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     font-size: 14px;
     color: RGB(129, 129, 129);
     margin-bottom: 8px;
@@ -496,7 +500,7 @@ p.keyword-txt {
 }
 
 .site {
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     font-size: 14px;
     color: #818181;
     margin-top: 15px;
@@ -622,7 +626,7 @@ p.keyword-txt {
 }
 
 #modal_key_btn {
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     font-size: 17px;
     font-weight: bold;
     padding: 14px 79px 15px 79px;
@@ -640,7 +644,7 @@ p.keyword-txt {
     outline: none;
 }
 #modal_add_btn {
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     font-size: 15px;
     color: #FFFFFF;
     background-color: #5064FA;
@@ -678,7 +682,7 @@ p.keyword-txt {
     font-size: 14px;
     color: RGB(129,129,129);
 }
-.close{
+.modal-header .close{
     color: #5064FA !important;
 }
 
@@ -784,7 +788,7 @@ p.keyword-txt {
 
 .board .comment {
     cursor:pointer;
-    font-family: "NotoSansCJKkr_Regular";
+    font-family: "NotoSansCJKkr-Regular";
     color: #585858;
     font-size: 15px;
     padding-top: 10px;
@@ -820,6 +824,10 @@ p.keyword-txt {
     padding-top: 7px !important;
 }
 
+.taggle_list .taggle .close{
+    color: #FFFFFF !important;
+}
+
 .taggle_placeholder {
     position: relative !important;
 }
@@ -840,4 +848,170 @@ p.keyword-txt {
 
 
 
+/*프로필 모달*/
 
+.profile-content {
+    width: 412px;
+    height: 350px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.profile-header {
+    width: 412px;
+    height: 119px;
+    background-color: #FFFFFF;
+    padding: 10px 10px 10px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.profile-image-box {
+    margin-top: -1px;
+    margin-left: 34px;
+    margin-bottom: 15px;
+    -webkit-border-radius: 30px;
+}
+
+#change_btn {
+    font-family: "NotoSansCJKkr-Regular";
+    font-size: 13px;
+    color: RGB(126,126,126);
+    font-weight: bold;
+    border-radius: 5px;
+    border: solid 1px RGB(126,126,126);
+    width: 78px;
+    height: 31px;
+    margin-left: 28px;
+    margin-bottom: 48px;
+    background-color: #F2F2F2;
+    padding: 5px 6px 3px 6px;
+}
+#change_btn:focus {
+    outline: none;
+}
+
+#profile-middle {
+    width: 412px;
+    height: 231px;
+    background-color: #F6F6F6;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: 1px solid #E4E4E4;
+    padding:  28px 10px 10px 10px;
+
+}
+
+#middle_left {
+    width: 191px;
+    height: 200px;
+    float: left;
+}
+#middle_right {
+    width:200px;
+    height: 188px;
+    float:right;
+
+}
+
+.close {
+    color: #5064FA !important;
+}
+.close:focus {
+    outline: none;
+}
+#profile_modal_title {
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 23px;
+    font-weight: normal;
+    color: #5064FA;
+    margin-top: 40px;
+    margin-left: 150px;
+    margin-bottom: 30px;
+    text-align: left;
+
+}
+
+#modal_save_btn {
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 15px;
+    color: #FFFFFF;
+    background-color: #5064FA;
+    border-radius: 5px;
+    border: solid 0px;
+    width: 93px;
+    height: 42px;
+    padding: 10px 20px 13px 20px;
+    right: 202px;
+    position : absolute;
+    bottom: 15px;
+}
+#modal_save_btn:focus {
+    outline: none;
+}
+
+#logout_btn {
+    font-family: "NotoSansCJKkr-Regular";
+    font-size: 15px;
+    color: RGB(152,152,152);
+    font-weight: bold;
+    border: none;
+    margin-left: 35px;
+    margin-bottom: 20px;
+    background-color: #F6F6F6;
+
+}
+
+#logout_btn:focus {
+    outline: none;
+}
+
+#profile_name {
+    font-family: "NotoSansCJKkr-Regular";
+    font-size: 13px;
+    color: RGB(73,73,73);
+    margin-bottom: 7px;
+    margin-top: 28px;
+}
+
+#profile_email {
+    font-family: "NotoSansCJKkr-Regular";
+    font-size: 13px;
+    color: RGB(73,73,73);
+    margin-bottom: 7px;
+}
+#profile_name_input {
+    font-family: "Montserrat_Light";
+    font-size: 14px;
+    color: RGB(115,115,115);
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    margin-right: 48px;
+    margin-top: 7px;
+    margin-bottom: 30px;
+    padding: 9px 9px 9px 9px ;
+    width: 170px;
+    height: 30px;
+}
+#profile_name_input:focus{
+    outline: none;
+}
+.my_email {
+    font-family: "Montserrat_Light";
+    font-size: 14px;
+    color: RGB(115,115,115);
+    margin-bottom: 58px;
+    margin-left: 0px;
+    list-style: none;
+    padding: 0px 0px 0px 0px;
+}
+
+.hided-input-file-btn {
+    cursor: pointer;
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    margin-left: 25px;
+    font-size: 45px;
+    opacity: 0;
+}

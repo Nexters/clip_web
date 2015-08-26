@@ -51,6 +51,13 @@ function makeFeeds(feeds, clips) {
     });
 }
 
+FeedSchema.statics.getFeedArrayInClip = function(criteria, callback) {
+    this.model('Clip').getClip(criteria, function(err, clip) {
+        callback(err, clip);
+    });
+};
+
+
 /**
  * Model Methods
  */
@@ -60,6 +67,19 @@ FeedSchema.statics.getFeeds = function(criteria, projection, options, callback) 
     var feedIdArray;
     async.waterfall([
         function(callback) {
+            if (criteria.clipId) {
+                self.model('Clip').getClip({_id: criteria.clipId}, function(err, clip) {
+                    if (err) return callback(err);
+                    if (!clip || !clip.feeds) return callback('empty clip');
+                    var newCriteria = {};
+                    newCriteria._id = { $in: clip.feeds };
+                    callback(err, newCriteria);
+                });
+            } else {
+                callback(null, criteria);
+            }
+        },
+        function(criteria, callback) {
             self.find(criteria, projection, options, callback);
         },
         function(feeds, callback) {

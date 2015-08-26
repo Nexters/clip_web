@@ -33,6 +33,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var feeds = require('./routes/feeds');
 var clips = require('./routes/clips');
+var files = require('./routes/files');
+var images = require('./routes/images');
 
 // Database Setup
 var dbUri = config.mongo.uri + config.mongo.db;
@@ -71,7 +73,7 @@ app.use(expressValidator({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Session
-if (app.get('env') === 'production') {
+//if (app.get('env') === 'production') {
     MongoStore = require('connect-mongo')(session);
     app.use(session({
         secret: config.secret,
@@ -79,18 +81,20 @@ if (app.get('env') === 'production') {
         resave: false,
         saveUninitialized: true
     }));
-} else {
-    app.use(session({
-        secret: config.secret,
-        resave: false,
-        saveUninitialized: true
-    }));
-}
+//} else {
+//    app.use(session({
+//        secret: config.secret,
+//        resave: false,
+//        saveUninitialized: true
+//    }));
+//}
 
 app.use('/', routes);
 app.use('/user', users);
 app.use('/feed', feeds);
 app.use('/clip', clips);
+app.use('/file', files);
+app.use('/upload', images);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

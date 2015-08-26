@@ -14,10 +14,14 @@ body {
     margin: auto;
     background: rgb(255, 255, 255);
     border-radius: 5px;
+    margin-bottom: 80px;
 }
 
 #signin_btn{}
 
+#signin_btn:focus {
+    outline: none;
+}
 #input_email{
     font-family: 'Roboto_Light';
     font-size: 14px;
@@ -56,6 +60,9 @@ body {
 .test{
     margin-top: 16px ;
 }
+.test:focus {
+    outline:none;
+}
 #join{
     font-size: 16px;
     color:rgb(124,124,124);
@@ -67,8 +74,10 @@ body {
     border-right-color: white;
     -webkit-border-bottom-left-radius: 5px;
     -webkit-border-bottom-right-radius: 5px;
-    margin-bottom: 10px;
     border: none;
+}
+#join:focus {
+    outline: none;
 }
 /* Log in */
 #wrapper h1{

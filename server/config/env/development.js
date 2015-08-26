@@ -5,6 +5,7 @@ module.exports = {
     host: 'localhost',
     port: 3000,
     secret: 'clip_secret',
+    imgPrefix: 'http://localhost:3000',
     mongo: {
         uri: 'mongodb://localhost/',
         db: 'clip',
