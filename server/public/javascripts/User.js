@@ -37,6 +37,10 @@
         });
 
 
+        $('.sidebar-setting-icon').click(function() {
+            $('#profile_modal').modal('show');
+            initUserSettingModal();
+        });
     }
 
     function initModalSiteItems() {
@@ -47,6 +51,9 @@
         $('.site_list > li').append(button);
     }
 
+    function initUserSettingModal() {
+
+    }
 
     function initModal() {
         $.extend(true, newUserData, userData);
@@ -86,8 +93,3 @@
     });
 }());
 
-
-$('.sidebar-setting-icon').click(function() {
-    $('#profile_modal').modal('show');
-    //initModal();
-});
