@@ -901,7 +901,7 @@ p.keyword-txt {
 
 #middle_left {
     width: 191px;
-    height: 210px;
+    height: 200px;
     float: left;
 }
 #middle_right {
@@ -953,7 +953,7 @@ p.keyword-txt {
     color: RGB(152,152,152);
     font-weight: bold;
     border: none;
-    margin-left: 30px;
+    margin-left: 35px;
     margin-bottom: 20px;
     background-color: #F6F6F6;
 
