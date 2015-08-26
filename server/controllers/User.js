@@ -153,5 +153,18 @@ UserCtrl.logoutUser = function(req, res) {
     res.status(200).send(Result.SUCCESS('success'));
 };
 
+UserCtrl.defaultPassword = function(req, res) {
+    var errors, criteria, update = {};
+    var defaultPassword = 'abc123';
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    console.log(Session.getSessionId(req));
+    console.log(defaultPassword);
+    criteria = {_id: Session.getSessionId(req)};
+    update.pw = defaultPassword;
+    User.updateUser(criteria, update, function(err, doc) {
+        return res.status(200).send(Result.SUCCESS('success'));
+    })
+};
 module.exports = UserCtrl;
 
