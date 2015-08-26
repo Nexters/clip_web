@@ -137,7 +137,6 @@
         $('#feed_list_panel > li').unbind('click').click(function() {
             var feedLink = $(this).data('link');
             window.open(feedLink, '_blank');
-            //location.href = feedLink;
             return false;
         });
 

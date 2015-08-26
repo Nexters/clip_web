@@ -45,6 +45,7 @@
         <!-- 보드 타이틀 부분 -->
         $(".board").click(function(){
             $(".myclip_title").text($(this).data('title'));
+            $('.myclip_title').attr('data-id')
             clearBoardList();
             clipId = $(this).data('id');
             $('#board_feed_list_container').removeClass('hide');
@@ -240,7 +241,21 @@
     }
 
     function bindEvent() {
+        $('#feed_list_panel > li > .clip-icon-circle').unbind('click').click(function() {
+            var $feedItem = $(this).parent();
+            var feed = { feed: $feedItem.data('id') };
 
+            if ($(this).hasClass('on')) {
+                $(this).removeClass('on');
+                $('#sidebar_clip_list').find('li[data-id='+feed.id+']').remove();
+            } else {
+                $(this).addClass('on');
+                feed.title = $feedItem.find('.title-txt').text();
+                feed.src = $feedItem.find('.title-img').attr('src');
+                $('#sidebar_clip_list').append(getSmallFeedBoxHtml(feed));
+            }
+            return false;
+        });
     }
 
 

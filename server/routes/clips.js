@@ -11,6 +11,10 @@ router.post('/save', clipCtrl.saveUserClip);
 /* PUT clips */
 router.put('/update/id/:id', clipCtrl.updateUserClip);
 
+/* PUT clips */
+router.put('/update/id/:id/add/feed', clipCtrl.addUserClipFeed);
+router.put('/update/id/:id/remove/feed', clipCtrl.removeUserClipFeed);
+
 router.post('/delete', clipCtrl.deleteUserClips);
 
 router.post('/deleteall', clipCtrl.deleteUserClipsAll);
