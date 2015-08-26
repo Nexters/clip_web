@@ -12,7 +12,7 @@ function UserCtrl() {
 }
 
 UserCtrl.getHomePage = function(req, res) {
-    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    if (!Session.hasSession(req)) return res.redirect("/signin");
     var criteria = { _id: Session.getSessionId(req) };
     var data = {};
     User.getUser(criteria, function(err, doc) {
@@ -22,7 +22,7 @@ UserCtrl.getHomePage = function(req, res) {
 };
 
 UserCtrl.getUserPage = function(req, res) {
-    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    if (!Session.hasSession(req)) return res.redirect("/signin");
     var criteria = { _id: Session.getSessionId(req) };
     var data = {};
     if(!req || !res) return;
@@ -112,14 +112,14 @@ UserCtrl.loginUser = function(req, res) {
     criteria = {email: req.body.email};
 
     User.getUser(criteria, function(err,doc) {
-        if (doc === null) {
-            res.status(403).send(Result.ERROR('fail'));
+        if (!doc) {
+            return res.status(403).send(Result.ERROR('fail'));
         }
         if (criteria.email === doc.email && req.body.pw === doc.pw) {
             Session.registerSession(req, doc);
-            res.status(200).send(Result.SUCCESS(doc._id));
+            return res.status(200).send(Result.SUCCESS(doc._id));
         } else {
-            res.status(403).send(Result.ERROR('fail'));
+            return res.status(403).send(Result.ERROR('fail'));
         }
     });
 };
@@ -153,7 +153,6 @@ UserCtrl.updateUser = function(req, res) {
 UserCtrl.logoutUser = function(req, res) {
     Session.removeSession(req);
     res.status(200).send(Result.SUCCESS('success'));
-    return res.redirect("/user/login");
 };
 
 module.exports = UserCtrl;
