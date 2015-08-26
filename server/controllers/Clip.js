@@ -74,21 +74,7 @@ ClipCtrl.deleteUserClips = function(req, res) {
     Clip.deleteClip(criteria,function(err,doc){
         res.status(200).send(Result.SUCCESS(doc));
     });
-
-};
-
-ClipCtrl.deleteUserClipsAll = function(req, res) {
-    var criteria,errors;
-    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
-    errors = req.validationErrors();
-    if (errors) return res.status(400).send(Result.ERROR(errors));
-    criteria ={
-        user: Session.getSessionId(req)
-    };
-    Clip.deleteClipAll(criteria,function(req, doc){
-        res.status(200).send(Result.SUCCESS(doc));
-    });
-};
+}
 
 ClipCtrl.deleteUserClip = function(req, res) {
     var criteria, errors;
