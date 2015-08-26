@@ -271,7 +271,7 @@ p.keyword-txt {
     font-family: "NotoSansCJKkr-Regular";
     color: #999898;
     font-size: 14px;
-    padding: 5px 20px 5px 20px;
+    padding: 7px 20px 5px 20px;
     border: solid #cccccc 1px;
     text-decoration: none;
 
@@ -739,7 +739,7 @@ p.keyword-txt {
 
 .boards {
     width: 900px;
-    height: 1000px;
+    min-height: 600px;
     margin: 0 auto;
     margin-top: 58px;
     margin-bottom: 17px;
@@ -873,6 +873,8 @@ p.keyword-txt {
     margin-left: 34px;
     margin-bottom: 15px;
     -webkit-border-radius: 30px;
+    width: 57px;
+    height: 57px;
 }
 
 #change_btn {

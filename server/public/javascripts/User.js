@@ -37,9 +37,6 @@
         });
 
 
-        <!-- 프로필 이름,이메일 설정 부분 -->
-        $('#profile_name_input').val(userData.name);
-        $('.my_email').append('<li>'+userData.email+'<li>');
         <!-- modal 버튼 부분 -->
         $('#keyword_setting_btn').click(function() {
             $('#setting_modal').modal('show');
@@ -49,8 +46,9 @@
         <!-- 보드 타이틀 부분 -->
         $(".board").click(function(){
             $(".myclip_title").text($(this).data('title'));
-            $('.myclip_title').attr('data-id')
+            $('.myclip_title').attr('data-id', $(this).data('id'));
             clearBoardList();
+
             clipId = $(this).data('id');
             $('#board_feed_list_container').removeClass('hide');
             initWookmark();
@@ -112,7 +110,7 @@
         $('.site_list > li').append(button);
     }
 
-    //로그아웃
+    //프로필 설정 모달
     function initUserSettingModal() {
 
         $('#logout_btn').click(function() {
@@ -123,6 +121,7 @@
             });
         });
 
+
         $('#fileupload').fileupload({
             dataType: 'json',
             done: function (e, data) {
@@ -131,6 +130,22 @@
                 $('.profile-image-box').attr('src', image);
                 console.log(image);
             }
+        });
+
+        <!-- 프로필 이름 설정 부분 -->
+        $('#profile_name_input').val(userData.name);
+
+        <!-- 저장하기 버튼 -->
+       $('#modal_save_btn').click(function() {
+           var userId = userData._id;
+           var params = { name: $('#profile_name_input').val()};
+
+           HttpUtil.putData('/user/id/'+userId, params, function (err) {
+               if($('#profile_name_input').val() == " " || null) return alert("입력해주세요!");
+               if (err || null) return alert('저장 실패!');
+               alert("저장되었습니다.");
+               location.href = "/user";
+           });
         });
 
     }
@@ -253,6 +268,8 @@
             applyLayout();
         }
 
+        $(window).scrollTop(0);
+
         // Capture scroll event.
         $(document).unbind('scroll').bind('scroll', onScroll);
         // Load first data from the API.
@@ -262,16 +279,21 @@
     function bindEvent() {
         $('#feed_list_panel > li > .clip-icon-circle').unbind('click').click(function() {
             var $feedItem = $(this).parent();
+            var clipId = $('.myclip_title').data('id');
             var feed = { feed: $feedItem.data('id') };
-
             if ($(this).hasClass('on')) {
                 $(this).removeClass('on');
-                $('#sidebar_clip_list').find('li[data-id='+feed.id+']').remove();
+                HttpUtil.putData('/clip/update/id/'+clipId+'/remove/feed', feed, function(err, result) {
+                    if (err) return alert(err);
+                    console.log("success");
+                });
+
             } else {
                 $(this).addClass('on');
-                feed.title = $feedItem.find('.title-txt').text();
-                feed.src = $feedItem.find('.title-img').attr('src');
-                $('#sidebar_clip_list').append(getSmallFeedBoxHtml(feed));
+                HttpUtil.putData('/clip/update/id/'+clipId+'/add/feed', feed, function(err, result) {
+                    if (err) return alert(err);
+                    console.log("success");
+                });
             }
             return false;
         });

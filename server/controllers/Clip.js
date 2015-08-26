@@ -71,9 +71,13 @@ ClipCtrl.addUserClipFeed = function(req, res) {
     if (errors) return res.status(400).send(Result.ERROR(errors));
     conditions = { _id: req.params.id };
     updateData = {
-        feeds: { $push: req.body.feed }
+        $push: { feeds: req.body.feed }
     };
+    logger.debug(conditions);
+    logger.debug(updateData);
+
     Clip.update(conditions, updateData, function(err, result) {
+        logger.error(err);
         if (err) return res.status(400).send(Result.ERROR(err));
         res.status(200).send(Result.SUCCESS(result));
     });
@@ -88,9 +92,13 @@ ClipCtrl.removeUserClipFeed = function(req, res) {
     if (errors) return res.status(400).send(Result.ERROR(errors));
     conditions = { _id: req.params.id };
     updateData = {
-        feeds: { $pull: req.body.feed }
+        $pull: { feeds: req.body.feed }
     };
+    logger.debug(conditions);
+    logger.debug(updateData);
+
     Clip.update(conditions, updateData, function(err, result) {
+        logger.error(err);
         if (err) return res.status(400).send(Result.ERROR(err));
         res.status(200).send(Result.SUCCESS(result));
     });

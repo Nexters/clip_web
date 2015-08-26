@@ -112,9 +112,7 @@ UserCtrl.loginUser = function(req, res) {
     criteria = {email: req.body.email};
 
     User.getUser(criteria, function(err,doc) {
-        if (!doc) {
-            return res.status(403).send(Result.ERROR('fail'));
-        }
+        if (!doc) return res.status(403).send(Result.ERROR('fail'));
         if (criteria.email === doc.email && req.body.pw === doc.pw) {
             Session.registerSession(req, doc);
             return res.status(200).send(Result.SUCCESS(doc._id));
