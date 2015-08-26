@@ -310,6 +310,7 @@ p.keyword-txt {
 }
 
 .sidebar-setting-icon {
+    cursor: pointer;
     margin-top: -2px;
     margin-left: 220px;
 

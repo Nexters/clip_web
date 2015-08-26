@@ -18,6 +18,9 @@ body {
 
 #signin_btn{}
 
+#signin_btn :focus {
+    outline: none;
+}
 #input_email{
     font-family: 'Roboto_Light';
     font-size: 14px;
@@ -56,6 +59,9 @@ body {
 .test{
     margin-top: 16px ;
 }
+.test :focus {
+    outline:none;
+}
 #join{
     font-size: 16px;
     color:rgb(124,124,124);
@@ -69,6 +75,9 @@ body {
     -webkit-border-bottom-right-radius: 5px;
     margin-bottom: 10px;
     border: none;
+}
+#join :focus {
+    outline: none;
 }
 /* Log in */
 #wrapper h1{
