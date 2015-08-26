@@ -37,7 +37,7 @@
 
         <!-- modal 버튼 부분 -->
         $('#forgot_pw').click(function() {
-            $('#setting_modal').modal('show');
+            $('#pw_modal').modal('show');
             initModal();
         });
 
@@ -53,10 +53,6 @@
             if (e.which === 13) {
                 login();
             }
-        });
-        $('#forgot_pw').click(function() {
-            $('#pw_modal').modal('show');
-            alert('ddd');
         });
 
     }
