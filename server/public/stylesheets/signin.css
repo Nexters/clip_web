@@ -14,11 +14,12 @@ body {
     margin: auto;
     background: rgb(255, 255, 255);
     border-radius: 5px;
+    margin-bottom: 80px;
 }
 
 #signin_btn{}
 
-#signin_btn :focus {
+#signin_btn:focus {
     outline: none;
 }
 #input_email{
@@ -59,7 +60,7 @@ body {
 .test{
     margin-top: 16px ;
 }
-.test :focus {
+.test:focus {
     outline:none;
 }
 #join{
@@ -73,10 +74,9 @@ body {
     border-right-color: white;
     -webkit-border-bottom-left-radius: 5px;
     -webkit-border-bottom-right-radius: 5px;
-    margin-bottom: 10px;
     border: none;
 }
-#join :focus {
+#join:focus {
     outline: none;
 }
 /* Log in */

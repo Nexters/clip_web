@@ -83,7 +83,13 @@
     }
 
     function initUserSettingModal() {
-
+        $('#logout_btn').click(function() {
+            HttpUtil.postData('/user/logout', {}, function (err) {
+                if (err || null) return alert('로그아웃 실패!');
+                alert("로그아웃 되었습니다!");
+                location.href = "/signin";
+            });
+        });
     }
 
     function initModal() {
