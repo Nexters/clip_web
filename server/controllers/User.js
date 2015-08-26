@@ -113,13 +113,15 @@ UserCtrl.loginUser = function(req, res) {
 
     User.getUser(criteria, function(err,doc) {
         if (doc === null) {
-            res.status(403).send(Result.ERROR('fail'));
+            return res.redirect("/signin");
+            //return res.status(403).send(Result.ERROR('fail'));
         }
         if (criteria.email === doc.email && req.body.pw === doc.pw) {
             Session.registerSession(req, doc);
-            res.status(200).send(Result.SUCCESS(doc._id));
+            return res.status(200).send(Result.SUCCESS(doc._id));
         } else {
-            res.status(403).send(Result.ERROR('fail'));
+            return res.redirect("/signin");
+            //return res.status(403).send(Result.ERROR('fail'));
         }
     });
 };
@@ -153,7 +155,7 @@ UserCtrl.updateUser = function(req, res) {
 UserCtrl.logoutUser = function(req, res) {
     Session.removeSession(req);
     res.status(200).send(Result.SUCCESS('success'));
-    return res.redirect("/user/login");
+    return res.redirect("/signin");
 };
 
 module.exports = UserCtrl;
