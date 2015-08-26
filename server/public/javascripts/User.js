@@ -115,19 +115,19 @@
             });
         });
 
-        <!-- 프로필 이름,이메일 설정 부분 -->
+        <!-- 프로필 이름 설정 부분 -->
         $('#profile_name_input').val(userData.name);
-        $('.my_email').append('<li>'+userData.email+'<li>');
 
         <!-- 저장하기 버튼 -->
        $('#modal_save_btn').click(function() {
-           var settingId = $(this).parent().parent().data('id');
-           console.log(settingId);
-           var params = {};
-           HttpUtil.postData('/user/id/'+settingId,params, function (err) {
+           var userId = userData._id;
+           var params = { name: $('#profile_name_input').val()};
+
+           HttpUtil.putData('/user/id/'+userId, params, function (err) {
+               if($('#profile_name_input').val() == " " || null) return alert("입력해주세요!");
                if (err || null) return alert('저장 실패!');
                alert("저장되었습니다.");
-               //location.href = "/user";
+               location.href = "/user";
            });
         });
     }

@@ -872,6 +872,8 @@ p.keyword-txt {
     margin-left: 34px;
     margin-bottom: 15px;
     -webkit-border-radius: 30px;
+    width: 57px;
+    height: 57px;
 }
 
 #change_btn {
