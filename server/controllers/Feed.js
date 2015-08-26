@@ -23,6 +23,9 @@ FeedCtrl.getMyFeeds = function(req, res) {
     if (req.query.keyword) {
         criteria.keywords = req.query.keyword;
     }
+    if (req.query.clipId) {
+        criteria.clipId = req.query.clipId;
+    }
     options = {
         skip: parseInt(req.query.pageNum) * parseInt(req.query.perPage),
         limit: parseInt(req.query.perPage),
