@@ -26,8 +26,10 @@
         });
 
         <!-- 보드 타이틀 부분 -->
-        $(".comment").click(function(){
-            $(".myclip_title").text($(this).text());
+
+
+        $(".board").click(function(){
+            $(".myclip_title").text($(this).data('title'));
         });
 
         <!-- 보드 삭제 버튼 show hide 부분-->
@@ -43,17 +45,17 @@
 
         <!-- 보드 삭제 버튼 부분 -->
         $(".board_delete_btn").click(function(){
-
-            var title = $('.comment').val();
+            var boardId = $(this).parent().parent().data('id');
+            console.log(boardId);
             if(confirm("정말 삭제하시겠습니까?")){
                 console.log("삭제됨");
-                var params = {'title':title};
-                HttpUtil.postData('/clip/deleteall', params, function(err, data) {
+                var params = {};
+                HttpUtil.deleteData('/clip/delete/id/'+boardId, params, function(err, data) {
                     if(err != null){
                         alert(data);
                         return false;
                     }
-                    location.href="/user";
+                    location.reload(true);
                     return false;
                 });
             }
@@ -63,10 +65,6 @@
             }
         });
 
-        <!-- 보드이미지 부분 -->
-        $(".board_image_size").click(function() {
-            console.log("선택됨");
-        });
 
         $('.sidebar-setting-icon').click(function() {
             $('#profile_modal').modal('show');

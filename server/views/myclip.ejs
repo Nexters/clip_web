@@ -63,10 +63,13 @@
 <!--보드 이미지 보드 부분 -->
 <div class="boards">
     <% for(var i=0; i<clips.length; i++) { %>
-    <div class="board" data-id="<%= clips[i]._id %>">
+    <div class="board" data-title="<%= clips[i].title %>" data-id="<%= clips[i]._id %>">
         <div class="board_image">
             <img class="icon" src="/images/clip_icon.png" z-index="3">
-            <img class="board_delete_btn" src="/images/profile_setting_icon.png" z-index="2">
+            <!--<img class="board_delete_btn" src="/images/profile_setting_icon.png" z-index="2">-->
+            <button type="button" class="close board_delete_btn"aria-label="Close" z-index="2">
+                <span>&times;</span>
+            </button>
             <img class="board_image_size" src="<%= clips[i].boardImageUrl %>" z-index="1">
         </div>
         <div class="board_title">
@@ -177,6 +180,7 @@
             <div id="profile-middle">
                 <div id="middle_left">
                     <img class="profile-image-box" src="/images/empty_user_icon.png">
+                    <input class="image-file-upload-btn hided-input-file-btn is-edit-mode" type="file" name="files[]" data-url="/ajax/upload">
                     <br><button id="change_btn" type="button" class="change-btn">사진변경</button>
                     <br><button id="logout_btn" type="button" class="logout-btn">로그아웃</button>
                 </div>
@@ -210,6 +214,8 @@
 <script src="/javascripts/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
 <script src="/javascripts/bower_components/wookmark/wookmark.min.js"></script>
 <script src="/javascripts/bower_components/taggle.js/dist/taggle.min.js"></script>
+<script src="/javascripts/bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/javascripts/bower_components/jquery-file-upload/js/jquery.fileupload.js"></script>
 <script src="/javascripts/util/HttpUtil.js"></script>
 <script src="/javascripts/User.js"></script>
 </body>

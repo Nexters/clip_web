@@ -999,3 +999,13 @@ p.keyword-txt {
     color: RGB(115,115,115);
     margin-bottom: 58px;
 }
+
+.hided-input-file-btn {
+    cursor: pointer;
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    margin-left: 25px;
+    font-size: 45px;
+    opacity: 0;
+}
