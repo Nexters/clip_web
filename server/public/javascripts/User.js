@@ -47,7 +47,11 @@
         });
 
 
-        <!-- 보드 삭제 버튼 부분 -->
+        $(".myclip-bar-title-box").click(function(){
+            location.reload(true);
+        });
+
+            <!-- 보드 삭제 버튼 부분 -->
         $(".board_delete_btn").click(function(){
             var boardId = $(this).parent().parent().data('id');
             console.log(boardId);
