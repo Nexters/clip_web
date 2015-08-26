@@ -133,15 +133,15 @@
 
         <!-- 프로필 이름 설정 부분 -->
         $('#profile_name_input').val(userData.name);
-
         <!-- 저장하기 버튼 -->
        $('#modal_save_btn').click(function() {
            var userId = userData._id;
-           var params = { name: $('#profile_name_input').val()};
+           var params = { name: $('#profile_name_input').val() , image: $('.profile-image-box')};
            var userName = $('#profile_name_input').val();
 
            HttpUtil.putData('/user/id/'+userId, params, function (err) {
                if (err || null) return alert('저장 실패!');
+
                <!-- 공백(스페이스) 입력시  -->
                var blank_pattern = /[\s]/g;
                if( blank_pattern.test(userName) == true){

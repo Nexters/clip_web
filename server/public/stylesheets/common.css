@@ -47,3 +47,10 @@
     font-style: normal;
     font-weight: bold;
 }
+
+@font-face {
+    font-family:"NotoSansCJKkr-Bold";
+    src: url('/font/NotoSansCJKkr-Bold.otf')format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}

@@ -1,5 +1,10 @@
+
+
 (function () {
     'use strict';
+
+    var userData;
+    var newUserData = {};
 
     function login() {
         var email = $('#input_email').val();
@@ -29,6 +34,7 @@
 
 
     function init() {
+
         $('#signin_btn').click(function() {
             login();
         });
@@ -42,11 +48,20 @@
                 login();
             }
         });
+        $('#forgot_pw').click(function() {
+            $('#pw_modal').modal('show');
+            alert('ddd');
+        });
+
     }
+
+    function initModal() {
+        $.extend(true, newUserData, userData);
+    }
+
 
     $(document).ready(function() {
         init();
     });
-
-
 }());
+
