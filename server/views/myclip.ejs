@@ -89,14 +89,11 @@
     <div class="board" data-title="<%= clips[i].title %>" data-id="<%= clips[i]._id %>">
         <div class="board_image">
             <img class="icon" src="/images/clip_icon.png" z-index="3">
-            <!--<img class="board_delete_btn" src="/images/profile_setting_icon.png" z-index="2">-->
-            <button type="button" class="close board_delete_btn"aria-label="Close" z-index="2">
-                <span>&times;</span>
-            </button>
+            <img class="board_delete_btn" src="/images/board_delete_icon.png" z-index="2">
             <img class="board_image_size" src="<%= clips[i].boardImageUrl %>" z-index="1">
         </div>
         <div class="board_title">
-        <span class="comment"><%= clips[i].title %></span>
+        <span class="comment"><%= clips[i].title %> 관련 기사 모음</span>
         <span class="board-num"><%= clips[i].feedCount %></span>
         </div>
     </div>
