@@ -286,9 +286,9 @@ p.keyword-txt {
 
 .myclip_title {
     font-family: "Montserrat_Light";
-    font-size: 14px;
+    font-size: 17px;
     margin-left: 16px;
-    margin-top: 29px;
+    margin-top: 32px;
     color: rgb(172, 172, 172);
 
 }
@@ -443,7 +443,7 @@ p.keyword-txt {
     font-family: "NotoSansCJKkr-Regular";
     color: #5064fa;
     font-size: 16px;
-    background: #ffffff;
+    background: #EAEAEA;
     text-decoration: none;
     text-align: center;
     line-height: 48px;
