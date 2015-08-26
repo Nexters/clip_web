@@ -443,7 +443,7 @@ p.keyword-txt {
     font-family: "NotoSansCJKkr-Regular";
     color: #5064fa;
     font-size: 16px;
-    background: #ffffff;
+    background: transparent;
     text-decoration: none;
     text-align: center;
     line-height: 48px;
@@ -1023,3 +1023,4 @@ p.keyword-txt {
 #board_feed_list_container {
     padding-top: 10px !important;
 }
+
