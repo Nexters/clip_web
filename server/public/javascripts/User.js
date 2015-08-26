@@ -32,9 +32,6 @@
         });
 
 
-        <!-- 프로필 이름,이메일 설정 부분 -->
-        $('#profile_name_input').val(userData.name);
-        $('.my_email').append('<li>'+userData.email+'<li>');
         <!-- modal 버튼 부분 -->
         $('#keyword_setting_btn').click(function() {
             $('#setting_modal').modal('show');
@@ -97,7 +94,7 @@
         $('.site_list > li').append(button);
     }
 
-    //로그아웃
+    //프로필 설정 모달
     function initUserSettingModal() {
 
         $('#logout_btn').click(function() {
@@ -108,6 +105,21 @@
             });
         });
 
+        <!-- 프로필 이름,이메일 설정 부분 -->
+        $('#profile_name_input').val(userData.name);
+        $('.my_email').append('<li>'+userData.email+'<li>');
+
+        <!-- 저장하기 버튼 -->
+       $('#modal_save_btn').click(function() {
+           var settingId = $(this).parent().parent().data('id');
+           console.log(settingId);
+           var params = {};
+           HttpUtil.postData('/user/id/'+settingId,params, function (err) {
+               if (err || null) return alert('저장 실패!');
+               alert("저장되었습니다.");
+               //location.href = "/user";
+           });
+        });
     }
 
     function initModal() {
