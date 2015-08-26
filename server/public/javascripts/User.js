@@ -1,3 +1,7 @@
+
+
+
+
 (function () {
     'use strict';
 
@@ -51,6 +55,7 @@
             $('#board_feed_list_container').removeClass('hide');
             initWookmark();
         });
+
 
         <!-- 보드 관리  삭제버튼 show hide 부분-->
         $('.board-setting-btn').click(function () {
@@ -116,6 +121,16 @@
                 alert("로그아웃 되었습니다!");
                 location.href = "/signin";
             });
+        });
+
+        $('#fileupload').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                var result = data.result;
+                var image = result.data;
+                $('.profile-image-box').attr('src', image);
+                console.log(image);
+            }
         });
 
     }
