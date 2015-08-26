@@ -185,7 +185,7 @@ ul#feed_list_panel > li {
     width: 130px;
     height: 70px;
     line-height: 70px;
-    margin: 0px 40px 0px 34px;
+    margin: 3px 40px 0px 34px;
 }
 
 .board-setting {
@@ -288,7 +288,7 @@ p.keyword-txt {
     font-family: "Montserrat_Light";
     font-size: 17px;
     margin-left: 16px;
-    margin-top: 32px;
+    margin-top: 29px;
     color: rgb(172, 172, 172);
 
 }
@@ -443,7 +443,7 @@ p.keyword-txt {
     font-family: "NotoSansCJKkr-Regular";
     color: #5064fa;
     font-size: 16px;
-    background: #EAEAEA;
+    background: #ffffff;
     text-decoration: none;
     text-align: center;
     line-height: 48px;
@@ -870,7 +870,7 @@ p.keyword-txt {
 
 .profile-image-box {
     margin-top: -1px;
-    margin-left: 38px;
+    margin-left: 34px;
     margin-bottom: 15px;
     -webkit-border-radius: 30px;
     width: 57px;
