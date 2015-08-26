@@ -15,4 +15,6 @@ router.post('/delete', clipCtrl.deleteUserClips);
 
 router.post('/deleteall', clipCtrl.deleteUserClipsAll);
 
+router.delete('/delete/id/:id', clipCtrl.deleteUserClip);
+
 module.exports = router;

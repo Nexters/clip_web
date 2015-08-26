@@ -75,7 +75,7 @@ ClipCtrl.deleteUserClips = function(req, res) {
         res.status(200).send(Result.SUCCESS(doc));
     });
 
-}
+};
 
 ClipCtrl.deleteUserClipsAll = function(req, res) {
     var criteria,errors;
@@ -88,6 +88,20 @@ ClipCtrl.deleteUserClipsAll = function(req, res) {
     Clip.deleteClipAll(criteria,function(req, doc){
         res.status(200).send(Result.SUCCESS(doc));
     });
-}
+};
+
+ClipCtrl.deleteUserClip = function(req, res) {
+    var criteria, errors;
+    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    req.checkParams('id', 'Invalid id').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    criteria = {
+        _id: req.params.id
+    };
+    Clip.remove(criteria, function(req, doc){
+        res.status(200).send(Result.SUCCESS(doc));
+    });
+};
 
 module.exports = ClipCtrl;
