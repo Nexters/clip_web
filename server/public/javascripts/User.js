@@ -26,20 +26,21 @@
         });
 
         <!-- 보드 타이틀 부분 -->
-
-
         $(".board").click(function(){
             $(".myclip_title").text($(this).data('title'));
         });
 
-        <!-- 보드 삭제 버튼 show hide 부분-->
-        $('#board-setting-btn').click(function () {
+        <!-- 보드 관리  삭제버튼 show hide 부분-->
+        $('.board-setting-btn').click(function () {
+
             if ( $('.board_delete_btn').css('display') == 'none'){
+                $(this).text("종료하기");
                 $('.board_delete_btn').show();
             }
             else{
                 $('.board_delete_btn').hide();
-            }
+                $(this).text("보드관리");
+           }
         });
 
 
@@ -81,7 +82,7 @@
     }
 
     function initUserSettingModal() {
-
+        
     }
 
     function initModal() {

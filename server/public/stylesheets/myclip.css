@@ -256,7 +256,10 @@ p.keyword-txt {
     display: none;
     z-index: 2;
 }
-#board-setting-btn {
+.board_delete_btn:active{
+    background-color: #5064FA;
+}
+.board-setting-btn {
     cursor: pointer;
     width: 102px;
     height: 35px;
@@ -272,7 +275,7 @@ p.keyword-txt {
 
 }
 
-#board-setting-btn.active {
+.board-setting-btn:active {
     background: #5064FA;
     text-decoration: none;
 }
