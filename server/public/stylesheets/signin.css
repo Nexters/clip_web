@@ -176,6 +176,7 @@ body {
     padding: 10px 10px 10px 10px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    border-top: 1px solid #E4E4E4;
 }
 
 
@@ -207,7 +208,7 @@ body {
     font-family: "NotoSansCJKkr-Regular";
     font-size: 14px;
     font-weight: normal;
-    color: #737373;
+    color: #7c7c7c;
     margin-top: 50px;
     margin-left: 18px;
     margin-bottom: 0px;
@@ -216,8 +217,8 @@ body {
     font-family: "NotoSansCJKkr-Regular";
     font-size: 14px;
     font-weight: normal;
-    color: #737373;
-    margin-top: 9px;
+    color: #7c7c7c;
+    margin-top: 4px;
     margin-bottom: 21px;
     margin-left: 18px;
 }
@@ -227,7 +228,7 @@ body {
     font-size: 13px;
     font-weight: normal;
     color: RGB(73, 73, 73);
-    margin-top: 15px;
+    margin-top: 18px;
     margin-left: 18px;
 }
 
@@ -243,7 +244,8 @@ body {
     height: 42px;
     padding: 13px 33px 13px 33px;
     margin-bottom: 14px;
-    margin-left: 110px;
+    position: center;
+    margin-left: 101px;
 }
 #tem_pw_btn:focus {
     outline: none;
@@ -269,5 +271,9 @@ body {
     font-family: "NotoSansCJKkr-Bold";
     font-size: 14px;
     font-weight: bold;
-    color: #737373;
+    color: #7c7c7c;
+}
+
+#emtext{
+    padding-top: 5px;
 }
