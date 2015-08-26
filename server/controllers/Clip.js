@@ -62,6 +62,40 @@ ClipCtrl.updateUserClip = function(req, res) {
     });
 };
 
+ClipCtrl.addUserClipFeed = function(req, res) {
+    var errors, conditions, updateData;
+    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    req.checkParams('id', 'Invalid id').notEmpty();
+    req.checkBody('feed', 'Invalid feed').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    conditions = { _id: req.params.id };
+    updateData = {
+        feeds: { $push: req.body.feed }
+    };
+    Clip.update(conditions, updateData, function(err, result) {
+        if (err) return res.status(400).send(Result.ERROR(err));
+        res.status(200).send(Result.SUCCESS(result));
+    });
+};
+
+ClipCtrl.removeUserClipFeed = function(req, res) {
+    var errors, conditions, updateData;
+    if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));
+    req.checkParams('id', 'Invalid id').notEmpty();
+    req.checkBody('feed', 'Invalid feed').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    conditions = { _id: req.params.id };
+    updateData = {
+        feeds: { $pull: req.body.feed }
+    };
+    Clip.update(conditions, updateData, function(err, result) {
+        if (err) return res.status(400).send(Result.ERROR(err));
+        res.status(200).send(Result.SUCCESS(result));
+    });
+};
+
 ClipCtrl.deleteUserClips = function(req, res) {
     var criteria,errors;
     if (!Session.hasSession(req)) return res.status(401).send(Result.ERROR('need login'));

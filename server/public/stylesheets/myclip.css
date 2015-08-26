@@ -1016,3 +1016,7 @@ p.keyword-txt {
     font-size: 45px;
     opacity: 0;
 }
+
+#board_feed_list_container {
+    padding-top: 10px !important;
+}
