@@ -32,6 +32,9 @@
         });
 
 
+        <!-- 프로필 이름,이메일 설정 부분 -->
+        $('#profile_name_input').val(userData.name);
+        $('.my_email').append('<li>'+userData.email+'<li>');
         <!-- modal 버튼 부분 -->
         $('#keyword_setting_btn').click(function() {
             $('#setting_modal').modal('show');
@@ -39,20 +42,21 @@
         });
 
         <!-- 보드 타이틀 부분 -->
-
-
         $(".board").click(function(){
             $(".myclip_title").text($(this).data('title'));
         });
 
-        <!-- 보드 삭제 버튼 show hide 부분-->
-        $('#board-setting-btn').click(function () {
+        <!-- 보드 관리  삭제버튼 show hide 부분-->
+        $('.board-setting-btn').click(function () {
+
             if ( $('.board_delete_btn').css('display') == 'none'){
+                $(this).text("종료하기");
                 $('.board_delete_btn').show();
             }
             else{
                 $('.board_delete_btn').hide();
-            }
+                $(this).text("보드관리");
+           }
         });
 
 
@@ -93,7 +97,16 @@
         $('.site_list > li').append(button);
     }
 
+    //로그아웃
     function initUserSettingModal() {
+
+        $('#logout_btn').click(function() {
+            HttpUtil.postData('/user/logout', {}, function (err) {
+                if (err || null) return alert('로그아웃 실패!');
+                alert("로그아웃 되었습니다!");
+                location.href = "/signin";
+            });
+        });
 
     }
 

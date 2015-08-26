@@ -256,7 +256,10 @@ p.keyword-txt {
     display: none;
     z-index: 2;
 }
-#board-setting-btn {
+.board_delete_btn:active{
+    background-color: #5064FA;
+}
+.board-setting-btn {
     cursor: pointer;
     width: 102px;
     height: 35px;
@@ -272,7 +275,7 @@ p.keyword-txt {
 
 }
 
-#board-setting-btn.active {
+.board-setting-btn:active {
     background: #5064FA;
     text-decoration: none;
 }
@@ -310,6 +313,7 @@ p.keyword-txt {
 }
 
 .sidebar-setting-icon {
+    cursor: pointer;
     margin-top: -2px;
     margin-left: 220px;
 
@@ -900,7 +904,7 @@ p.keyword-txt {
 
 #middle_left {
     width: 191px;
-    height: 210px;
+    height: 200px;
     float: left;
 }
 #middle_right {
@@ -952,7 +956,7 @@ p.keyword-txt {
     color: RGB(152,152,152);
     font-weight: bold;
     border: none;
-    margin-left: 30px;
+    margin-left: 35px;
     margin-bottom: 20px;
     background-color: #F6F6F6;
 
@@ -976,7 +980,7 @@ p.keyword-txt {
     color: RGB(73,73,73);
     margin-bottom: 7px;
 }
-#profile_email_input {
+#profile_name_input {
     font-family: "Montserrat_Light";
     font-size: 14px;
     color: RGB(115,115,115);
@@ -989,14 +993,17 @@ p.keyword-txt {
     width: 170px;
     height: 30px;
 }
-#profile_email_input:focus{
+#profile_name_input:focus{
     outline: none;
 }
-#my_email {
+.my_email {
     font-family: "Montserrat_Light";
     font-size: 14px;
     color: RGB(115,115,115);
     margin-bottom: 58px;
+    margin-left: 0px;
+    list-style: none;
+    padding: 0px 0px 0px 0px;
 }
 
 .hided-input-file-btn {
