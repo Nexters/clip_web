@@ -144,6 +144,7 @@ UserCtrl.updateUser = function(req, res) {
         update.pw = req.body.pw;
     }
     User.updateUser(conditions, update, function(err, doc) {
+        if (err) return res.status(400).send(Result.ERROR(err));
         return res.status(200).send(Result.SUCCESS('success'));
     })
 };
@@ -153,5 +154,18 @@ UserCtrl.logoutUser = function(req, res) {
     res.status(200).send(Result.SUCCESS('success'));
 };
 
+UserCtrl.defaultPassword = function(req, res) {
+    var errors, criteria, update = {};
+    var defaultPassword = 'abc123';
+    errors = req.validationErrors();
+    if (!Session.hasSession(req)) return res.redirect("/signin");
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    criteria = {_id: Session.getSessionId(req)};
+    update.pw = defaultPassword;
+    User.updateUser(criteria, update, function(err, doc) {
+        if (err) return res.status(400).send(Result.ERROR(err));
+        return res.status(200).send(Result.SUCCESS('success'));
+    })
+};
 module.exports = UserCtrl;
 

@@ -20,4 +20,7 @@ router.post('/login', userCtrl.loginUser);
 /* POST logout user */
 router.post('/logout', userCtrl.logoutUser);
 
+/* PUT default password */
+router.put('/defpasswd', userCtrl.defaultPassword);
+
 module.exports = router;
