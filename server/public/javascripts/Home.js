@@ -134,11 +134,19 @@
             }
         });
 
+        $('#feed_list_panel > li').unbind('click').click(function() {
+            var feedLink = $(this).data('link');
+            window.open(feedLink, '_blank');
+            //location.href = feedLink;
+            return false;
+        });
+
         $('#feed_list_panel > li > .clip-icon-circle').unbind('click').click(function() {
             var $feedItem = $(this).parent();
             var feed = { id: $feedItem.data('id') };
             if ($('#board_title_select option:selected').val() === "0") {
-                return alert("먼저 클립할 클립보드를 선택해주세요!");
+                alert("먼저 클립할 클립보드를 선택해주세요!");
+                return false;
             }
 
             if ($(this).hasClass('on')) {
@@ -151,6 +159,7 @@
                 $('#sidebar_clip_list').append(getSmallFeedBoxHtml(feed));
                 bindBoardEvent();
             }
+            return false;
         });
 
         $('#board_clip_btn').unbind('click').click(function() {
@@ -214,7 +223,7 @@
 
     function getFeedBoxHtml(feed) {
         var html =
-            '<li data-id="'+feed._id+'">'+
+            '<li data-id="'+feed._id+'" data-link="'+feed.link+'">'+
                 '<span class="clip-icon-circle">'+
                     '<img src="/images/clip_btn.png" align="center">'+
                 '</span>'+
