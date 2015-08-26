@@ -1,3 +1,7 @@
+
+
+
+
 (function () {
     'use strict';
 
@@ -48,6 +52,7 @@
             $('#board_feed_list_container').removeClass('hide');
             initWookmark();
         });
+
 
         <!-- 보드 관리  삭제버튼 show hide 부분-->
         $('.board-setting-btn').click(function () {
@@ -115,6 +120,17 @@
             });
         });
 
+
+        $('#fileupload').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                var result = data.result;
+                var image = result.data;
+                $('.profile-image-box').attr('src', image);
+                console.log(image);
+            }
+        });
+
         <!-- 프로필 이름 설정 부분 -->
         $('#profile_name_input').val(userData.name);
 
@@ -139,6 +155,7 @@
                location.href = "/user";
            });
         });
+
     }
 
     function initModal() {
