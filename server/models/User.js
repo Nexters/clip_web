@@ -44,8 +44,10 @@ UserSchema.statics.getUser = function(criteria, callback) {
             });
         }
     ], function (err, user) {
+        if (err) return callback(err);
+        if (!user) return callback(err);
         user.profileUrl = user.profileUrl || "/images/empty_user_icon.png";
-        callback(err, user);
+        callback(null, user);
     });
 };
 
