@@ -190,10 +190,10 @@
     <div class="modal-dialog">
         <div class="profile-content">
             <div class="profile-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
-                <!--<h4 id="login_modal_title" class="modal_title">키워드 등록</h4>-->
-                <h4 id="profile_modal_title" class="modal_title">프로필 수정</h4>
-
+                <div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+                    <h4 id="profile_modal_title" class="modal_title">프로필 수정</h4>
+                </div>
             </div>
 
 
@@ -210,7 +210,11 @@
                     <br><input id="profile_name_input" type="text"/>
                     <br><h8 id="profile_email">이메일 주소</h8>
                     <br><h9><div class="my_email"><%= user.email %></div></h9>
-                    <br><button id="modal_save_btn" type="button" class="save-btn">저장하기</button>
+                    <h7 id="profile_name">패스워드 변경</h7>
+                    <br><input id="change_pw_input" type="text"/><br>
+                    <h7 id="profile_name">패스워드 확인</h7>
+                    <br><input id="change_pw_confirm" type="text"/>
+                    <button id="modal_save_btn" type="button" class="save-btn">저장하기</button>
                 </div>
 
 
