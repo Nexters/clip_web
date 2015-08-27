@@ -21,6 +21,6 @@ router.post('/login', userCtrl.loginUser);
 router.post('/logout', userCtrl.logoutUser);
 
 /* PUT default password */
-router.put('/defpasswd', userCtrl.defaultPassword);
+router.put('/passwd/:email', userCtrl.defaultPassword);
 
 module.exports = router;
