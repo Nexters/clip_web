@@ -59,6 +59,10 @@
 
     function initModal() {
         $.extend(true, newUserData, userData);
+
+        $('#forgot_input').click(function() {
+
+        });
     }
 
 

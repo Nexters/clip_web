@@ -161,8 +161,8 @@ body {
 }
 
 .modal-header {
-    width: 392px;
-    height: 150px;
+    width: 410px;
+    height: 170px;
     background-color: #FFFFFF;
     padding: 10px 10px 10px 10px;
     border-top-left-radius: 5px;
@@ -170,13 +170,13 @@ body {
 }
 
 #modal-middle {
-    width: 392px;
-    height: 169px;
+    width: 410px;
+    height: 189px;
     background-color: #F6F6F6;
     padding: 10px 10px 10px 10px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    border-top: 1px solid #E4E4E4;
+
 }
 
 
@@ -229,7 +229,7 @@ body {
     font-weight: normal;
     color: RGB(73, 73, 73);
     margin-top: 18px;
-    margin-left: 18px;
+    margin-left: 8px;
 }
 
 
@@ -259,7 +259,7 @@ body {
     margin-left: 22px;
     margin-bottom: 60px;
     padding: 0px 10px 0px 10px;
-    width: 220px;
+    width: 217px;
     height: 32px;
 }
 
