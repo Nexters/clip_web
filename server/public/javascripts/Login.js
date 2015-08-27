@@ -75,7 +75,7 @@
                 <!-- 아무것도 입력하지 않았을때 -->
                 if(email == "") return alert('이름을 입력해주세요.');
 
-                alert('abc123 으로 변경했다잉');
+                alert('abc123 으로 변경했습니다.');
                 return true;
 
             });
