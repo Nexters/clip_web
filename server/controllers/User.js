@@ -161,17 +161,15 @@ UserCtrl.defaultPassword = function(req, res) {
 
     console.log(req.body);
     req.checkParams('email', 'Invalid email').notEmpty();
-    req.checkParams('name', 'Invalid name').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     userData = {
-        email: req.params.email,
-        name: req.params.name
+        email: req.params.email
     };
     if(!req || !res) return;
     async.waterfall([
             function(callback){
-                User.findOne({$and:[{email: userData.email}, {name: userData.name}]}, function(err, user) {
+                User.findOne({email: userData.email}, function(err, user) {
                     if (err) return res.status(400).send(Result.ERROR(err));
                     if (!user) return res.status(400).send(Result.ERROR("존재하지 않는 유저입니다."));
                     callback(err);
