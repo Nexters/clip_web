@@ -37,7 +37,7 @@
 
         <!-- modal 버튼 부분 -->
         $('#forgot_pw').click(function() {
-            $('#setting_modal').modal('show');
+            $('#pw_modal').modal('show');
             initModal();
         });
 
@@ -54,15 +54,15 @@
                 login();
             }
         });
-        $('#forgot_pw').click(function() {
-            $('#pw_modal').modal('show');
-            alert('ddd');
-        });
 
     }
 
     function initModal() {
         $.extend(true, newUserData, userData);
+
+        $('#forgot_input').click(function() {
+
+        });
     }
 
 
