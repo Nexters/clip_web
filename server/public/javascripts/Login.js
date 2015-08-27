@@ -60,8 +60,25 @@
     function initModal() {
         $.extend(true, newUserData, userData);
 
-        $('#forgot_input').click(function() {
+        $('#tem_pw_btn').click(function() {
+            var email = $('#forgot_input').val();
+            HttpUtil.putData('/user/passwd/'+email, {}, function (err) {
+                console.log(err);
+                if (err || null) return alert('저장 실패!');
 
+                <!-- 공백(스페이스) 입력시  -->
+                var blank_pattern = /[\s]/g;
+                if( blank_pattern.test(email) == true){
+                    alert(' 공백은 사용할 수 없습니다.');
+                    return false;
+                }
+                <!-- 아무것도 입력하지 않았을때 -->
+                if(email == "") return alert('이름을 입력해주세요.');
+
+                alert('abc123 으로 변경했다잉');
+                return true;
+
+            });
         });
     }
 
