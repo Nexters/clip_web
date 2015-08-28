@@ -60,6 +60,7 @@ UserSchema.statics.saveUser = function(doc, callback) {
     if (!doc) return;
 
     doc.createDate = doc.createDate ? doc.createDate : new Date();
+    doc.lastFeedDate = new Date("2010-01-01");
     this.create(doc, callback);
 };
 
