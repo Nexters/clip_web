@@ -115,7 +115,6 @@ function makeFeedData(userId, keywordArray, post, feed, pubDate) {
 
 function saveFeedData(postArray, callback) {
     if (!postArray || postArray.length === 0) return callback();
-    logger.info("postArray.length:",postArray.length);
     db.feed.insert(postArray, function(err) {
        callback(err);
     });
@@ -168,11 +167,11 @@ function fetch(userId, feed, keywordArray, lastFeedDate) {
             var lastDate = moment(lastFeedDate);
             var pubDate = moment(post.pubDate);
             if (lastDate.isBefore(pubDate)) {
-                logger.debug(post);
+                logger.info(post);
                 postArray.push(makeFeedData(userId, keywordArray, post, feed, pubDate.toDate()));
             }
         }
-        logger.info('post:',post);
+        logger.info('postArray:',postArray.length);
         saveFeedData(postArray, function(err) {
             if (err) logger.error("saveFeedData err: ",err);
         });
