@@ -66,7 +66,7 @@ UserSchema.statics.saveUser = function(doc, callback) {
 
 UserSchema.statics.updateUser = function(conditions, doc, callback) {
     if (!conditions || !doc) return;
-    doc.lastFeedDate = new Date("2010-01-01");
+    //doc.lastFeedDate = new Date("2010-01-01");
     this.update(conditions, doc, callback);
 };
 
