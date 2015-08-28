@@ -782,6 +782,7 @@ p.keyword-txt {
     width: 249px;
     height: 236px;
     z-index: 1;
+    border-radius: 2px;
 
 }
 .board_title{
