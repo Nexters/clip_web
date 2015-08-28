@@ -35,7 +35,7 @@
         <!-- 보드 타이틀 부분 -->
         $(".board").click(function(){
             $(".myclip_title").text($(this).data('title'));
-            $('.myclip_title').attr('data-id');
+            $('.myclip_title').attr('data-id', $(this).data('id'));
             clearBoardList();
             clipId = $(this).data('id');
             $('#board_feed_list_container').removeClass('hide');
