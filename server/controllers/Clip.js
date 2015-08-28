@@ -20,7 +20,6 @@ ClipCtrl.getUserClips = function(req, res) {
     Clip.getClips(criteria,function(err,doc){
         res.status(200).send(Result.SUCCESS(doc));
     });
-
 };
 
 ClipCtrl.saveUserClip = function(req, res) {
@@ -116,7 +115,7 @@ ClipCtrl.deleteUserClips = function(req, res) {
     Clip.deleteClip(criteria,function(err,doc){
         res.status(200).send(Result.SUCCESS(doc));
     });
-}
+};
 
 ClipCtrl.deleteUserClip = function(req, res) {
     var criteria, errors;
