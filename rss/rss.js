@@ -113,10 +113,18 @@ function makeFeedData(userId, keywordArray, post, feed, pubDate) {
     return feedData;
 }
 
-function saveFeedData(postArray, callback) {
+function saveFeedData(postArray, resultCallback) {
     if (!postArray || postArray.length === 0) return callback();
-    db.feed.insert(postArray, function(err) {
-       callback(err);
+
+    async.eachSeries(postArray, function iterator(post, callback) {
+        db.feed.count({user: post.user, link: post.link}, function(err, count) {
+            if (count > 0) return callback();
+            db.feed.insert(post, function(err) {
+                callback();
+            });
+        });
+    }, function done() {
+        if (resultCallback) resultCallback();
     });
 }
 
