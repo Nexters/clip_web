@@ -15,8 +15,10 @@ router.put('/update/id/:id', clipCtrl.updateUserClip);
 router.put('/update/id/:id/add/feed', clipCtrl.addUserClipFeed);
 router.put('/update/id/:id/remove/feed', clipCtrl.removeUserClipFeed);
 
-router.post('/delete', clipCtrl.deleteUserClips);
-
+/* DELETE user clip */
 router.delete('/delete/id/:id', clipCtrl.deleteUserClip);
+
+/* DELETE user clip board */
+router.post('/delete', clipCtrl.deleteUserClips);
 
 module.exports = router;

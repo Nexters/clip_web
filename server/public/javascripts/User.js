@@ -39,7 +39,7 @@
         <!-- 보드 타이틀 부분 -->
         $(".board").click(function(){
             $(".myclip_title").text($(this).data('title'));
-            $('.myclip_title').attr('data-id')
+            $('.myclip_title').attr('data-id');
             clearBoardList();
             clipId = $(this).data('id');
             $('#board_feed_list_container').removeClass('hide');
@@ -98,7 +98,12 @@
             initUserSettingModal();
         });
 
-        if (userData.keywords.length === 0 || userData.feeds.length === 0) {
+        if (userData.feeds.length === 0) {
+            alert("등록된 사이트가 없습니다. 키워드 관리로 이동합니다.");
+            $('#setting_modal').modal('show');
+        }
+        if (userData.keywords.length === 0) {
+            alert("등록된 키워드가 없습니다. 키워드 관리로 이동합니다.");
             $('#setting_modal').modal('show');
         }
     }
@@ -123,7 +128,7 @@
                 if (err) return alert('등록할 수 없는 사이트입니다.(RSS를 지원하는 사이트만 추가 가능합니다.)');
                 alert("추가되었습니다.");
                 newUserData.feeds.push(result);
-                initModalSiteItems();
+                initModal();
                 $('#modal_input_site').val('');
             });
         });

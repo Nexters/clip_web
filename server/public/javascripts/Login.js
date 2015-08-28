@@ -64,7 +64,7 @@
             var email = $('#forgot_input').val();
             HttpUtil.putData('/user/passwd/'+email, {}, function (err) {
                 console.log(err);
-                if (err || null) return alert('저장 실패!');
+                if (err || null) return alert('존재하지 않는 이메일입니다.');
 
                 <!-- 공백(스페이스) 입력시  -->
                 var blank_pattern = /[\s]/g;

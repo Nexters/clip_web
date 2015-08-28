@@ -34,7 +34,7 @@ UserCtrl.getUserPage = function(req, res) {
             });
         },
         function(callback) {
-            criteria={ user: Session.getSessionId(req)};
+            criteria={ user: Session.getSessionId(req) };
             Clip.getClips(criteria, {}, {}, function(err, doc){
                 data.clips = doc;
                 callback(err);
@@ -46,16 +46,6 @@ UserCtrl.getUserPage = function(req, res) {
     });
 };
 
-UserCtrl.getAllUsers = function(req, res) {
-    var errors;
-    req.checkQuery('test', 'Must be true').isIn(["true"]);
-    errors = req.validationErrors();
-    if (errors) return res.status(400).send(Result.ERROR(errors));
-    User.getUsers({}, function(err, docs) {
-        res.status(200).send(Result.SUCCESS(docs));
-    });
-};
-
 UserCtrl.getUser = function(req, res) {
     var errors, criteria;
     req.checkParams('id', 'Invalid id').notEmpty();
@@ -63,51 +53,47 @@ UserCtrl.getUser = function(req, res) {
     if (errors) return res.status(400).send(Result.ERROR(errors));
     criteria = { _id: req.params.id };
     User.getUser(criteria, function(err, doc) {
+        if (err) return res.status(400).send(Result.ERROR(err));
         res.status(200).send(Result.SUCCESS(doc));
     });
 };
 
 UserCtrl.saveUser = function(req, res) {
+    var emailCheck= /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
     var errors, userData;
-    var email,pw,name;
 
     req.checkBody('email', 'Invalid email').notEmpty();
     req.checkBody('pw', 'Invalid pw').notEmpty();
     req.checkBody('name', 'Invalid name').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
-    var result=true;
-    email=req.body.email;
-    var emailCheck= /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-    var email=req.body.email;
-    if(!emailCheck.test(email))
-        	{
-        		console.log("이메일 형식에 맞지 않습니다 ");
-                return res.status(200).send(Result.ERROR("이메일 형식에 맞지 않습니다."));
-        	}
+
+    if(!emailCheck.test(req.body.email)) {
+        return res.status(200).send(Result.ERROR("이메일 형식에 맞지 않습니다."));
+    }
     userData = {
         email: req.body.email,
         pw: req.body.pw,
         name: req.body.name
     };
-    if(!req || !res) return;
     async.waterfall([
         function(callback){
             User.findOne({$or:[{email: userData.email}, {name: userData.name}]}, function(err, user) {
-                if (err) return res.status(400).send(Result.ERROR(err));
-                if (user) return res.status(200).send(Result.ERROR("이미 존재하는 유저입니다."));
-                callback(err);
+                if (err) return callback(err);
+                if (user) return callback("이미 존재하는 유저입니다.");
+                callback();
             });
         },
         function(callback) {
             User.saveUser(userData, function(err, doc) {
-                callback(err);
-                return res.status(200).send(Result.SUCCESS(doc));
+                if (err) return callback(err);
+                callback(null, doc);
             });
         }
     ],
-    function(err) {
+    function(err, doc) {
         if (err) return res.status(400).send(Result.ERROR(err));
+        res.status(200).send(Result.SUCCESS(doc));
     });
 };
 
@@ -115,9 +101,9 @@ UserCtrl.loginUser = function(req, res) {
     var errors, criteria;
     req.checkBody('email', 'Invalid email').notEmpty();
     req.checkBody('pw', 'Invalid pass word').notEmpty();
-
     errors = req.validationErrors();
     if(errors) return res.status(400).send(Result.ERROR(errors));
+
     criteria = {email: req.body.email};
 
     User.getUser(criteria, function(err,doc) {
@@ -168,32 +154,30 @@ UserCtrl.defaultPassword = function(req, res) {
     var update = {};
     var defaultPassword = 'abc123';
 
-    console.log(req.body);
     req.checkParams('email', 'Invalid email').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     userData = {
         email: req.params.email
     };
-    if(!req || !res) return;
     async.waterfall([
-            function(callback){
-                User.findOne({email: userData.email}, function(err, user) {
-                    if (err) return res.status(400).send(Result.ERROR(err));
-                    if (!user) return res.status(400).send(Result.ERROR("존재하지 않는 유저입니다."));
-                    callback(err);
-                });
-            },
-            function(callback) {
-                update.pw = defaultPassword;
-                User.updateUser({email: userData.email}, update, function(err, doc) {
-                    callback(err);
-                    return res.status(200).send(Result.SUCCESS(doc));
-                });
-            }
-        ],
-        function(err) {
-            if (err) return res.status(400).send(Result.ERROR(err));
-        });
+        function(callback){
+            User.findOne({email: userData.email}, function(err, user) {
+                if (err) return callback(err);
+                if (!user) return callback("존재하지 않는 유저입니다.");
+                callback(err, user);
+            });
+        },
+        function(user, callback) {
+            update.pw = defaultPassword;
+            User.updateUser({email: user.email}, update, function(err, doc) {
+                callback(err, doc);
+            });
+        }
+    ],
+    function(err, result) {
+        if (err) return res.status(400).send(Result.ERROR(err));
+        return res.status(200).send(Result.SUCCESS(result));
+    });
 };
 module.exports = UserCtrl;
