@@ -486,7 +486,6 @@ p.keyword-txt {
     margin-top: 23px;
     margin-bottom: 14px;
     text-align: center;
-    width: 749px;
 }
 
 .modal_subtitle {
@@ -573,7 +572,7 @@ p.keyword-txt {
     margin-top: -5px;
     height: 32px;
     width: 392px;
-    padding: 11px 10px 11px 10px;
+    padding: 13px 10px 11px 10px;
     border: 1px solid #CCCCCC;
     border-radius: 5px;
     -webkit-appearance: none;
@@ -673,6 +672,7 @@ p.keyword-txt {
     font-weight: normal;
     margin-bottom: 4px;
     margin-top: 20px;
+    margin-left: -15px;
 }
 #modal_sub_title{
     font-family: "NotoSansCJKkr-Regular";
