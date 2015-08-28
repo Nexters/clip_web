@@ -97,6 +97,10 @@
             $('#profile_modal').modal('show');
             initUserSettingModal();
         });
+
+        if (userData.keywords.length === 0 || userData.feeds.length === 0) {
+            $('#setting_modal').modal('show');
+        }
     }
 
     function initModalSiteItems() {
@@ -167,7 +171,6 @@
         <!-- 프로필 이름 설정 부분 -->
         $('#profile_name_input').val(userData.name);
         $(document).ready(function() {
-            init();
 
             $("#profile_name_input").keyup(function(event){
                 if (!(event.keyCode >=37 && event.keyCode<=40)) {
