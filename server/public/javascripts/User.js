@@ -64,7 +64,7 @@
             else{
                 $('.board_delete_btn').hide();
                 $(this).text("보드관리");
-           }
+            }
         });
 
 
@@ -72,7 +72,7 @@
             location.reload(true);
         });
 
-            <!-- 보드 삭제 버튼 부분 -->
+        <!-- 보드 삭제 버튼 부분 -->
         $(".board_delete_btn").click(function(){
             var boardId = $(this).parent().parent().data('id');
             console.log(boardId);
@@ -127,6 +127,7 @@
                 var result = data.result;
                 var image = result.data;
                 $('.profile-image-box').attr('src', image);
+                $('#fileupload').attr('value',image);
                 console.log(image);
             }
         });
@@ -136,61 +137,62 @@
         $('#change_pw_input').val(userData.pw);
         $('#change_pw_confirm').val(userData.pw);
         <!-- 저장하기 버튼 -->
-       $('#modal_save_btn').click(function() {
-           var minLength = 6;
-           var $textarea = $('#change_pw_input');
-           var userId = userData._id;
-           var params = { name: $('#profile_name_input').val() ,  pw : $('#change_pw_input').val(),
-           profileUrl:$('#fileupload').val()};
-           var name = $('#profile_name_input').val();
-           var passwordVal = $('#change_pw_input').val();
-           var checkVal = $('#change_pw_confirm').val();
-           var hasError = false;
-           var image = $('#fileupload').val();
-           //HttpUtil.putData('/upload/'+image, params, function (err) {
-           //    if (err) return alert('사진 변경 실패');
-           //});
+        $('#modal_save_btn').click(function() {
+            var minLength = 6;
+            var $textarea = $('#change_pw_input');
+            var userId = userData._id;
+            var params = {
+                name: $('#profile_name_input').val() ,
+                pw : $('#change_pw_input').val(),
+                profileUrl: $('#fileupload').attr('value')
+            };
+            var name = $('#profile_name_input').val();
+            var passwordVal = $('#change_pw_input').val();
+            var checkVal = $('#change_pw_confirm').val();
+            var hasError = false;
+            var image = $('#fileupload').val();
+            //HttpUtil.putData('/upload/'+image, params, function (err) {
+            //    if (err) return alert('사진 변경 실패');
+            //});
 
 
 
-           HttpUtil.putData('/user/id/'+userId, params, function (err) {
-               if (err || null) return alert('저장 실패!');
+            HttpUtil.putData('/user/id/'+userId, params, function (err) {
+                if (err || null) return alert('저장 실패!');
 
-               <!-- 공백(스페이스) 입력시  -->
-               var blank_pattern = /[\s]/g;
-               if( blank_pattern.test(name) == true){
-                   alert(' 공백은 사용할 수 없습니다.');
-                   return false;
-               }
-               <!-- 아무것도 입력하지 않았을때 -->
-               if(name == "") return alert('이름을 입력해주세요.');
+                <!-- 공백(스페이스) 입력시  -->
+                var blank_pattern = /[\s]/g;
+                if( blank_pattern.test(name) == true){
+                    alert(' 공백은 사용할 수 없습니다.');
+                    return false;
+                }
+                <!-- 아무것도 입력하지 않았을때 -->
+                if(name == "") return alert('이름을 입력해주세요.');
 
-               if($textarea.val().length < minLength) {
-                   alert('비밀번호를 6자 이상으로 입력해 주세요.');
-                   return false;
-               }
+                if($textarea.val().length < minLength) {
+                    alert('비밀번호를 6자 이상으로 입력해 주세요.');
+                    return false;
+                }
 
-               if(checkVal.length < minLength) {
-                   alert('비밀번호를 6자 이상으로 입력해 주세요.');
-                   return false;
-               }
+                if(checkVal.length < minLength) {
+                    alert('비밀번호를 6자 이상으로 입력해 주세요.');
+                    return false;
+                }
 
-               if (passwordVal != checkVal ) {
-                   $("#change_pw_input").after(function() {
-                       alert('비밀번호가 다릅니다.');
-                       $("#change_pw_input").focus();
-                       return false;
-                   });
-                   hasError = true;
-               }
-               else{
-                   alert("저장되었습니다.");
-                   location.href = "/user";
-               }
-
-
-
-           });
+                if (passwordVal != checkVal ) {
+                    $("#change_pw_input").after(function() {
+                        alert('비밀번호가 다릅니다.');
+                        $("#change_pw_input").focus();
+                        return false;
+                    });
+                    hasError = true;
+                }
+                else{
+                    alert("저장되었습니다.");
+                    location.href = "/user";
+                    return true;
+                }
+            });
         });
 
     }
@@ -367,8 +369,8 @@
             html += '<img src="/images/card_clip_icon.png" align="middle">';
         }
         html += '</div>'+
-        '</div>'+
-        '</li>';
+            '</div>'+
+            '</li>';
         return html;
     }
 
