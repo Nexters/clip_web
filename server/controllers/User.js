@@ -80,7 +80,7 @@ UserCtrl.saveUser = function(req, res) {
         function(callback){
             User.findOne({$or:[{email: userData.email}, {name: userData.name}]}, function(err, user) {
                 if (err) return callback(err);
-                if (user) return callback("이미 존재하는 유저입니다.");
+                if (user) return callback("already exist");
                 callback();
             });
         },
@@ -92,6 +92,7 @@ UserCtrl.saveUser = function(req, res) {
         }
     ],
     function(err, doc) {
+        if (err === "already exist") return res.status(200).send(Result.ERROR("이미 존재하는 유저입니다."));
         if (err) return res.status(400).send(Result.ERROR(err));
         res.status(200).send(Result.SUCCESS(doc));
     });
