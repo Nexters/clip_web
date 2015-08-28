@@ -249,7 +249,7 @@ p.keyword-txt {
 }
 
 .keyword-txt-box {
-    min-width: 400px;
+    min-width: 250px;
     max-height: 180px;
     overflow: auto;
 
@@ -858,8 +858,12 @@ p.keyword-txt {
     font-size: 12px;
     width: 100% !important;
 }
-
-
+/*키워드 설정 모달*/
+.modal-dialog2 {
+    width: 749px;
+    height: 546px;
+    margin: 30px auto;
+}
 
 /*프로필 모달*/
 .modal-dialog
@@ -932,6 +936,14 @@ p.keyword-txt {
     height: 344px;
     float:right;
 
+}
+
+.close2 {
+    color: #5064FA !important
+
+}
+.close2:focus {
+    outline: none;
 }
 
 .close {

@@ -110,8 +110,10 @@
 
     function initModalSiteItems() {
         $('.site_list').empty();
+        $.unique($('.site_list'));
         for (var i=0; i<newUserData.feeds.length; i++) {
             $('.site_list').append('<li>' + newUserData.feeds[i] + '</li>');
+
         }
         $('.site_list > li').append(button);
     }
@@ -137,11 +139,13 @@
             newUserData.feeds.splice(feedIndex, 1);
             $(this).parent().remove();
             console.log(newUserData.feeds);
+            console.log('성공');
         });
 
         $('#modal_key_btn').unbind('click').click(function() {
             newUserData.keywords = taggle.getTagValues();
-            HttpUtil.putData('/user/id/'+newUserData._id, {feeds: newUserData.feeds, keywords: newUserData.keywords}, function(err, result) {
+            HttpUtil.putData('/user/id/'+newUserData._id, {feeds: newUserData.feeds, keywords: newUserData.keywords},
+                function(err, result) {
                 if (err) return alert(err);
                 alert("등록되었습니다.");
                 location.reload(true);
@@ -181,8 +185,8 @@
                 if (!(event.keyCode >=37 && event.keyCode<=40)) {
                     var inputVal = $(this).val();
                     $(this).val(inputVal.replace(/[^a-z0-9]/gi,''));
-                     alert("한글은 입력할수 없습니다");
                 }
+                
             });
         });
 
