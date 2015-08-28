@@ -76,6 +76,15 @@ UserCtrl.saveUser = function(req, res) {
     req.checkBody('name', 'Invalid name').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
+    var result=true;
+    email=req.body.email;
+    var emailCheck= /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+    var email=req.body.email;
+    if(!emailCheck.test(email))
+        	{
+        		console.log("이메일 형식에 맞지 않습니다 ");
+                return res.status(200).send(Result.ERROR("이메일 형식에 맞지 않습니다."));
+        	}
     userData = {
         email: req.body.email,
         pw: req.body.pw,
