@@ -45,7 +45,7 @@ UserSchema.statics.getUser = function(criteria, callback) {
         }
     ], function (err, user) {
         if (err) return callback(err);
-        if (!user) return callback(err);
+        if (!user) return callback("user is not exist!");
         user.profileUrl = user.profileUrl || "/images/empty_user_icon.png";
         callback(null, user);
     });
