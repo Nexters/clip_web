@@ -779,7 +779,7 @@ p.keyword-txt {
 }
 .board_image_size{
     position: absolute;
-    width: 250px;
+    width: 249px;
     height: 236px;
     z-index: 1;
 
