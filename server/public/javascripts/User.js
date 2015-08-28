@@ -39,7 +39,9 @@
             clearBoardList();
             clipId = $(this).data('id');
             $('#board_feed_list_container').removeClass('hide');
+            $('.board-setting-btn').hide();
             initWookmark();
+
         });
 
 
