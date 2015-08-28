@@ -531,6 +531,7 @@ p.keyword-txt {
     box-shadow: none;
     box-shadow: none;
     width: 473px;
+    height: 97px;
     max-height: 97px;
     padding: 11px 11px 11px 11px;
     margin-bottom: 24px;
@@ -607,7 +608,6 @@ p.keyword-txt {
     background-color: #ffffff;
     text-decoration: none;
     border-radius: 5px;
-    overflow:auto;
 }
 
 .keyword_list{
