@@ -100,11 +100,11 @@
 
         if (userData.feeds.length === 0) {
             alert("등록된 사이트가 없습니다. 키워드 관리로 이동합니다.");
-            $('#setting_modal').modal('show');
+            $('#keyword_setting_btn').trigger('click');
         }
         if (userData.keywords.length === 0) {
             alert("등록된 키워드가 없습니다. 키워드 관리로 이동합니다.");
-            $('#setting_modal').modal('show');
+            $('#keyword_setting_btn').trigger('click');
         }
     }
 
