@@ -249,7 +249,7 @@ p.keyword-txt {
 }
 
 .keyword-txt-box {
-    min-width: 400px;
+    min-width: 250px;
     max-height: 180px;
     overflow: auto;
 
