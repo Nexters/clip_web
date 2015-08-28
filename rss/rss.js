@@ -114,7 +114,7 @@ function makeFeedData(userId, keywordArray, post, feed, pubDate) {
 }
 
 function saveFeedData(postArray, resultCallback) {
-    if (!postArray || postArray.length === 0) return callback();
+    if (!postArray || postArray.length === 0) return resultCallback();
 
     async.eachSeries(postArray, function iterator(post, callback) {
         db.feed.count({user: post.user, link: post.link}, function(err, count) {
