@@ -165,6 +165,7 @@
 
 
         $('#fileupload').fileupload({
+
             dataType: 'json',
             done: function (e, data) {
                 var result = data.result;
@@ -172,8 +173,14 @@
                 $('.profile-image-box').attr('src', image);
                 $('#fileupload').attr('value',image);
                 console.log(image);
+            },
+
+            error: function(e, data) {
+            alert("이미지 업로드에 실패하였습니다.");
             }
-        });
+
+            });
+
 
         <!-- 프로필 이름 설정 부분 -->
         $('#profile_name_input').val(userData.name);
