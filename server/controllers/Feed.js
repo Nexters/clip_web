@@ -57,6 +57,10 @@ FeedCtrl.checkFeed = function(req, res) {
     if (url && !url.match(/rss/)) {
         url = url + '/rss';
     }
+    // URL에 feed 있는 경우
+    if (url && url.match(/feed+[a-zA-Z0-9]/)) {
+        url = url.replace('/rss','');
+    }
     logger.debug(url);
 
     request.get(url, function (err, response, body) {
