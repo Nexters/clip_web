@@ -60,7 +60,7 @@ function maybeTranslate (res, charset) {
             // otherwise it will remain the output of request
             res = res.pipe(iconv);
         } catch(err) {
-            res.emit('error', err);
+            logger.error('error: ',err);
         }
     }
     return res;
@@ -80,7 +80,7 @@ function getParams(str) {
 function done(err) {
     if (err) {
         logger.error(err, err.stack);
-        return process.exit(1);
+        return;
     }
     logger.info("rss end!");
     //process.exit();   // 프로세스 죽이지 않고 계속 배치로 작업 진행
@@ -150,7 +150,7 @@ function fetch(userId, feed, keywordArray, lastFeedDate) {
     // Define our handlers
     req.on('error', done);
     req.on('response', function(res) {
-        if (res.statusCode != 200) return this.emit('error', new Error('Bad status code'));
+        if (res.statusCode != 200) return logger.error("res.statusCode: ", res.statusCode);
         var encoding = res.headers['content-encoding'] || 'identity'
             , charset = getParams(res.headers['content-type'] || '').charset;
         res = maybeDecompress(res, encoding);
