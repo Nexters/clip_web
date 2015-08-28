@@ -22,8 +22,8 @@ function getFeedDataFromUsers(users, resultCallback) {
         if (!user || !user.keywords) return callback();
         if (user.keywords.length === 0) return callback();
         var updatedLastFeedDate = new Date();
+        updateUserLastFeedDate(user._id, updatedLastFeedDate);
         fetchUserFeed(user._id, user.feeds, user.keywords, user.lastFeedDate, callback);
-        updateUserLastFeedDate(user._id, updatedLastFeedDate)
     }, function done() {
         if (resultCallback) resultCallback();
     });
