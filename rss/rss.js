@@ -115,6 +115,7 @@ function makeFeedData(userId, keywordArray, post, feed, pubDate) {
 
 function saveFeedData(postArray, callback) {
     if (!postArray || postArray.length === 0) return callback();
+    logger.info("postArray.length:",postArray.length);
     db.feed.insert(postArray, function(err) {
        callback(err);
     });
