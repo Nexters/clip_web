@@ -65,7 +65,6 @@ FeedCtrl.checkFeed = function(req, res) {
 
     request.get(url, function (err, response, body) {
         var result = require('querystring').parse(body);
-        logger.debug("result:", result);
         if (_.isEmpty(result)) {
             return res.status(400).send(Result.ERROR('Invalid feed'));
         }

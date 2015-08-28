@@ -171,6 +171,7 @@ function fetch(userId, feed, keywordArray, lastFeedDate) {
                 postArray.push(makeFeedData(userId, keywordArray, post, feed, pubDate.toDate()));
             }
         }
+        logger.info('post.length:',post.length);
         saveFeedData(postArray, function(err) {
             if (err) logger.error("saveFeedData err: ",err);
         });
