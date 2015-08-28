@@ -164,17 +164,36 @@ UserCtrl.logoutUser = function(req, res) {
 };
 
 UserCtrl.defaultPassword = function(req, res) {
-    var errors, criteria, update = {};
+    var errors, userData;
+    var update = {};
     var defaultPassword = 'abc123';
+
+    console.log(req.body);
+    req.checkParams('email', 'Invalid email').notEmpty();
     errors = req.validationErrors();
-    if (!Session.hasSession(req)) return res.redirect("/signin");
     if (errors) return res.status(400).send(Result.ERROR(errors));
-    criteria = {_id: Session.getSessionId(req)};
-    update.pw = defaultPassword;
-    User.updateUser(criteria, update, function(err, doc) {
-        if (err) return res.status(400).send(Result.ERROR(err));
-        return res.status(200).send(Result.SUCCESS('success'));
-    })
+    userData = {
+        email: req.params.email
+    };
+    if(!req || !res) return;
+    async.waterfall([
+            function(callback){
+                User.findOne({email: userData.email}, function(err, user) {
+                    if (err) return res.status(400).send(Result.ERROR(err));
+                    if (!user) return res.status(400).send(Result.ERROR("존재하지 않는 유저입니다."));
+                    callback(err);
+                });
+            },
+            function(callback) {
+                update.pw = defaultPassword;
+                User.updateUser({email: userData.email}, update, function(err, doc) {
+                    callback(err);
+                    return res.status(200).send(Result.SUCCESS(doc));
+                });
+            }
+        ],
+        function(err) {
+            if (err) return res.status(400).send(Result.ERROR(err));
+        });
 };
 module.exports = UserCtrl;
-
