@@ -85,6 +85,7 @@ logger.info("Start batch server");
 init();
 
 process.on('uncaughtException', function(err) {
+    console.log("ERR: ",err);
     logger.error("Uncaught Exception", err);
     process.exit(1);
 });
