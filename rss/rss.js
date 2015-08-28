@@ -150,7 +150,7 @@ function fetch(userId, feed, keywordArray, lastFeedDate) {
     // Define our handlers
     req.on('error', done);
     req.on('response', function(res) {
-        if (res.statusCode != 200) return this.emit('error', new Error('Bad status code'));
+        if (res.statusCode != 200) return logger.error("res.statusCode: ", res.statusCode);
         var encoding = res.headers['content-encoding'] || 'identity'
             , charset = getParams(res.headers['content-type'] || '').charset;
         res = maybeDecompress(res, encoding);
