@@ -646,6 +646,7 @@ p.keyword-txt {
     border: 1px solid #5064FA;
     text-decoration: none;
     border-radius: 30px;
+    padding-top: 3px;
 }
 
 #modal_key_btn:focus{
@@ -973,10 +974,10 @@ p.keyword-txt {
     border: solid 0px;
     width: 93px;
     height: 42px;
-    padding: 10px 20px 13px 20px;
     right: 202px;
     bottom: 15px;
     float: right;
+    padding-top: 3px;
     margin-top: 40px;
     margin-right: 7px;
     margin-bottom: 7px;
