@@ -76,7 +76,6 @@ ClipCtrl.addUserClipFeed = function(req, res) {
     logger.debug(updateData);
 
     Clip.update(conditions, updateData, function(err, result) {
-        logger.error(err);
         if (err) return res.status(400).send(Result.ERROR(err));
         res.status(200).send(Result.SUCCESS(result));
     });
@@ -97,7 +96,6 @@ ClipCtrl.removeUserClipFeed = function(req, res) {
     logger.debug(updateData);
 
     Clip.update(conditions, updateData, function(err, result) {
-        logger.error(err);
         if (err) return res.status(400).send(Result.ERROR(err));
         res.status(200).send(Result.SUCCESS(result));
     });

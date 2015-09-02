@@ -215,9 +215,14 @@
     }
 
     function getFeedBoxImageSrc(description) {
-        var defaultImageSrc = '/images/card_no_image.png';
-        if (!description) return defaultImageSrc;
-        return $(description).find('img').first().attr('src') || defaultImageSrc;
+        var feedBoxImage = '/images/card_no_image.png';
+        if (!description) return feedBoxImage;
+        try {
+            feedBoxImage = $(description).find('img').first().attr('src') || feedBoxImage;
+        } catch(e) {
+            feedBoxImage = '/images/card_no_image.png';
+        }
+        return feedBoxImage;
     }
 
     function getFeedBoxHtml(feed) {

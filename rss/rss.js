@@ -22,8 +22,8 @@ function getFeedDataFromUsers(users, resultCallback) {
         if (!user || !user.keywords) return callback();
         if (user.keywords.length === 0) return callback();
         var updatedLastFeedDate = new Date();
+        updateUserLastFeedDate(user._id, updatedLastFeedDate);
         fetchUserFeed(user._id, user.feeds, user.keywords, user.lastFeedDate, callback);
-        updateUserLastFeedDate(user._id, updatedLastFeedDate)
     }, function done() {
         if (resultCallback) resultCallback();
     });
@@ -113,10 +113,18 @@ function makeFeedData(userId, keywordArray, post, feed, pubDate) {
     return feedData;
 }
 
-function saveFeedData(postArray, callback) {
-    if (!postArray || postArray.length === 0) return callback();
-    db.feed.insert(postArray, function(err) {
-       callback(err);
+function saveFeedData(postArray, resultCallback) {
+    if (!postArray || postArray.length === 0) return resultCallback();
+
+    async.eachSeries(postArray, function iterator(post, callback) {
+        db.feed.count({user: post.user, link: post.link}, function(err, count) {
+            if (count > 0) return callback();
+            db.feed.insert(post, function(err) {
+                callback();
+            });
+        });
+    }, function done() {
+        if (resultCallback) resultCallback();
     });
 }
 
@@ -167,10 +175,11 @@ function fetch(userId, feed, keywordArray, lastFeedDate) {
             var lastDate = moment(lastFeedDate);
             var pubDate = moment(post.pubDate);
             if (lastDate.isBefore(pubDate)) {
-                logger.debug(post);
+                logger.info(post);
                 postArray.push(makeFeedData(userId, keywordArray, post, feed, pubDate.toDate()));
             }
         }
+        logger.info('postArray:',postArray.length);
         saveFeedData(postArray, function(err) {
             if (err) logger.error("saveFeedData err: ",err);
         });
