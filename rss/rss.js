@@ -175,7 +175,6 @@ function fetch(userId, feed, keywordArray, lastFeedDate) {
             var lastDate = moment(lastFeedDate);
             var pubDate = moment(post.pubDate);
             if (lastDate.isBefore(pubDate)) {
-                logger.info(post);
                 postArray.push(makeFeedData(userId, keywordArray, post, feed, pubDate.toDate()));
             }
         }
@@ -196,7 +195,7 @@ function run(resultCallback) {
             });
         },
         function(users, callback) {
-            logger.info("users: ", users);
+            logger.info("users.length: ", users.length);
             getFeedDataFromUsers(users, function(err) {
                 callback(users, err);
             });
