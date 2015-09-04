@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/common.css"/>
+    <link rel="stylesheet" href="/stylesheets/signup.css"/>
+    <meta name="keywords" content="RSS Feed Reader Interest Keyword" />
+    <meta name="description" content="RSS Reader using keyword">
+    <meta name="author" content="Clip Team">
+    <meta charset="UTF-8">
+    <title>Clip - Sign Up</title>
+</head>
+
+<body>
+
+<div id="top">Clip</div>
+<div align="center" id="top2"> 관심 키워드로 콘텐츠를 받아보고 클립하세요</div>
+
+<div align="center" class="centered">
+
+    <div id="form"  name="signupform">
+        <div href="/signin">
+            <input id="login_btn" type="image" name="signup" src="/images/clip_signup_login.png">
+        </div>
+        <div  align="center" id="signup">
+            Sign up
+        </div>
+    <div>
+        <input id="input_name" type="text" name="name" maxlength="10"  placeholder="Name" />
+        <input id="input_email1" type="email" name="email" placeholder="Email">
+        <input id="input_password1" type="password" name="pw"  placeholder="password">
+        <input id="input_conpass" type="password" name="pw2" placeholder="Confirm Password" >
+        <input id="signup_btn" type="image" name="signup" src="/images/signup_button2.png">
+    </div>
+
+  </div>
+
+</div>
+
+<script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/javascripts/util/HttpUtil.js"></script>
+<script src="/javascripts/Signup.js"></script>
+</body>
+</html>

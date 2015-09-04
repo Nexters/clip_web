@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Clip - Home</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/javascripts/bower_components/normalize.css/normalize.css">
+    <link rel="stylesheet" href="/javascripts/bower_components/wookmark/css/main.css">
+    <link rel="stylesheet" href="/javascripts/bower_components/taggle.js/assets/css/taggle.css">
+    <link rel="stylesheet" href="/stylesheets/common.css"/>
+    <link rel="stylesheet" href="/stylesheets/home.css"/>
+    <link rel="stylesheet" href="/stylesheets/myclip.css"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/vendor/jquery.ui.widget.js"></script>
+    <script src="js/jquery.iframe-transport.js"></script>
+    <script src="js/jquery.fileupload.js"></script>
+
+    <![endif]-->
+    <script>
+        var g_data = {
+            user : <%- JSON.stringify(user) %>
+        }
+    </script>
+</head>
+
+
+<body>
+<nav class="navbar navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header" align="center">
+            <a class="navbar-brand" href="/home">Clip</a>
+        </div><!-- /.navbar-header -->
+        <div class="navbar-profile">
+            <a class="home-icon-box" href="/home">
+                <img src="/images/home_icon.png">
+            </a>
+            <a class="home-profile-box" href="/user">
+                <img class="user-profile-img" src="<%= user.profileUrl %>">
+                <p class="user-profile-txt"><%= user.name %></p>
+            </a>
+        </div><!-- /.navbar-profile -->
+    </div><!-- /.container -->
+</nav><!-- /.navbar -->
+
+<!-- /.navbar -->
+<div class="fixed-keyword-bar">
+    <div class="keyword-bar-keywords col-xs-12 col-sm-12">
+        <div class="myclip-bar-title-box">My Clipboard</div>
+        <img src="/images/myboard_arrow_icon.png"/>
+        <span class="myclip_title"></span>
+        <div class="float-right">
+            <span class="board-setting-btn">보드관리</span>
+        </div>
+
+    </div>
+
+</div>
+
+<!--보드 이미지 보드 부분 -->
+<div class="boards">
+
+    <div id="board_feed_list_container" class="row row-offcanvas row-offcanvas-right hide">
+        <div role="main" id="feed_container">
+            <ul id="feed_list_panel" class="tiles-wrap animated">
+
+            </ul>
+            <div id="loader">
+                <div align="center" id="loaderCircle">
+                    <img src="/images/loader.gif">
+                </div>
+            </div>
+        </div>
+    </div><!--/row-->
+
+    <% for(var i=0; i<clips.length; i++) { %>
+    <div class="board" data-title="<%= clips[i].title %>" data-id="<%= clips[i]._id %>">
+        <div class="board_image">
+            <img class="icon" src="/images/clip_icon.png" z-index="3">
+            <img class="board_delete_btn" src="/images/board_delete_icon.png" z-index="2">
+            <img class="board_image_size" src="<%= clips[i].boardImageUrl %>" z-index="1">
+        </div>
+        <div class="board_title">
+        <span class="comment"><%= clips[i].title %></span>
+        <span class="board-num"><%= clips[i].feedCount %></span>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+<div class="right-sidebar">
+
+    <div class="sidebar-first-box">
+        <img class="sidebar-setting-icon" src="/images/profile_setting_icon.png">
+
+        <div align="center">
+            <div><img class="sidebar-image-box" src="<%= user.profileUrl %>"></div>
+            <div class="sidebar-name-txt"><%= user.name %></div>
+            <div class="sidebar-email-txt"><%= user.email %></div>
+        </div>
+    </div>
+    <div class="sidebar-second-box">
+        <div class="keyword-title">키워드 목록</div>
+        <!-- 키워드 목록  -->
+        <div class="keyword-txt-box">
+            <% for (var i=0; i<user.keywords.length; i++) { %>
+            <% if (i !== user.keywords.length-1) { %>
+                <% user.keywords[i] += ','; %>
+            <% } %>
+            <span class="keyword-txt"><%= user.keywords[i] %></span>
+            <% } %>
+        </div>
+    </div>
+    <div class="sidebar-third-box">
+        <div class="keyword-title">웹 사이트 목록</div>
+        <!-- 사이트 목록  -->
+        <div class="keyword-txt-box">
+            <% for (var i=0; i<user.feeds.length; i++) { %>
+            <p class="keyword-txt"><%= user.feeds[i] %></p>
+            <% } %>
+        </div>
+    </div>
+    <div id="keyword_setting_btn" class="board_clip_btn_bg">
+        <div class="board_clip_btn">키워드 관리</div>
+    </div>
+</div>
+
+</div><!--/.container-->
+
+
+<!-- 키워드 설정 모달 -->
+<div id="setting_modal" class="modal fade">
+    <div class="modal-dialog2">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+                <!--<h4 id="login_modal_title" class="modal_title">키워드 등록</h4>-->
+                <h4 id="login_modal_title" class="modal_title">키워드 등록</h4>
+                <h5 id="modal_sub_title" class="modal_subtitle">클립하고 싶은 키워드 또는 사이트를 등록해주세요.</h5>
+
+            </div>
+            <div id="modal-middle" class="modal-body">
+                <div>
+                    <h6 class="site">사이트 등록</h6>
+                    <input id="modal_input_site" type="text" placeholder="www.clipit.kr"/>
+                    <button id="modal_add_btn" type="button" class="add-btn">+ 추가</button>
+                </div>
+                <div>
+                    <!--<input id="modal_input_sitebox" type="textbox" placeholder="입력한내용"/>-->
+                    <div class="site_list">
+                    </div>
+                </div>
+                <div class="login-password-container">
+                    <h7 class="keyword-enroll">키워드 등록</h7>
+                    <br>
+                    <div id="keyword-box">
+                    </div>
+                    <a class="go_home" href="javascript: void(0);">
+                        <button id="modal_key_btn" type="button" class="modal-start-btn">등록하기</button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<!--profile modal-->
+<div id="profile_modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="profile-content">
+            <div class="profile-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+                <!--<h4 id="login_modal_title" class="modal_title">키워드 등록</h4>-->
+                <h4 id="profile_modal_title" class="modal_title">프로필 수정</h4>
+            </div>
+
+            <div id="profile-middle">
+                <div id="middle_left">
+                    <img class="profile-image-box"  src="<%= user.profileUrl %>">
+                    <input id="fileupload" class="image-file-upload-btn hided-input-file-btn is-edit-mode" type="file" name="files[]" data-url="/file">
+                    <br><button id="change_btn" type="button" class="change-btn">사진변경</button>
+                    <br><button id="logout_btn" type="button" class="logout-btn">로그아웃</button>
+                </div>
+                <div id="middle_right">
+
+                    <h7 id="profile_name">이름</h7>
+                    <br><input id="profile_name_input" type="text"/>
+                    <br><h8 id="profile_email">이메일 주소</h8>
+                    <br><h9><div class="my_email"><%= user.email %></div></h9>
+                    <h7 id="profile_name">패스워드 변경</h7>
+                    <br><input id="change_pw_input" type="password"/><br>
+                    <h7 id="profile_name">패스워드 확인</h7>
+                    <br><input id="change_pw_confirm" type="password"/>
+                    <button id="modal_save_btn" type="button" class="save-btn">저장하기</button>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/javascripts/bower_components/wookmark/wookmark.min.js"></script>
+<script src="/javascripts/bower_components/taggle.js/dist/taggle.min.js"></script>
+<script src="/javascripts/bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/javascripts/bower_components/jquery-file-upload/js/jquery.fileupload.js"></script>
+<script src="/javascripts/util/HttpUtil.js"></script>
+<script src="/javascripts/User.js"></script>
+</body>
+</html>

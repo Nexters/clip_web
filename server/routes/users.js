@@ -1,18 +1,23 @@
 var express = require('express');
 var router = express.Router();
-var log4js = require('log4js');
-var logger = log4js.getLogger('routes/users');
 var userCtrl = require('../controllers/User');
 
+/* GET user */
+router.get('/id/:id', userCtrl.getUser);
 
-/* GET all users */
-router.get('/all', userCtrl.getAllUsers);
-
-/* GET save user */
+/* POST save user */
 router.post('/save', userCtrl.saveUser);
 
-/* POST user login */
-router.post('/login', userCtrl.login);
+/* PUT update user */
+router.put('/id/:id', userCtrl.updateUser);
 
+/* POST login user */
+router.post('/login', userCtrl.loginUser);
+
+/* POST logout user */
+router.post('/logout', userCtrl.logoutUser);
+
+/* PUT default password */
+router.put('/passwd/:email', userCtrl.defaultPassword);
 
 module.exports = router;

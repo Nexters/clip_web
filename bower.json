@@ -1,0 +1,28 @@
+{
+  "name": "clip_web",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Nexters/clip_web",
+  "authors": [
+    "Clip Team <godong9@gmail.com>"
+  ],
+  "description": "Clip Project",
+  "keywords": [
+    "Clip"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "wookmark": "~2.0.1",
+    "taggle.js": "~1.5.1",
+    "underscore": "~1.8.3",
+    "jquery-file-upload": "~9.11.1"
+  }
+}
