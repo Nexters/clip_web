@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var userCtrl = require('../controllers/User');
 var Session = require('../services/Session');
+var MobileDetect = require('mobile-detect');
+
 
 /* GET main page */
 router.get('/', function(req, res, next) {
@@ -14,7 +16,13 @@ router.get('/', function(req, res, next) {
 
 /* GET signin page */
 router.get('/signin', function(req, res, next) {
-    res.render('signin');
+    var md = new MobileDetect(req.headers['user-agent']);
+
+    if (md.mobile()) {
+        res.render('mobile/signin');
+    } else {
+        res.render('signin');
+    }
 });
 
 /* GET signup page */
