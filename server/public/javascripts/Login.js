@@ -62,7 +62,7 @@
 
         $('#tem_pw_btn').click(function() {
             var email = $('#forgot_input').val();
-            HttpUtil.putData('/user/passwd/'+email, {}, function (err) {
+            HttpUtil.putData('/user/lost/passwd/'+email, {}, function (err) {
                 console.log(err);
                 if (err || null) return alert('존재하지 않는 이메일입니다.');
 
@@ -75,7 +75,7 @@
                 <!-- 아무것도 입력하지 않았을때 -->
                 if(email == "") return alert('이름을 입력해주세요.');
 
-                alert('비밀번호가 abc123 으로 변경되었습니다.');
+                alert('임시 비밀번호가 발급되었습니다. 메일을 확인해주세요.');
                 return true;
             });
         });

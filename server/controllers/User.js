@@ -7,6 +7,7 @@ var log4js = require('log4js');
 var logger = log4js.getLogger('controllers/User');
 var Session = require('../services/Session');
 var Common = require('../services/Common');
+var Mailer = require('../services/Mailer');
 
 
 function UserCtrl() {
@@ -193,4 +194,40 @@ UserCtrl.defaultPassword = function(req, res) {
         return res.status(200).send(Result.SUCCESS(result));
     });
 };
+
+
+UserCtrl.resetPassword = function(req, res) {
+    var errors, userData;
+    var update = {};
+    var defaultPassword = 'abc123';
+
+    req.checkParams('email', 'Invalid email').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    userData = {
+        email: req.params.email
+    };
+    async.waterfall([
+        function(callback){
+            User.findOne({email: userData.email}, function(err, user) {
+                if (err) return callback(err);
+                if (!user) return callback("존재하지 않는 유저입니다.");
+                callback(err, user);
+            });
+        },
+        function(user, callback) {
+            update.pw = defaultPassword;
+            User.updateUser({email: user.email}, update, function(err, doc) {
+                callback(err, doc);
+            });
+        }
+    ],
+    function(err, result) {
+        if (err) return res.status(400).send(Result.ERROR(err));
+        Mailer.sendMail(userData.email, "비밀번호 분실 관련", "비밀번호가 "+defaultPassword+" 로 초기화되었습니다.");
+        return res.status(200).send(Result.SUCCESS(result));
+    });
+};
+
+
 module.exports = UserCtrl;

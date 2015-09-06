@@ -17,6 +17,9 @@ router.post('/login', userCtrl.loginUser);
 /* POST logout user */
 router.post('/logout', userCtrl.logoutUser);
 
+/* PUT lost password */
+router.put('/lost/passwd/:email', userCtrl.resetPassword);
+
 /* PUT default password */
 router.put('/passwd/:email', userCtrl.defaultPassword);
 
