@@ -199,7 +199,7 @@ UserCtrl.defaultPassword = function(req, res) {
 UserCtrl.resetPassword = function(req, res) {
     var errors, userData;
     var update = {};
-    var defaultPassword = 'abc123';
+    var tempPassword = Common.randomPassword();
 
     req.checkParams('email', 'Invalid email').notEmpty();
     errors = req.validationErrors();
@@ -216,7 +216,7 @@ UserCtrl.resetPassword = function(req, res) {
             });
         },
         function(user, callback) {
-            update.pw = defaultPassword;
+            update.pw = tempPassword;
             User.updateUser({email: user.email}, update, function(err, doc) {
                 callback(err, doc);
             });
@@ -224,7 +224,7 @@ UserCtrl.resetPassword = function(req, res) {
     ],
     function(err, result) {
         if (err) return res.status(400).send(Result.ERROR(err));
-        Mailer.sendMail(userData.email, "비밀번호 분실 관련", "비밀번호가 "+defaultPassword+" 로 초기화되었습니다.");
+        Mailer.sendMail(userData.email, "비밀번호 분실 관련", "비밀번호가 "+tempPassword+" 로 초기화되었습니다.");
         return res.status(200).send(Result.SUCCESS(result));
     });
 };
