@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Clip = mongoose.model('Clip');
 var Result = require('../services/Result');
 var async = require('async');
 var log4js = require('log4js');
 var logger = log4js.getLogger('controllers/User');
 var Session = require('../services/Session');
-var Clip = mongoose.model('Clip');
+var Common = require('../services/Common');
+
 
 function UserCtrl() {
 
@@ -17,7 +19,12 @@ UserCtrl.getHomePage = function(req, res) {
     var data = {};
     User.getUser(criteria, function(err, doc) {
         data.user = doc;
-        res.render('home', data);
+
+        if (Common.isMobile(req)) {
+            res.render('mobile/home', data);
+        } else {
+            res.render('home', data);
+        }
     });
 };
 
@@ -42,7 +49,12 @@ UserCtrl.getUserPage = function(req, res) {
         }
     ], function (err) {
         if (err) return res.status(400).send(Result.ERROR(err));
-        res.render('myclip', data);
+
+        if (Common.isMobile(req)) {
+            res.render('mobile/myclip', data);
+        } else {
+            res.render('myclip', data);
+        }
     });
 };
 

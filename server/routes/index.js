@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var userCtrl = require('../controllers/User');
 var Session = require('../services/Session');
-var MobileDetect = require('mobile-detect');
+var Common = require('../services/Common');
 
 
 /* GET main page */
@@ -16,9 +16,7 @@ router.get('/', function(req, res, next) {
 
 /* GET signin page */
 router.get('/signin', function(req, res, next) {
-    var md = new MobileDetect(req.headers['user-agent']);
-
-    if (md.mobile()) {
+    if (Common.isMobile(req)) {
         res.render('mobile/signin');
     } else {
         res.render('signin');
@@ -27,7 +25,11 @@ router.get('/signin', function(req, res, next) {
 
 /* GET signup page */
 router.get('/signup', function(req, res, next) {
-    res.render('signup');
+    if (Common.isMobile(req)) {
+        res.render('mobile/signup');
+    } else {
+        res.render('signup');
+    }
 });
 
 /* GET user home page */
