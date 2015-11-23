@@ -86,10 +86,10 @@
         });
 
         <!-- modal 버튼 부분 -->
-        $('#keyword_setting_btn').click(function() {
-            $('#setting_modal').modal('show');
-            initModal();
-        });
+        //$('#keyword_setting_btn').click(function() {
+        //    $('#setting_modal').modal('show');
+        //    initModal();
+        //});
 
         $('.sidebar-setting-icon').click(function() {
             $('#profile_modal').modal('show');
