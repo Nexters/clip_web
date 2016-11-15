@@ -24,7 +24,7 @@
     "iconv": "^2.1.8",
     "log4js": "^0.6.26",
     "moment": "^2.10.3",
-    "mongojs": "^1.2.1",
+    "mongojs": "^2.4.0",
     "node-schedule": "^0.2.9",
     "request": "^2.58.0",
     "underscore": "^1.8.3"

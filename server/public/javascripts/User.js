@@ -86,10 +86,10 @@
         });
 
         <!-- modal 버튼 부분 -->
-        //$('#keyword_setting_btn').click(function() {
-        //    $('#setting_modal').modal('show');
-        //    initModal();
-        //});
+        $('#keyword_setting_btn').click(function() {
+           $('#setting_modal').modal('show');
+           initModal();
+        });
 
         $('.sidebar-setting-icon').click(function() {
             $('#profile_modal').modal('show');
@@ -141,6 +141,7 @@
         });
 
         $('#modal_key_btn').unbind('click').click(function() {
+            console.log("등록");
             newUserData.keywords = taggle.getTagValues();
             HttpUtil.putData('/user/id/'+newUserData._id, {feeds: newUserData.feeds, keywords: newUserData.keywords},
                 function(err, result) {
