@@ -104,7 +104,7 @@ ul#feed_list_panel > li {
 }
 
 .navbar-brand:hover {
-    color: RGB(80, 100, 250) !important;
+    /*color: RGB(80, 100, 250) !important;*/
 }
 
 .navbar-profile {
@@ -133,6 +133,10 @@ ul#feed_list_panel > li {
     width: 200px;
     heigth: 50px;
     padding: 7px 10px !important;
+}
+
+a.home-profile-box:hover {
+    text-decoration: none;
 }
 
 .navbar-profile .home-profile-box .user-profile-img {
