@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="keywords" content="RSS Feed Reader Interest Keyword" />
+    <meta name="description" content="RSS Reader using keyword">
+    <meta name="author" content="Clip Team">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/stylesheets/common.css"/>
+    <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/signin.css"/>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        .top {
+            display: block;
+            font-size: 108px;
+            font-family: "Montserrat_Bold";
+            color: white;
+            text-align: center;
+        }
+
+        .middle {
+            display: block;
+            font-size: 12px;
+            font-family: 'NotoSansCJKKR-hinted/NotoSansCJKkr-Regular';
+            color: white;
+            text-align: center;
+        }
+
+        .mailinfo {
+            font-family: "Montserrat_Bold";
+            font-size: 15pt;
+            color: black;
+            text-align: center;
+        }
+    </style>
+    <title>Clip - Sign In</title>
+</head>
+
+<body>
+
+<!-- 처음 Clip -->
+<div class="top">
+    <div style="text-align:center; margin-top: 80px">
+        Clip
+    </div>
+    <div id="wrapper">
+        <div class="middle">
+            <div style="text-align:center; margin-top: 26px">
+                <h3>관심 키워드로 콘텐츠를 받아보고 클립하세요</h3>
+            </div>
+        </div>
+        <!-- 로그인 박스 -->
+        <div class="mailinfo">
+
+            <div id="login" class="form">
+                <div name="loginform">
+                    <!-- 로그인 글씨 -->
+                    <h1>Log in</h1>
+                    <!-- 폼 -->
+                    <input id="input_email" type="email" name="email" class="text" placeholder="Email" required><br>
+                    <input id="pw" type="password" name="pw" placeholder="Password"><br>
+                    <!-- 로그인 버튼 -->
+                    <input id="signin_btn" type="image" name="Log in" src="/images/login_button.png">
+
+                    <h2><input id="forgot_pw" type="image" name="sign up" src="/images/password.png"></h2>
+                    <button id="join"><a href="/signup" style="text-decoration:none; color: rgb(124,124,124);">
+                            이메일로 가입하기</a></button>
+                    <!--formation 질문  -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="pw_modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
+                </button>
+                <div id="pw-text">
+                    <h3>비밀번호 분실</h3>
+                    <h4>비밀번호를 잊으셨나요?</h4>
+                    <h5>
+                        <span id="bold">임시 비밀번호를 발급</span>
+                        해드립니다. Email주소를 입력해주세요.
+                    </h5>
+                </div>
+            </div>
+            <div id="modal-middle" class="modal-body">
+                <div id="email_text"> <class id="emtext">Email</class>
+                    <input id="forgot_input" type="text"/></div>
+                <button id="tem_pw_btn" type="button" class="tpw-btn">임시 비밀번호 발급</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal-content -->
+
+
+<script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/bower_components/taggle.js/dist/taggle.min.js"></script>
+<script src="/javascripts/bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/javascripts/util/HttpUtil.js"></script>
+<script src="/javascripts/Login.js"></script>
+
+</body>
+
+
+</html>

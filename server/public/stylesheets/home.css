@@ -1,0 +1,531 @@
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+body {
+    padding-top: 50px;
+    background-color: RGB(255,255,255) !important;
+}
+footer {
+    padding: 30px 0;
+}
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 767px) {
+    .row-offcanvas {
+        position: relative;
+        -webkit-transition: all .25s ease-out;
+        -o-transition: all .25s ease-out;
+        transition: all .25s ease-out;
+    }
+
+    .row-offcanvas-right {
+        right: 0;
+    }
+
+    .row-offcanvas-left {
+        left: 0;
+    }
+
+    .row-offcanvas-right
+    .sidebar-offcanvas {
+        right: -50%; /* 6 columns */
+    }
+
+    .row-offcanvas-left
+    .sidebar-offcanvas {
+        left: -50%; /* 6 columns */
+    }
+
+    .row-offcanvas-right.active {
+        right: 50%; /* 6 columns */
+    }
+
+    .row-offcanvas-left.active {
+        left: 50%; /* 6 columns */
+    }
+
+    .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 50%; /* 6 columns */
+    }
+}
+
+.container {
+    margin-left: 35px !important;
+    margin-right: 35px !important;
+}
+
+.card-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.navbar {
+    z-index: 100;
+    background-color: RGB(255,255,255);
+}
+
+.navbar-header {
+    float: inherit !important;
+    margin: 0px auto !important;
+    width: 100px !important;
+}
+
+.navbar-brand {
+    margin: 0px !important;
+    padding: 3px 15px !important;
+    font-size : 30px;
+    color: RGB(80,100,250);
+    line-height: 40px;
+    font-family:"Montserrat_Bold";
+    width: 100px;
+}
+
+.navbar-brand:hover {
+    color: RGB(80,100,250) !important;
+}
+
+.navbar-profile {
+    width: 260px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    line-height: 35px;
+}
+
+.navbar-profile .home-icon-box {
+    cursor: pointer;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 7px 10px;
+    text-align: center;
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+}
+
+.navbar-profile .home-profile-box {
+    cursor: pointer;
+    display: inline-block;
+    width: 200px;
+    heigth: 50px;
+    padding: 7px 10px !important;
+}
+
+.navbar-profile .home-profile-box .user-profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+}
+
+.navbar-profile .home-profile-box .user-profile-txt {
+    width: 120px;
+    height: 35px;
+    display: inline-block;
+    margin: 0px 0px 0px 12px;
+    padding: 0px;
+    font-family:"Montserrat_Light";
+    font-size: 15px;
+    color: RGB(140,140,140);
+    /*overflow:hidden;*/
+    /*white-space:nowrap;*/
+    text-overflow: ellipsis;
+}
+
+
+.fixed-keyword-bar {
+    z-index: 100;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    padding-right: 280px;
+    background-color: RGB(248,248,248);
+    border-top: 0.08em solid #ebebeb;
+    border-bottom: 0.08em solid #ebebeb;
+    box-shadow: 0 0 1px rgba(0,0,0,.3);
+    -moz-box-shadow: 0px 0px 1px #e6e6e6;
+    -webkit-box-shadow: 0px 0px 1px #e6e6e6;
+}
+
+
+
+/*키워드 영역 관련*/
+.fixed-keyword-bar .keyword-bar-keywords .keyword-bar-title-box {
+    float: left;
+    display: inline;
+    font-family:"Montserrat_Regular";
+    color: RGB(133,133,133);
+    font-size: 17px;
+    width: 110px;
+    height: 70px;
+    line-height: 70px;
+    margin: 0px 40px 0px 24px;
+}
+
+.fixed-keyword-bar .keyword-bar-keywords {
+    display: inline;
+    height: 70px;
+    line-height: 70px;
+    margin-top: -2px;
+}
+
+.keyword-move-btn {
+    position: absolute;
+    height: 16px;
+    line-height: 70px;
+}
+
+.keyword-move-btn img {
+    cursor: pointer;
+    height: 16px;
+}
+
+.keyword-move-btn.prev-btn {
+    left: 190px;
+}
+
+.keyword-move-btn.next-btn {
+    right: 0px;
+}
+
+.keyword-txt-box-wrapper {
+    display: block;
+    position: absolute;
+    left: 200px;
+    height: 70px;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 400px;
+    overflow: hidden;
+}
+
+.keyword-txt-box {
+    width: 100%;
+    height: 70px;
+    min-width: 400px;
+    overflow: hidden;
+}
+
+
+.keyword-txt-btn {
+    cursor: pointer;
+    -webkit-border-radius: 30;
+    -moz-border-radius: 30;
+    border-radius: 30px;
+    font-family:"Montserrat_Light";
+    color: RGB(80,100,250);
+    font-size: 14px;
+    background: transparent;
+    padding: 6px 15px 3px 15px;
+    border: solid #5064FA 1px;
+    text-decoration: none;
+    margin: 0px 8px;
+    height: 29px;
+    line-height: 29px;
+}
+
+.keyword-txt-btn.on {
+    background: #5064FA;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/*사이드바 영역 관련*/
+
+.right-sidebar {
+    z-index: 101;
+    width: 261px;
+    height: 100%;
+    border-left: 0.08em solid #ebebeb;
+    margin-top: 50px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background-color: RGB(234,234,234);
+}
+
+.sidebar-title-box {
+    height: 175px;
+    padding: 34px 12px 14px 12px;
+    background-color: #5064FA;
+}
+
+.sidebar-title-txt {
+    font-family:"NotoSansCJKkr_Regular";
+    color:#ffffff;
+    font-size:17px;
+    margin-bottom: -3px;
+}
+
+.board-title-box {
+    width: 236px;
+    height: 38px;
+    margin-top: 15px;
+    background: #ffffff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.board-title-box input {
+    width: 190px;
+    line-height: 30px;
+    margin-left: 9px;
+    margin-top: 4px;
+    font-family:"NotoSansCJKkr_Regular";
+    color:RGB(183,183,183);
+    font-size:15px;
+    border: none;
+    outline:0px none black;
+}
+
+.board-title-box img {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.board-select-box {
+    position: relative;
+    width: 236px;
+    height: 38px;
+    margin-left: 9px;
+    background: url('/images/myboard_list_icon.png') 200px center no-repeat;
+    -webkit-appearance: none;
+    border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
+    border: none;
+    outline:0px none black;
+}
+
+.sidebar-content-box {
+    height: 268px;
+    background-color: #ffffff;
+    overflow-y: auto;
+}
+
+#board_clip_btn {
+    cursor: pointer;
+    width: 236px;
+    height: 38px;
+    margin-top: 12px;
+    margin-left: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-family:"NotoSansCJKkr_Regular";
+    color: #ffffff;
+    font-size: 15px;
+    background: #5064fa;
+    text-decoration: none;
+    text-align: center;
+    line-height: 38px;
+}
+
+#board_clip_btn.active {
+    background: #3B47BE;
+}
+
+.sidebar-content-line-box {
+    margin: 0px auto;
+    padding: 7px 7px 0px 7px;
+    list-style:none;
+}
+
+.sidebar-content-line-box > li {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    float: left;
+    display: inline-block;
+    margin: 3px 1px;
+    width: 80px;
+    height: 80px;
+}
+
+.sidebar-content-line-box > li .img-wrapper {
+    position: relative;
+}
+
+.sidebar-content-line-box > li .img-wrapper img.card-image {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    /*display: inline-block;*/
+    width: 78px;
+    height: 78px;
+}
+
+.sidebar-content-line-box > li .img-wrapper img.card-delete-btn {
+    cursor: pointer;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 5px;
+    top: 5px;
+}
+
+
+.sidebar-content-line-box > li .title-wrapper {
+    /*display: inline-block;*/
+    float: left;
+    left: 0px;
+    bottom: 8px;
+    position: absolute;
+    width: 78px;
+    height: 20px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    padding: 5px;
+}
+
+.sidebar-content-line-box > li .title-wrapper p {
+    font-family:"NotoSansCJKkr_Medium";
+    font-size: 13px;
+    color: #cccccc;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    /*height: 63px;*/
+    /*overflow: hidden;*/
+}
+
+
+/*피드 리스트 관련*/
+
+ul#feed_list_panel > li {
+    max-height: 276px;
+}
+
+.boards > .row-offcanvas {
+    padding-right: 0px;
+}
+
+.row-offcanvas {
+    padding-right: 260px;
+    padding-top: 90px !important;
+}
+
+#feed_list_panel {
+    list-style:none;
+}
+
+#feed_list_panel > li {
+    width: 251px;
+    height: 276px;
+    padding: 0px;
+    border: none;
+}
+
+#feed_list_panel > li > div {
+    height: 100px;
+}
+
+#feed_list_panel > li > div.img-box {
+    width: 251px;
+    height: 176px;
+    overflow: hidden;
+}
+
+#feed_list_panel > li > div.img-box > img {
+    width: 251px;
+    min-height: 176px;
+}
+
+#feed_list_panel > li > div.title-box {
+    height: 63px;
+    padding: 10px;
+    text-align: left !important;
+    border-top: 1px solid #cccccc;
+}
+
+#feed_list_panel > li > div.title-box > p {
+    font-family:"NotoSansCJKkr_Medium";
+    font-size: 13px;
+    color: RGB(101,101,101);
+    height: 63px;
+    overflow: hidden;
+}
+
+#feed_list_panel > li > div.keyword-box {
+    height: 37px;
+}
+
+#feed_list_panel > li > div.keyword-box > div.keyword {
+    float: left;
+    width: 220px;
+    height: 37px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#feed_list_panel > li > div.keyword-box > div.keyword > span {
+    position: absolute;
+    width: 190px;
+    left: 28px;
+    bottom: 12px;
+    font-family:"Montserrat_Light";
+    font-size: 12px;
+    color: RGB(172,172,172);
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+#feed_list_panel > li > div.keyword-box > div.clip {
+    display: inline-block;
+    float: right;
+    padding-top: 10px;
+    width: 19px;
+    height: 37px;
+}
+
+
+.clip-icon-circle {
+    z-index: 10;
+    cursor:pointer;
+    width: 40px;
+    height: 40px;
+    top: 9px;
+    right: 9px;
+    display: inline-block;
+    -webkit-box-shadow: 0px 1px 3px #888888;
+    -moz-box-shadow: 0px 1px 3px #888888;
+    box-shadow: 0px 1px 3px #888888;
+    overflow: hidden;
+    position: absolute;
+    background-color: #D0D0D0;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+}
+
+.clip-icon-circle.on {
+    background-color: #5B6FFB;
+}
+
+.clip-icon-circle > img {
+    padding-top: 9px;
+    padding-left: 12px;
+}
+
+/* 사이드바 관련 */
+#sidebar_clip_list > li > img {
+
+}
